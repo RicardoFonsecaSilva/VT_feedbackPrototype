@@ -6,22 +6,51 @@ public class avatarController : MonoBehaviour
 {
     public GameObject maleAvatar;
     public GameObject femaleAvatar;
+    private Animator maleAnimator;
+    private Animator femaleAnimator;
 
     void OnEnable()
     {
         hookController.OnTalkRequest += HandleTalkRequest;
+        hookController.OnMoodChange += HandleMoodChange;
     }
 
     void OnDisable()
     {
         hookController.OnTalkRequest -= HandleTalkRequest;
+        hookController.OnMoodChange -= HandleMoodChange;
     }
 
-    void HandleTalkRequest(string avatar)
+    void Start()
     {
-        Debug.Log(gameObject.name + ": \"Talk\" event was received." + avatar);
-        Debug.Log(gameObject.name + ": "+ maleAvatar.name+ ";" + femaleAvatar);
+        maleAnimator = maleAvatar.GetComponent<Animator>();
+        femaleAnimator = femaleAvatar.GetComponent<Animator>();
     }
 
+    void HandleTalkRequest(string source, int param1)
+    {
+        Debug.Log(gameObject.name + ": \"Talk\" event was received." + source);
+    }
 
+    void HandleMoodChange(string source, int param1)
+    {
+        Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
+        updateMood(source, param1);
+    }
+
+    private void updateMood(string avatar, int mood)
+    {
+        if (avatar == "Joao")
+        {
+            maleAnimator.SetInteger("CurrentMood", mood);
+            return;
+        }
+            
+        if (avatar == "Maria")
+        {
+            femaleAnimator.SetInteger("CurrentMood", mood);
+            return;
+        }
+        Debug.Log("ERROR: COULD NOT FIND CORRECT AVATAR.");
+    }
 }
