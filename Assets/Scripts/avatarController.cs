@@ -30,6 +30,7 @@ public class avatarController : MonoBehaviour
     void HandleTalkRequest(string source, int param1)
     {
         Debug.Log(gameObject.name + ": \"Talk\" event was received." + source);
+        turnHead(source);
     }
 
     void HandleMoodChange(string source, int param1)
@@ -52,5 +53,21 @@ public class avatarController : MonoBehaviour
             return;
         }
         Debug.Log("ERROR: COULD NOT FIND CORRECT AVATAR.");
+    }
+
+    private void turnHead(string source)
+    {
+        if (source == "Maria")
+        {
+            maleAnimator.SetBool("beingTalkedTo", true);
+            return;
+        }
+
+        if (source == "Joao")
+        {
+            femaleAnimator.SetBool("beingTalkedTo", true);
+            return;
+        }
+        Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");
     }
 }

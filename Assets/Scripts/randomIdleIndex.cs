@@ -9,7 +9,7 @@ public class randomIdleIndex : StateMachineBehaviour
     {
 
         animator.SetInteger("IdleIndex", Random.Range(0, 4));
-        animator.SetFloat("Blend", (float) Random.Range(25, 60)/100);
+        animator.SetFloat("Blend", (float) Random.Range(0, 75)/100);
 
     }
 }
