@@ -3139,6 +3139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc35e4e2fbb5bd45bed4086dbf2a223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maleAvatar: {fileID: 0}
+  femaleAvatar: {fileID: 0}
 --- !u!4 &639688953
 Transform:
   m_ObjectHideFlags: 0
@@ -6036,6 +6038,12 @@ Prefab:
       propertyPath: m_Name
       value: MariaBalloon
       objectReference: {fileID: 0}
+    - target: {fileID: 114296467813026916, guid: a47b17973c49fdc4a96efdefa6cd9ec3,
+        type: 2}
+      propertyPath: happy_controller
+      value: 
+      objectReference: {fileID: 22100000, guid: b1c5b1315c68d2a4bb85eda332d12630,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a47b17973c49fdc4a96efdefa6cd9ec3, type: 2}
   m_IsPrefabParent: 0

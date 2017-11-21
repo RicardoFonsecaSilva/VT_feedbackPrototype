@@ -31,7 +31,7 @@ public class ButtonsController : MonoBehaviour {
     public void Generate()
     {
         text = "hello world";
-        emotion = "Anger";
+        emotion = "Happy";
         balloon.Show(text, emotion);
     }
 }

@@ -10,7 +10,7 @@ public class BallonsTest : MonoBehaviour {
     [SerializeField]
     private RuntimeAnimatorController default_controller;
     [SerializeField]
-	private RuntimeAnimatorController anger_controller;
+	private RuntimeAnimatorController happy_controller;
 
 	Control controller;
 
@@ -25,7 +25,7 @@ public class BallonsTest : MonoBehaviour {
 	void Start () {
 		controller = new Control(prefab);
         emotionControllers["Default"] = default_controller;
-        emotionControllers["Anger"] = anger_controller;
+        emotionControllers["Happy"] = happy_controller;
 	}
 
 	public void Show(string text, string emotion)
