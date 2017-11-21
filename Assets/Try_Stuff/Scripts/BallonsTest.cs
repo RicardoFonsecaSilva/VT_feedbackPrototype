@@ -11,8 +11,10 @@ public class BallonsTest : MonoBehaviour {
     private RuntimeAnimatorController default_controller;
     [SerializeField]
 	private RuntimeAnimatorController happy_controller;
+    [SerializeField]
+    private RuntimeAnimatorController sad_controller;
 
-	Control controller;
+    Control controller;
 
     private Dictionary<string, RuntimeAnimatorController> emotionControllers = new Dictionary<string, RuntimeAnimatorController>();
 
@@ -26,7 +28,8 @@ public class BallonsTest : MonoBehaviour {
 		controller = new Control(prefab);
         emotionControllers["Default"] = default_controller;
         emotionControllers["Happy"] = happy_controller;
-	}
+        emotionControllers["Sad"] = sad_controller;
+    }
 
 	public void Show(string text, string emotion)
 	{

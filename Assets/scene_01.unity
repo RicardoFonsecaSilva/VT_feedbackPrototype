@@ -6044,6 +6044,12 @@ Prefab:
       value: 
       objectReference: {fileID: 22100000, guid: b1c5b1315c68d2a4bb85eda332d12630,
         type: 2}
+    - target: {fileID: 114296467813026916, guid: a47b17973c49fdc4a96efdefa6cd9ec3,
+        type: 2}
+      propertyPath: sad_controller
+      value: 
+      objectReference: {fileID: 22100000, guid: c4ef8d1c1b4f59e4cbf06406bfa65069,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a47b17973c49fdc4a96efdefa6cd9ec3, type: 2}
   m_IsPrefabParent: 0

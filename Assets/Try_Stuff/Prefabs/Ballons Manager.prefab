@@ -53,4 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1785224122849882, guid: c03a4d57f8140754681d72076fb30a6d, type: 2}
   default_controller: {fileID: 9100000, guid: 5eea77926b6844e999d8a4831dfb14d8, type: 2}
-  anger_controller: {fileID: 22100000, guid: b1c5b1315c68d2a4bb85eda332d12630, type: 2}
+  happy_controller: {fileID: 0}
+  sad_controller: {fileID: 0}

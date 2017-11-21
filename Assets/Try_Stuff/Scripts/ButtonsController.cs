@@ -22,16 +22,17 @@ public class ButtonsController : MonoBehaviour {
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-            Generate();
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
             balloon.Clean();
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+            Generate("Happy");
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            Generate("Sad");
     }
 
-    public void Generate()
+    public void Generate(string emotion)
     {
         text = "hello world";
-        emotion = "Happy";
         balloon.Show(text, emotion);
     }
 }
