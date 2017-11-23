@@ -31,12 +31,14 @@ public class avatarController : MonoBehaviour
     {
         Debug.Log(gameObject.name + ": \"Talk\" event was received." + source);
         turnHead(source);
+        ButtonsController.Instance.Generate(source);
     }
 
     void HandleMoodChange(string source, int param1)
     {
         Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
         updateMood(source, param1);
+        ButtonsController.Instance.SetMood(param1);
     }
 
     private void updateMood(string avatar, int mood)

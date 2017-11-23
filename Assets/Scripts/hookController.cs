@@ -8,7 +8,7 @@ public class hookController : MonoBehaviour {
 	public static event EventHandler OnTalkRequest;
 	public static event EventHandler OnMoodChange;
 
-	void Start() { }
+    void Start() { }
 	
 	void Update () { }
 

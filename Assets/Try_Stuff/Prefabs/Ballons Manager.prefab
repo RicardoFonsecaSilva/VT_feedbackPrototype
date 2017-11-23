@@ -52,6 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1785224122849882, guid: c03a4d57f8140754681d72076fb30a6d, type: 2}
+  mariaBalloonPos: {x: 160, y: 85, z: 0}
+  joaoBalloonPos: {x: 1030, y: 85, z: 0}
+  mariaBalloonRotation: {x: 0, y: 180, z: 180}
+  joaoBalloonRotation: {x: 0, y: 0, z: 180}
   default_controller: {fileID: 9100000, guid: 5eea77926b6844e999d8a4831dfb14d8, type: 2}
-  happy_controller: {fileID: 0}
-  sad_controller: {fileID: 0}
+  happy_controller: {fileID: 22100000, guid: b1c5b1315c68d2a4bb85eda332d12630, type: 2}
+  sad_controller: {fileID: 22100000, guid: c4ef8d1c1b4f59e4cbf06406bfa65069, type: 2}
