@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿////using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HookControl;
 using VT;
 using UnityEngine.UI;
+using System.Collections;
 
 public class BallonsTest : MonoBehaviour {
 
@@ -16,17 +17,21 @@ public class BallonsTest : MonoBehaviour {
     [SerializeField]
     private RuntimeAnimatorController sad_controller;
 
+    private ChangeBackground backgroundScript;
+
     Control mariaController, joaoController, controller;
 
     private Dictionary<string, RuntimeAnimatorController> emotionControllers = new Dictionary<string, RuntimeAnimatorController>();
 
-	BalloonsHooks hooks;
+	BalloonsHooks mariaHooks, joaoHooks;
 
     private Vector3 position, rotation;
     private float timeToWait = 5.0f;
 
 	// Use this for initialization
 	void Start () {
+        backgroundScript = GameObject.FindGameObjectWithTag("Plane").GetComponent<ChangeBackground>();
+
         mariaController = new Control(prefab);
         joaoController = new Control(prefab);
 
@@ -40,9 +45,25 @@ public class BallonsTest : MonoBehaviour {
 
         if (person == "Maria")
         {
+            HooksShow(person, text, emotion, ref mariaHooks);
+            
+        }
+        else if (person == "Joao")
+        {
+            HooksShow(person, text, emotion, ref joaoHooks);
+        }
+
+		
+	}
+
+    private void HooksShow(string person, string text, string emotion, ref BalloonsHooks hooks)
+    {
+        if (person == "Maria")
+        {
             controller = mariaController;
             position = mariaBalloonPos;
             rotation = mariaBalloonRotation;
+
         }
         else if (person == "Joao")
         {
@@ -51,12 +72,12 @@ public class BallonsTest : MonoBehaviour {
             rotation = joaoBalloonRotation;
         }
 
-		var ret = controller.Show();
-		if (ret == ShowResult.FIRST || ret == ShowResult.OK)
-		{
-			hooks = controller.instance.GetComponent<BalloonsHooks>();
-			if (hooks)
-			{
+        var ret = controller.Show();
+        if (ret == ShowResult.FIRST || ret == ShowResult.OK)
+        {
+            hooks = controller.instance.GetComponent<BalloonsHooks>();
+            if (hooks)
+            {
                 hooks.topicLeft.GetComponent<RectTransform>().anchoredPosition3D = position;
                 hooks.topicLeft.GetComponent<RectTransform>().localEulerAngles = rotation;
                 try
@@ -71,16 +92,19 @@ public class BallonsTest : MonoBehaviour {
                     hooks.topicLeft.GetComponent<Animator>().runtimeAnimatorController = emotionControllers["Default"];
                 hooks.ContentLeft = text;
                 
-                Invoke("Clean", timeToWait);
-            }
-		}
-	}
+                StartCoroutine(Clean(hooks));
 
-    public void Clean()
+                backgroundScript.ChangeBackgroundColor(emotion);
+            }
+        }
+    }
+
+    IEnumerator Clean(BalloonsHooks hooks)
 	{
-		if (hooks)
+        yield return new WaitForSeconds(timeToWait);
+        if (hooks)
 		{
-			hooks.ContentLeft = null;
+            hooks.ContentLeft = null;
 		}
 	}
 }

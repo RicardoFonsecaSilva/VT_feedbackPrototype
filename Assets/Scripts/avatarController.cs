@@ -38,7 +38,7 @@ public class avatarController : MonoBehaviour
     {
         Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
         updateMood(source, param1);
-        ButtonsController.Instance.SetMood(param1);
+        ButtonsController.Instance.SetMood(source, param1);
     }
 
     private void updateMood(string avatar, int mood)

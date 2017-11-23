@@ -8,7 +8,7 @@ public class ButtonsController : MonoBehaviour {
 
     private static BallonsTest balloon;
     private static GameObject balloonObject;
-    private static string text = "hello world", emotion = "Default";
+    private static string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
 
     private static ButtonsController instance = null;
     public static ButtonsController Instance
@@ -30,18 +30,40 @@ public class ButtonsController : MonoBehaviour {
         balloon = balloonObject.GetComponent<BallonsTest>();
     }
 
-    public void SetMood(int mood)
+    public void SetMood(string person, int mood)
     {
-        if (mood < 0)
-            emotion = "Sad";
-        else if (mood > 0)
-            emotion = "Happy";
-        else
-            emotion = "Default";
+        if (person == "Maria")
+        {
+            if (mood < 0)
+                mariaEmotion = "Sad";
+            else if (mood > 0)
+                mariaEmotion = "Happy";
+            else
+                mariaEmotion = "Default";
+        }
+
+        else if (person == "Joao")
+        {
+            if (mood < 0)
+                joaoEmotion = "Sad";
+            else if (mood > 0)
+                joaoEmotion = "Happy";
+            else
+                joaoEmotion = "Default";
+        }
+    }
+
+    public string getMood(string person)
+    {
+        if (person == "Maria")
+            return mariaEmotion;
+        else if (person == "Joao")
+            return joaoEmotion;
+        else return null;
     }
 
     public void Generate(string person)
     {
-        balloon.Show(person, text, emotion);
+        balloon.Show(person, text, person == "Joao" ? joaoEmotion : mariaEmotion);
     }
 }
