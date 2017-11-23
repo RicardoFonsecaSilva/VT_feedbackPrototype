@@ -8,7 +8,7 @@ public class talkInterrupt : StateMachineBehaviour {
 		if (animator.GetBool("beingTalkedTo"))
 		{
 			Debug.Log("CROSSFADING");
-			animator.CrossFade("m_gaze_left", 0.3f);
+			animator.CrossFade("Look At", 0.3f);
 		}
 
 	}
