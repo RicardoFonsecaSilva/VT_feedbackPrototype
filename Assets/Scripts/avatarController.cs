@@ -14,31 +14,28 @@ public class avatarController : MonoBehaviour
         hookController.OnTalkRequest += HandleTalkRequest;
         hookController.OnMoodChange += HandleMoodChange;
     }
-
     void OnDisable()
     {
         hookController.OnTalkRequest -= HandleTalkRequest;
         hookController.OnMoodChange -= HandleMoodChange;
     }
 
-    void Start()
-    {
-        maleAnimator = maleAvatar.GetComponent<Animator>();
-        femaleAnimator = femaleAvatar.GetComponent<Animator>();
-    }
-
     void HandleTalkRequest(string source, int param1)
     {
         Debug.Log(gameObject.name + ": \"Talk\" event was received." + source);
+        zoomIn(source);
         turnHead(source);
-        ButtonsController.Instance.Generate(source);
     }
-
     void HandleMoodChange(string source, int param1)
     {
         Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
         updateMood(source, param1);
-        ButtonsController.Instance.SetMood(source, param1);
+    }
+
+    void Start()
+    {
+        maleAnimator = maleAvatar.GetComponent<Animator>();
+        femaleAnimator = femaleAvatar.GetComponent<Animator>();
     }
 
     private void updateMood(string avatar, int mood)
@@ -56,7 +53,6 @@ public class avatarController : MonoBehaviour
         }
         Debug.Log("ERROR: COULD NOT FIND CORRECT AVATAR.");
     }
-
     private void turnHead(string source)
     {
         if (source == "Maria")
@@ -68,6 +64,21 @@ public class avatarController : MonoBehaviour
         if (source == "Joao")
         {
             femaleAnimator.SetBool("beingTalkedTo", true);
+            return;
+        }
+        Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");
+    }
+    private void zoomIn(string source)
+    {
+        if (source == "Maria")
+        {
+            femaleAnimator.SetBool("isTalking", true);
+            return;
+        }
+
+        if (source == "Joao")
+        {
+            maleAnimator.SetBool("isTalking", true);
             return;
         }
         Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");

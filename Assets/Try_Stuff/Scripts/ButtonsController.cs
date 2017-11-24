@@ -30,6 +30,30 @@ public class ButtonsController : MonoBehaviour {
         balloon = balloonObject.GetComponent<BallonsTest>();
     }
 
+    //Event Listeners
+    void OnEnable()
+    {
+        hookController.OnTalkRequest += HandleTalkRequest;
+        hookController.OnMoodChange += HandleMoodChange;
+    }
+    void OnDisable()
+    {
+        hookController.OnTalkRequest -= HandleTalkRequest;
+        hookController.OnMoodChange -= HandleMoodChange;
+    }
+
+    //Event Handlers
+    void HandleTalkRequest(string source, int param1)
+    {
+        Debug.Log(gameObject.name + ": \"Talk\" event was received." + source + "; " + param1);
+        Instance.Generate(source);
+    }
+    void HandleMoodChange(string source, int param1)
+    {
+        Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
+        Instance.SetMood(source, param1);
+    }
+
     public void SetMood(string person, int mood)
     {
         if (person == "Maria")
