@@ -61,6 +61,10 @@ public class zoomAvatar : MonoBehaviour
         Vector3 riseRelCenter = begin.position - center;
         Vector3 setRelCenter = end.position - center;
         float fracComplete = (Time.time - sTime) / journeyTime;
+        //if (fracComplete > 1.0f)
+        //{
+        //    Debug.Log("T: DONE");
+        //}
         trasform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         trasform.position += center;
     }
