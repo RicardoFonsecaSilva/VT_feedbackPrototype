@@ -17,7 +17,9 @@ public class BallonsTest : MonoBehaviour {
     [SerializeField]
     private RuntimeAnimatorController sad_controller;
 
-    private ChangeBackground backgroundScript;
+    public ChangeBackground mariaPlane, joaoPlane;
+
+    private ChangeBackground currentPlane;
 
     Control mariaController, joaoController, controller;
 
@@ -30,7 +32,6 @@ public class BallonsTest : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        backgroundScript = GameObject.FindGameObjectWithTag("Plane").GetComponent<ChangeBackground>();
 
         mariaController = new Control(prefab);
         joaoController = new Control(prefab);
@@ -63,6 +64,7 @@ public class BallonsTest : MonoBehaviour {
             controller = mariaController;
             position = mariaBalloonPos;
             rotation = mariaBalloonRotation;
+            currentPlane = mariaPlane;
 
         }
         else if (person == "Joao")
@@ -70,6 +72,7 @@ public class BallonsTest : MonoBehaviour {
             controller = joaoController;
             position = joaoBalloonPos;
             rotation = joaoBalloonRotation;
+            currentPlane = joaoPlane;
         }
 
         var ret = controller.Show();
@@ -94,7 +97,7 @@ public class BallonsTest : MonoBehaviour {
                 
                 StartCoroutine(Clean(hooks));
 
-                backgroundScript.ChangeBackgroundColor(emotion);
+                currentPlane.ChangeBackgroundColor(emotion);
             }
         }
     }

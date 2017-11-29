@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChangeBackground : MonoBehaviour {
 
-    private Color defaultColor, happyColor = Color.yellow, sadColor = Color.blue, lastColor;
+    private Color defaultColor, happyColor = new Color32(0xE7, 0xE5, 0x9C, 0xFF), sadColor = new Color32(0x10, 0x1B, 0x51, 0xFF), lastColor;
     private float duration = 20, smoothness = 0.02f;
     private IEnumerator coroutine;
 
