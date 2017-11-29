@@ -6,9 +6,9 @@ using VT;
 
 public class ButtonsController : MonoBehaviour {
 
-    private static BallonsTest balloon;
-    private static GameObject balloonObject;
-    private static string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
+    private BallonsTest balloon;
+    private GameObject balloonObject;
+    private string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
 
     private static ButtonsController instance = null;
     public static ButtonsController Instance
@@ -17,14 +17,15 @@ public class ButtonsController : MonoBehaviour {
         {
             if (instance == null)
             {
-                instance = new ButtonsController();
-                Initialize();
+                GameObject go = new GameObject();
+                instance = go.AddComponent<ButtonsController>();
+                instance.Initialize();
             }
             return instance;
         }
     }
 
-    static void Initialize()
+    void Initialize()
     {
         balloonObject = GameObject.FindGameObjectWithTag("Balloon Manager");
         balloon = balloonObject.GetComponent<BallonsTest>();

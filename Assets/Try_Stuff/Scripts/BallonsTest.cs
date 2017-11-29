@@ -9,7 +9,8 @@ using System.Collections;
 public class BallonsTest : MonoBehaviour {
 
 	public GameObject prefab;
-    public Vector3 mariaBalloonPos, joaoBalloonPos, mariaBalloonRotation, joaoBalloonRotation;
+    public Vector2 mariaBalloonAnchorMin, mariaBalloonAnchorMax, joaoBalloonAnchorMin, joaoBalloonAnchorMax;
+    public Vector3 mariaBalloonRotation, joaoBalloonRotation;
     [SerializeField]
     private RuntimeAnimatorController default_controller;
     [SerializeField]
@@ -27,7 +28,8 @@ public class BallonsTest : MonoBehaviour {
 
 	BalloonsHooks mariaHooks, joaoHooks;
 
-    private Vector3 position, rotation;
+    private Vector2 anchorMin, anchorMax;
+    private Vector3 rotation;
     private float timeToWait = 5.0f;
 
 	// Use this for initialization
@@ -62,7 +64,8 @@ public class BallonsTest : MonoBehaviour {
         if (person == "Maria")
         {
             controller = mariaController;
-            position = mariaBalloonPos;
+            anchorMin = mariaBalloonAnchorMin;
+            anchorMax = mariaBalloonAnchorMax;
             rotation = mariaBalloonRotation;
             currentPlane = mariaPlane;
 
@@ -70,7 +73,8 @@ public class BallonsTest : MonoBehaviour {
         else if (person == "Joao")
         {
             controller = joaoController;
-            position = joaoBalloonPos;
+            anchorMin = joaoBalloonAnchorMin;
+            anchorMax = joaoBalloonAnchorMax;
             rotation = joaoBalloonRotation;
             currentPlane = joaoPlane;
         }
@@ -81,20 +85,23 @@ public class BallonsTest : MonoBehaviour {
             hooks = controller.instance.GetComponent<BalloonsHooks>();
             if (hooks)
             {
-                hooks.topicLeft.GetComponent<RectTransform>().anchoredPosition3D = position;
+                hooks.topicLeft.GetComponent<RectTransform>().anchorMin = anchorMin;
+                hooks.topicLeft.GetComponent<RectTransform>().anchorMax = anchorMax;
                 hooks.topicLeft.GetComponent<RectTransform>().localEulerAngles = rotation;
                 try
                 {
                     hooks.topicLeft.GetComponentInChildren<Text>().GetComponent<RectTransform>().localEulerAngles = rotation;
                 }
-                catch { }
+                catch
+                {
+                }
 
                 if (emotionControllers.ContainsKey(emotion))
                     hooks.topicLeft.GetComponent<Animator>().runtimeAnimatorController = emotionControllers[emotion];
                 else
                     hooks.topicLeft.GetComponent<Animator>().runtimeAnimatorController = emotionControllers["Default"];
                 hooks.ContentLeft = text;
-                
+
                 StartCoroutine(Clean(hooks));
 
                 currentPlane.ChangeBackgroundColor(emotion);
