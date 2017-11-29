@@ -63,7 +63,7 @@ public class zoomAvatar : MonoBehaviour
         float fracComplete = (Time.time - sTime) / journeyTime;
         //if (fracComplete > 1.0f)
         //{
-        //    Debug.Log("T: DONE");
+        //    //Debug.Log("T: DONE");
         //}
         trasform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         trasform.position += center;

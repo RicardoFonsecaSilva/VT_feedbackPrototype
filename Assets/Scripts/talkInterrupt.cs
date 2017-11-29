@@ -11,12 +11,12 @@ public class talkInterrupt : StateMachineBehaviour {
 	public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		if (animator.GetBool("beingTalkedTo"))
 		{
-			Debug.Log("Crossfading to \"Look At\"");
+			//Debug.Log("Crossfading to \"Look At\"");
 			animator.CrossFade("Look At", 0.3f);
 		}
 		if (animator.GetBool("isTalking"))
 		{
-			Debug.Log("Crossfading to \"Talk\"");
+			//Debug.Log("Crossfading to \"Talk\"");
 			animator.CrossFade("Talk", 0.3f);
 		}
 	}

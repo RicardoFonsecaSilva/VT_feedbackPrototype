@@ -33,18 +33,18 @@ public class avatarController : MonoBehaviour
 
     private void HandleTalkRequest(string source, int param1)
     {
-        Debug.Log(gameObject.name + ": \"Talk\" event was received." + source);
+        //Debug.Log(gameObject.name + ": \"Talk\" event was received." + source);
         zoomIn(source);
         turnHead(source);
     }
     private void HandleMoodChange(string source, int param1)
     {
-        Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
+        //Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
         updateMood(source, param1);
     }
     private void HandleExpressionRequest(string source, int param)
     {
-        Debug.Log(gameObject.name + ": \"Expression\" event was received." + source + "; " + param);
+        //Debug.Log(gameObject.name + ": \"Expression\" event was received." + source + "; " + param);
         expressEmotion(source, param);
     }
 
@@ -61,7 +61,7 @@ public class avatarController : MonoBehaviour
             femaleAnimator.SetInteger("CurrentMood", param);
             return;
         }
-        Debug.Log("ERROR: COULD NOT FIND CORRECT AVATAR.");
+        //Debug.Log("ERROR: COULD NOT FIND CORRECT AVATAR.");
     }
     private void turnHead(string source)
     {
@@ -76,7 +76,7 @@ public class avatarController : MonoBehaviour
             femaleAnimator.SetBool("beingTalkedTo", true);
             return;
         }
-        Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");
+        //Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");
     }
     private void zoomIn(string source)
     {
@@ -91,7 +91,7 @@ public class avatarController : MonoBehaviour
             maleAnimator.SetBool("isTalking", true);
             return;
         }
-        Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");
+        //Debug.Log("ERROR: COULD NOT FIND THE SPEECH SOURCE.");
     }
     private void expressEmotion(string source, int param)
     {
