@@ -22,6 +22,7 @@ public class avatarController : MonoBehaviour
         hookController.OnTalkRequest += HandleTalkRequest;
         hookController.OnMoodChange += HandleMoodChange;
         hookController.OnExpressionRequest += HandleExpressionRequest;
+        hookController.OnBlendToggle += HandleBlendToggle;
     }
 
     void OnDisable()
@@ -29,6 +30,13 @@ public class avatarController : MonoBehaviour
         hookController.OnTalkRequest -= HandleTalkRequest;
         hookController.OnMoodChange -= HandleMoodChange;
         hookController.OnExpressionRequest -= HandleExpressionRequest;
+        hookController.OnBlendToggle -= HandleBlendToggle;
+    }
+
+    private void HandleBlendToggle(string source, int param1)
+    {
+        //Debug.Log(gameObject.name + ": \"Blend\" event was received." + source);
+        toggleBlend(source);
     }
 
     private void HandleTalkRequest(string source, int param1)
@@ -48,6 +56,18 @@ public class avatarController : MonoBehaviour
         expressEmotion(source, param);
     }
 
+    private void toggleBlend(string source)
+    {
+        string paramName = "blendActive";
+
+        if (source == "Joao")
+            maleAnimator.SetBool(paramName, !maleAnimator.GetBool(paramName));
+
+        if (source == "Maria")
+            femaleAnimator.SetBool(paramName, !femaleAnimator.GetBool(paramName));
+        
+        //Debug.Log("ERROR: COULD NOT FIND CORRECT AVATAR.");
+    }
     private void updateMood(string source, int param)
     {
         if (source == "Joao")

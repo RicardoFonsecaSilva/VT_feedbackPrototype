@@ -8,12 +8,14 @@ public class hookController : MonoBehaviour {
 	public static event EventHandler OnTalkRequest;
 	public static event EventHandler OnMoodChange;
 	public static event EventHandler OnExpressionRequest;
-
-	void Start() { }
-	
-	void Update () { }
+	public static event EventHandler OnBlendToggle;
 
 	//EVENT LIST
+	public void _toggleBlend(string source)
+	{
+		OnBlendToggle(source, 0);
+	}
+
 	public void _requestTalk(string source)
 	{
 		//Debug.Log(gameObject.name + ": Sending \"Talk\" event ...");

@@ -8,6 +8,7 @@ public class zoomAvatar : MonoBehaviour
     public Transform beginPoint;
     public Transform endPoint;
     public float journeyTime = 0.5F;
+    public float delay = 0.0F;
 
     private Transform trasform;
     private Animator animator;
@@ -39,8 +40,9 @@ public class zoomAvatar : MonoBehaviour
         //Zoom Out
         if (animator.GetBool("returnAvatar"))
         {
-            zoomingOut = true;
+            //zoomingOut = true;
             animator.SetBool("returnAvatar", false);
+            StartCoroutine(DelayedLerp(delay));
         }
 
         if (zoomingOut)
@@ -65,5 +67,11 @@ public class zoomAvatar : MonoBehaviour
         }
         trasform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         trasform.position += center;
+    }
+
+    IEnumerator DelayedLerp(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        zoomingOut = true;
     }
 }
