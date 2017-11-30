@@ -12,9 +12,9 @@ public class zoomAvatar : MonoBehaviour
     private Transform trasform;
     private Animator animator;
     private float zoomInStartTime;
-    private bool zoomInStarted = false;
     private float zoomOutStartTime;
-    private bool zoomOutStarted = false;
+    private bool zoomingIn = false;
+    private bool zoomingOut = false;
 
     void Start()
     {
@@ -24,34 +24,29 @@ public class zoomAvatar : MonoBehaviour
 
     void Update()
     {
-        if (!zoomInStarted)
+        //Zoom In
+        if (animator.GetBool("zoomAvatar"))
         {
-            zoomInStartTime = Time.time;
+            zoomingIn = true;
+            animator.SetBool("zoomAvatar", false);
         }
-        if (animator.GetBool("isTalking"))
-        {
-            zoomInStarted = true;
+
+        if (zoomingIn)
             lerpIt(beginPoint, endPoint, zoomInStartTime);
-        }
         else
+            zoomInStartTime = Time.time;
+
+        //Zoom Out
+        if (animator.GetBool("returnAvatar"))
         {
-             zoomInStarted = false;
+            zoomingOut = true;
+            animator.SetBool("returnAvatar", false);
         }
 
-        if (!zoomOutStarted)
-        {
-            zoomOutStartTime = Time.time;
-        }
-        if (animator.GetBool("isDoneTalking"))
-        {
-            zoomOutStarted = true;
+        if (zoomingOut)
             lerpIt(endPoint, beginPoint, zoomOutStartTime);
-        }
         else
-        {
-            zoomOutStarted = false;
-        }
-
+            zoomOutStartTime = Time.time;
     }
 
     void lerpIt(Transform begin, Transform end, float sTime)
@@ -61,10 +56,13 @@ public class zoomAvatar : MonoBehaviour
         Vector3 riseRelCenter = begin.position - center;
         Vector3 setRelCenter = end.position - center;
         float fracComplete = (Time.time - sTime) / journeyTime;
-        //if (fracComplete > 1.0f)
-        //{
-        //    //Debug.Log("T: DONE");
-        //}
+        Debug.Log("T: "+ fracComplete);
+        if (fracComplete > 1.0f)
+        {
+            Debug.Log("T: DONE");
+            zoomingIn = false;
+            zoomingOut = false;
+        }
         trasform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         trasform.position += center;
     }
