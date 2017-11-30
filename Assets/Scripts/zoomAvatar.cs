@@ -56,10 +56,10 @@ public class zoomAvatar : MonoBehaviour
         Vector3 riseRelCenter = begin.position - center;
         Vector3 setRelCenter = end.position - center;
         float fracComplete = (Time.time - sTime) / journeyTime;
-        Debug.Log("T: "+ fracComplete);
+        //Debug.Log("T: "+ fracComplete);
         if (fracComplete > 1.0f)
         {
-            Debug.Log("T: DONE");
+            //Debug.Log("T: DONE");
             zoomingIn = false;
             zoomingOut = false;
         }
