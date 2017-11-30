@@ -100,6 +100,7 @@ public class BallonsTest : MonoBehaviour {
                     hooks.topicLeft.GetComponent<Animator>().runtimeAnimatorController = emotionControllers[emotion];
                 else
                     hooks.topicLeft.GetComponent<Animator>().runtimeAnimatorController = emotionControllers["Default"];
+
                 hooks.ContentLeft = text;
 
                 StartCoroutine(Clean(hooks));

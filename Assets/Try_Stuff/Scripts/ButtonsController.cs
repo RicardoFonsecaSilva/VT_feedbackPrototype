@@ -8,7 +8,7 @@ public class ButtonsController : MonoBehaviour {
 
     private BallonsTest balloon;
     private GameObject balloonObject;
-    private string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
+    private string text = "hello world", joaoEmotion = "a", mariaEmotion = "a";
 
     private static ButtonsController instance = null;
     public static ButtonsController Instance
@@ -46,12 +46,10 @@ public class ButtonsController : MonoBehaviour {
     //Event Handlers
     void HandleTalkRequest(string source, int param1)
     {
-        Debug.Log(gameObject.name + ": \"Talk\" event was received." + source + "; " + param1);
         Instance.Generate(source);
     }
     void HandleMoodChange(string source, int param1)
     {
-        Debug.Log(gameObject.name + ": \"Mood\" event was received." + source + "; " + param1);
         Instance.SetMood(source, param1);
     }
 
