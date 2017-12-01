@@ -8,24 +8,9 @@ public class ButtonsController : MonoBehaviour {
 
     private BallonsTest balloon;
     private GameObject balloonObject;
-    private string text = "hello world", joaoEmotion = "a", mariaEmotion = "a";
+    private string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
 
-    private static ButtonsController instance = null;
-    public static ButtonsController Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                GameObject go = new GameObject();
-                instance = go.AddComponent<ButtonsController>();
-                instance.Initialize();
-            }
-            return instance;
-        }
-    }
-
-    void Initialize()
+    void Start()
     {
         balloonObject = GameObject.FindGameObjectWithTag("Balloon Manager");
         balloon = balloonObject.GetComponent<BallonsTest>();
@@ -46,11 +31,11 @@ public class ButtonsController : MonoBehaviour {
     //Event Handlers
     void HandleTalkRequest(string source, int param1)
     {
-        Instance.Generate(source);
+        Generate(source);
     }
     void HandleMoodChange(string source, int param1)
     {
-        Instance.SetMood(source, param1);
+        SetMood(source, param1);
     }
 
     public void SetMood(string person, int mood)
