@@ -10,25 +10,20 @@ Material:
   m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: <noninit>
-      second:
+    - <noninit>:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: <noninit>
-      second: 0
+    - <noninit>: 0
     m_Colors:
-    - first:
-        name: <noninit>
-      second: {r: 0, g: 3.7253381e-34, b: 0, a: 3.7253234e-34}
-    - first:
-        name: _Color
-      second: {r: 0.19215687, g: 0.19215687, b: 0.19215687, a: 1}
+    - <noninit>: {r: 0, g: 3.7253381e-34, b: 0, a: 3.7253234e-34}
+    - _Color: {r: 0.19215687, g: 0.19215687, b: 0.19215687, a: 1}
