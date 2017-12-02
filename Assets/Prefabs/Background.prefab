@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 33236158873488636}
   - component: {fileID: 64336202219059920}
   - component: {fileID: 23852043174354338}
+  - component: {fileID: 114724457366546040}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -414,6 +415,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9735d3ebfc9df1b4e974fc502d5062b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114724457366546040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471436431003982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8be2fa03860714bbd8079013674898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  xTilt: 18.726
+  yTilt: 180
+  zTilt: 0
+  orientation: 1
 --- !u!114 &114847622104231012
 MonoBehaviour:
   m_ObjectHideFlags: 1
