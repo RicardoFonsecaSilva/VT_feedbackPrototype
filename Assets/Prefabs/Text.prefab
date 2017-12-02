@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1785224122849882, guid: c03a4d57f8140754681d72076fb30a6d, type: 2}
-  mariaBalloonAnchorMin: {x: 0.35, y: 0.3}
-  mariaBalloonAnchorMax: {x: 0.65, y: 0.5}
+  mariaBalloonAnchorMin: {x: 0.35, y: 0.25}
+  mariaBalloonAnchorMax: {x: 0.65, y: 0.45}
   joaoBalloonAnchorMin: {x: 0.35, y: 0.7}
   joaoBalloonAnchorMax: {x: 0.65, y: 0.9}
   mariaBalloonRotation: {x: 0, y: 180, z: 0}
