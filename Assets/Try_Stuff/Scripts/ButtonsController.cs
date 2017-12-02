@@ -9,6 +9,7 @@ public class ButtonsController : MonoBehaviour {
     private BallonsTest balloon;
     private GameObject balloonObject;
     private string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
+    public ChangeBackground mariaPlane, joaoPlane;
 
     void Start()
     {
@@ -36,6 +37,10 @@ public class ButtonsController : MonoBehaviour {
     void HandleMoodChange(string source, int param1)
     {
         SetMood(source, param1);
+        if (source == "Maria")
+            mariaPlane.ChangeBackgroundColor(param1 > 0 ? "Happy" : param1 < 0 ? "Sad" : "Default");
+        else if (source == "Joao")
+            joaoPlane.ChangeBackgroundColor(param1 > 0 ? "Happy" : param1 < 0 ? "Sad" : "Default");
     }
 
     public void SetMood(string person, int mood)

@@ -44,7 +44,7 @@ public class ColorPickerTriangle : MonoBehaviour {
 
         if (!MousePressed)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(1))
             {
                 if (HasIntersection())
                 {

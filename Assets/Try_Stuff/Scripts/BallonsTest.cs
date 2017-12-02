@@ -17,9 +17,9 @@ public class BallonsTest : MonoBehaviour {
     [SerializeField]
     private RuntimeAnimatorController sad_controller;
 
-    public ChangeBackground mariaPlane, joaoPlane;
+    //public ChangeBackground mariaPlane, joaoPlane;
 
-    private ChangeBackground currentPlane;
+    //private ChangeBackground currentPlane;
 
     Control mariaController, joaoController, controller;
 
@@ -66,7 +66,7 @@ public class BallonsTest : MonoBehaviour {
             anchorMin = mariaBalloonAnchorMin;
             anchorMax = mariaBalloonAnchorMax;
             rotation = mariaBalloonRotation;
-            currentPlane = mariaPlane;
+            //currentPlane = mariaPlane;
 
         }
         else if (person == "Joao")
@@ -75,7 +75,7 @@ public class BallonsTest : MonoBehaviour {
             anchorMin = joaoBalloonAnchorMin;
             anchorMax = joaoBalloonAnchorMax;
             rotation = joaoBalloonRotation;
-            currentPlane = joaoPlane;
+            //currentPlane = joaoPlane;
         }
 
         var ret = controller.Show();
@@ -104,7 +104,7 @@ public class BallonsTest : MonoBehaviour {
 
                 StartCoroutine(Clean(hooks));
 
-                currentPlane.ChangeBackgroundColor(emotion);
+                //currentPlane.ChangeBackgroundColor(emotion);
             }
         }
     }

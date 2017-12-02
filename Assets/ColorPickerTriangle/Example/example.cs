@@ -17,10 +17,22 @@ public class example : MonoBehaviour {
             m = transform.GetChild(i).GetComponent<MeshRenderer>().material;
             mat[i] = m;
         }
+
+        go = (GameObject)Instantiate(ColorPickedPrefab, new Vector3(0, -0.3f, 9.275f), Quaternion.Euler(11.31f, 180, 0));
+        go.transform.localScale = new Vector3(0.1f, 0.1f, 1.0f);
+        go.SetActive(false);
     }
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(2) || Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isPaint)
+                StopPaint();
+            else
+                StartPaint();
+        }
+
         if (isPaint)
         {
             foreach(Material m in mat)
@@ -31,22 +43,21 @@ public class example : MonoBehaviour {
         }
     }
 
-    void OnMouseDown()
-    {
-        if (isPaint)
-        {
-            StopPaint();
-        }
-        else
-        {
-            StartPaint();
-        }
-    }
+    //void OnMouseDown()
+    //{
+//        if (isPaint)
+//        {
+//            StopPaint();
+//}
+//        else
+//        {
+//            StartPaint();
+//        }
+    //}
 
     private void StartPaint()
     {
-        go = (GameObject)Instantiate(ColorPickedPrefab, new Vector3(0, -0.3f, 9.275f), Quaternion.Euler(11.31f, 180, 0));
-        go.transform.localScale = new Vector3(0.1f,0.1f,1.0f);
+        go.SetActive(true);
         go.transform.LookAt(Camera.main.transform);
         CP = go.GetComponent<ColorPickerTriangle>();
         foreach (Material m in mat)
@@ -56,7 +67,7 @@ public class example : MonoBehaviour {
 
     private void StopPaint()
     {
-        Destroy(go);
+        go.SetActive(false);
         isPaint = false;
     }
 }
