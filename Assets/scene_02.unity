@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44535547, g: 0.48936224, b: 0.5436151, a: 1}
+  m_IndirectSpecularColor: {r: 0.4453557, g: 0.48936296, b: 0.54361635, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -190,12 +190,12 @@ Prefab:
     - target: {fileID: 224726544234692814, guid: b07ad25ad210b4e459a6a28276365d26,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 512
+      value: 507.5
       objectReference: {fileID: 0}
     - target: {fileID: 224726544234692814, guid: b07ad25ad210b4e459a6a28276365d26,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 384
+      value: 308
       objectReference: {fileID: 0}
     - target: {fileID: 224726544234692814, guid: b07ad25ad210b4e459a6a28276365d26,
         type: 2}
@@ -1489,12 +1489,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114869501720331032, guid: fd2e6ea6db861d142915800bada0265c,
+    - target: {fileID: 114258576299111622, guid: fd2e6ea6db861d142915800bada0265c,
         type: 2}
       propertyPath: mariaPlane
       value: 
       objectReference: {fileID: 18957684}
-    - target: {fileID: 114869501720331032, guid: fd2e6ea6db861d142915800bada0265c,
+    - target: {fileID: 114258576299111622, guid: fd2e6ea6db861d142915800bada0265c,
         type: 2}
       propertyPath: joaoPlane
       value: 
