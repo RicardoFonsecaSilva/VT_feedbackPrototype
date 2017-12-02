@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07c100743854e64ca076e6d7d9a4db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mariaPlane: {fileID: 0}
+  joaoPlane: {fileID: 0}
 --- !u!114 &114806228258713334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,14 +202,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1785224122849882, guid: c03a4d57f8140754681d72076fb30a6d, type: 2}
-  mariaBalloonAnchorMin: {x: 0.35, y: 0.25}
-  mariaBalloonAnchorMax: {x: 0.65, y: 0.45}
-  joaoBalloonAnchorMin: {x: 0.35, y: 0.7}
-  joaoBalloonAnchorMax: {x: 0.65, y: 0.9}
+  mariaBalloonAnchorMin: {x: 0.35, y: 0.2}
+  mariaBalloonAnchorMax: {x: 0.65, y: 0.4}
+  joaoBalloonAnchorMin: {x: 0.35, y: 0.73}
+  joaoBalloonAnchorMax: {x: 0.65, y: 0.93}
   mariaBalloonRotation: {x: 0, y: 180, z: 0}
   joaoBalloonRotation: {x: 0, y: 180, z: 180}
   default_controller: {fileID: 9100000, guid: 5eea77926b6844e999d8a4831dfb14d8, type: 2}
   happy_controller: {fileID: 22100000, guid: b1c5b1315c68d2a4bb85eda332d12630, type: 2}
   sad_controller: {fileID: 22100000, guid: c4ef8d1c1b4f59e4cbf06406bfa65069, type: 2}
-  mariaPlane: {fileID: 0}
-  joaoPlane: {fileID: 0}
