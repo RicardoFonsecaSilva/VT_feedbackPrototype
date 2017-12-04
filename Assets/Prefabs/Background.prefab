@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33855048088006856}
   - component: {fileID: 23605113622889102}
   - component: {fileID: 114171095386797452}
+  - component: {fileID: 114710461926329146}
   m_Layer: 0
   m_Name: Quad_Maria
   m_TagString: Untagged
@@ -72,6 +73,7 @@ GameObject:
   - component: {fileID: 4854211956060640}
   - component: {fileID: 33358934795428816}
   - component: {fileID: 23219370591709384}
+  - component: {fileID: 114650581698118868}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -125,6 +127,7 @@ GameObject:
   - component: {fileID: 33911397972549500}
   - component: {fileID: 23928412789408088}
   - component: {fileID: 114847622104231012}
+  - component: {fileID: 114828831584112418}
   m_Layer: 0
   m_Name: Quad_Joao
   m_TagString: Untagged
@@ -610,6 +613,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorPickedPrefab: {fileID: 1000010175529674, guid: f24822f355d009d409e4bfb5c585f135,
     type: 2}
+--- !u!114 &114650581698118868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1535052118802400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e26a5d5bdac79a4696023e7974f2dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: -0.03
+--- !u!114 &114710461926329146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330966981782710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e26a5d5bdac79a4696023e7974f2dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.05
+--- !u!114 &114828831584112418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655951449022598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e26a5d5bdac79a4696023e7974f2dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.05
 --- !u!114 &114847622104231012
 MonoBehaviour:
   m_ObjectHideFlags: 1
