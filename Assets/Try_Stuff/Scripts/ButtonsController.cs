@@ -20,13 +20,13 @@ public class ButtonsController : MonoBehaviour {
     //Event Listeners
     void OnEnable()
     {
-        hookController.OnTalkRequest += HandleTalkRequest;
-        hookController.OnMoodChange += HandleMoodChange;
+        //hookController.OnTalkRequest += HandleTalkRequest;
+        //hookController.OnMoodChange += HandleMoodChange;
     }
     void OnDisable()
     {
-        hookController.OnTalkRequest -= HandleTalkRequest;
-        hookController.OnMoodChange -= HandleMoodChange;
+        //hookController.OnTalkRequest -= HandleTalkRequest;
+        //hookController.OnMoodChange -= HandleMoodChange;
     }
 
     //Event Handlers
