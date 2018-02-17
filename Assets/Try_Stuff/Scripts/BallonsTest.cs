@@ -140,8 +140,14 @@ public class BallonsTest : MonoBehaviour {
     public void CleanOptions(float t)
     {
         timeToWait = t;
-        optionsHooks = optionsController.instance.GetComponent<BalloonsHooks>();
-        StartCoroutine(Clean(optionsHooks));
+        if (optionsController != null) {
+            try
+            {
+                optionsHooks = optionsController.instance.GetComponent<BalloonsHooks>();
+            }
+            catch { }
+            StartCoroutine(Clean(optionsHooks));
+        }
     }
 
     IEnumerator Clean(BalloonsHooks hooks)
