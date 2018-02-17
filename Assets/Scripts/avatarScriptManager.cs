@@ -9,39 +9,33 @@ public class avatarScriptManager : MonoBehaviour {
     [SerializeField]
     private AvatarControllerUIHook femaleAvatarControllerHook;
 
-    public IEnumerator TalkFor(float wait)
+    void Update() {}
+
+    public void talkFor(string who, float sec)
+    {
+        if (who == "joao")
+            StartCoroutine(joaoTalkFor(sec));
+        if (who == "maria")
+            StartCoroutine(mariaTalkFor(sec));
+    }
+    public void express(string who, int id)
+    {
+        if (who == "joao")
+            maleAvatarControllerHook._requestExpression(id);
+        if (who == "maria")
+            femaleAvatarControllerHook._requestExpression(id);
+    }
+
+    public IEnumerator joaoTalkFor(float wait)
     {
         maleAvatarControllerHook._requestExpression(19);
         yield return new WaitForSeconds(wait);
         maleAvatarControllerHook._requestExpression(0);
     }
-
-    void Update()
+    public IEnumerator mariaTalkFor(float wait)
     {
-        //if (Input.GetKeyDown("q"))
-        //    test();
-        //if (Input.GetKeyDown("w"))
-        //    test2();
-        //if (Input.GetKeyDown("e"))
-        //    test3();
-    }
-
-    public void test()
-    {
-        maleAvatarControllerHook._requestExpression(19);
-    }
-    public void test2()
-    {
-        maleAvatarControllerHook._requestExpression(0);
-    }
-    public void test3()
-    {
-        
-        //StartCoroutine(Example());
-        
-    }
-    public void talkFor(float sec)
-    {
-        StartCoroutine(TalkFor(sec));
+        femaleAvatarControllerHook._requestExpression(19);
+        yield return new WaitForSeconds(wait);
+        femaleAvatarControllerHook._requestExpression(0);
     }
 }
