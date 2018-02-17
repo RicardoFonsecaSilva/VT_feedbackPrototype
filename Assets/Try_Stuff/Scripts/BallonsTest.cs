@@ -141,8 +141,11 @@ public class BallonsTest : MonoBehaviour {
         if (hooks)
 		{
             hooks.ContentLeft = null;
-            if(hooks.ContentRight != null)
+            try
+            {
                 hooks.ContentRight = null;
+            }
+            catch { }
         }
 	}
 }
