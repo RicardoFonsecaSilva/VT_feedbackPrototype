@@ -31,7 +31,7 @@ public class BallonsTest : MonoBehaviour {
 
     private Vector2 anchorMin, anchorMax;
     private Vector3 rotation;
-    private float timeToWait = 2.0f;
+    private float timeToWait;
 
 	// Use this for initialization
 	void Start () {
@@ -45,9 +45,9 @@ public class BallonsTest : MonoBehaviour {
         emotionControllers["Sad"] = sad_controller;
     }
 
-	public void Show(string person, string text, string emotion, string text_2 = "")
+	public void Show(string person, string text, string emotion, float t, string text_2 = "")
 	{
-
+        timeToWait = t;
         if (person == "Maria")
         {
             HooksShow(person, text, emotion, ref mariaHooks);

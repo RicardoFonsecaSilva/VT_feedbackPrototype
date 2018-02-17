@@ -8,9 +8,11 @@ public class ButtonsController : MonoBehaviour {
 
     private BallonsTest balloon;
     private GameObject balloonObject;
-    private string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
-    private string optionsText_1 = "asdf", optionsText_2 = "123";
+    private string joaoEmotion = "Default", mariaEmotion = "Default";
+    public string optionsText_1 = "asdf", optionsText_2 = "123", text = "hello world";
     public ChangeBackground mariaPlane, joaoPlane;
+
+    public float timeToWait = 2.0f;
 
     [SerializeField]
     private AvatarControllerUIHook maleAvatarControllerHook;
@@ -98,14 +100,14 @@ public class ButtonsController : MonoBehaviour {
 
     public void Generate(string person)
     {
-        balloon.Show(person, text, person == "Joao" ? joaoEmotion : mariaEmotion);
+        balloon.Show(person, text, person == "Joao" ? joaoEmotion : mariaEmotion, timeToWait);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            balloon.Show("Options", optionsText_1, "Default", optionsText_2);
+            balloon.Show("Options", optionsText_1, "Default", timeToWait, optionsText_2);
         }
     }
 }
