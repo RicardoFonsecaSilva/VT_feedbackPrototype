@@ -30,7 +30,7 @@ public class avatarScriptManager : MonoBehaviour {
 
     public void test()
     {
-        maleAvatarControllerHook._requestExpression(18);
+        maleAvatarControllerHook._requestExpression(19);
     }
     public void test2()
     {
