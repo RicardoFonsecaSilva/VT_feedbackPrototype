@@ -9,7 +9,13 @@ public class ButtonsController : MonoBehaviour {
     private BallonsTest balloon;
     private GameObject balloonObject;
     private string text = "hello world", joaoEmotion = "Default", mariaEmotion = "Default";
+    private string optionsText_1 = "asdf", optionsText_2 = "123";
     public ChangeBackground mariaPlane, joaoPlane;
+
+    [SerializeField]
+    private AvatarControllerUIHook maleAvatarControllerHook;
+    [SerializeField]
+    private AvatarControllerUIHook femaleAvatarControllerHook;
 
     void Start()
     {
@@ -20,46 +26,59 @@ public class ButtonsController : MonoBehaviour {
     //Event Listeners
     void OnEnable()
     {
-        //hookController.OnTalkRequest += HandleTalkRequest;
-        //hookController.OnMoodChange += HandleMoodChange;
+        maleAvatarControllerHook.OnMoodChange += MaleMoodChange;
+        femaleAvatarControllerHook.OnMoodChange += FemaleMoodChange;
+        maleAvatarControllerHook.OnExpressionRequest += MaleExpressionRequest;
+        femaleAvatarControllerHook.OnExpressionRequest += FemaleExpressionRequest;
     }
     void OnDisable()
     {
-        //hookController.OnTalkRequest -= HandleTalkRequest;
-        //hookController.OnMoodChange -= HandleMoodChange;
+        maleAvatarControllerHook.OnMoodChange -= MaleMoodChange;
+        femaleAvatarControllerHook.OnMoodChange -= FemaleMoodChange;
+        maleAvatarControllerHook.OnExpressionRequest -= MaleExpressionRequest;
+        femaleAvatarControllerHook.OnExpressionRequest -= FemaleExpressionRequest;
     }
 
     //Event Handlers
-    void HandleTalkRequest(string source, int param1)
+    void MaleExpressionRequest(ExpressionState state)
     {
-        Generate(source);
-    }
-    void HandleMoodChange(string source, int param1)
-    {
-        SetMood(source, param1);
-        if (source == "Maria")
-            mariaPlane.ChangeBackgroundColor(param1 > 0 ? "Happy" : param1 < 0 ? "Sad" : "Default");
-        else if (source == "Joao")
-            joaoPlane.ChangeBackgroundColor(param1 > 0 ? "Happy" : param1 < 0 ? "Sad" : "Default");
+        Generate("Joao");
     }
 
-    public void SetMood(string person, int mood)
+    void FemaleExpressionRequest(ExpressionState state)
+    {
+        Generate("Maria");
+    }
+
+    private void MaleMoodChange(MoodState state)
+    {
+        SetMood("Joao", state);
+        joaoPlane.ChangeBackgroundColor((state == MoodState.HAPPY_LOW || state == MoodState.HAPPY_HIGH) ? "Happy" : (state == MoodState.SAD_HIGH || state == MoodState.SAD_LOW) ? "Sad" : "Default");
+    }
+
+    private void FemaleMoodChange(MoodState state)
+    {
+        SetMood("Maria", state);
+        mariaPlane.ChangeBackgroundColor((state == MoodState.HAPPY_LOW || state == MoodState.HAPPY_HIGH) ? "Happy" : (state == MoodState.SAD_HIGH || state == MoodState.SAD_LOW) ? "Sad" : "Default");
+    }
+
+    public void SetMood(string person, MoodState mood)
     {
         if (person == "Maria")
         {
-            if (mood < 0)
+            if (mood == MoodState.SAD_HIGH || mood == MoodState.SAD_LOW)
                 mariaEmotion = "Sad";
-            else if (mood > 0)
+            else if (mood == MoodState.HAPPY_LOW || mood == MoodState.HAPPY_HIGH)
                 mariaEmotion = "Happy";
             else
                 mariaEmotion = "Default";
         }
 
-        else if (person == "Joao")
+        if (person == "Joao")
         {
-            if (mood < 0)
+            if (mood == MoodState.SAD_HIGH || mood == MoodState.SAD_LOW)
                 joaoEmotion = "Sad";
-            else if (mood > 0)
+            else if (mood == MoodState.HAPPY_LOW || mood == MoodState.HAPPY_HIGH)
                 joaoEmotion = "Happy";
             else
                 joaoEmotion = "Default";
@@ -78,5 +97,13 @@ public class ButtonsController : MonoBehaviour {
     public void Generate(string person)
     {
         balloon.Show(person, text, person == "Joao" ? joaoEmotion : mariaEmotion);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            balloon.Show("Options", optionsText_1, "Default", optionsText_2);
+        }
     }
 }

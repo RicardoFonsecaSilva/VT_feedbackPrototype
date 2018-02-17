@@ -8,6 +8,7 @@ using System.Collections;
 public class BallonsTest : MonoBehaviour {
 
 	public GameObject prefab;
+    public GameObject options_prefab;
     public Vector2 mariaBalloonAnchorMin, mariaBalloonAnchorMax, joaoBalloonAnchorMin, joaoBalloonAnchorMax;
     public Vector3 mariaBalloonRotation, joaoBalloonRotation;
     [SerializeField]
@@ -22,27 +23,29 @@ public class BallonsTest : MonoBehaviour {
     //private ChangeBackground currentPlane;
 
     Control mariaController, joaoController, controller;
+    Control optionsController;
 
     private Dictionary<string, RuntimeAnimatorController> emotionControllers = new Dictionary<string, RuntimeAnimatorController>();
 
-	BalloonsHooks mariaHooks, joaoHooks;
+	BalloonsHooks mariaHooks, joaoHooks, optionsHooks;
 
     private Vector2 anchorMin, anchorMax;
     private Vector3 rotation;
-    private float timeToWait = 5.0f;
+    private float timeToWait = 2.0f;
 
 	// Use this for initialization
 	void Start () {
 
         mariaController = new Control(prefab);
         joaoController = new Control(prefab);
+        optionsController = new Control(options_prefab);
 
         emotionControllers["Default"] = default_controller;
         emotionControllers["Happy"] = happy_controller;
         emotionControllers["Sad"] = sad_controller;
     }
 
-	public void Show(string person, string text, string emotion)
+	public void Show(string person, string text, string emotion, string text_2 = "")
 	{
 
         if (person == "Maria")
@@ -54,9 +57,32 @@ public class BallonsTest : MonoBehaviour {
         {
             HooksShow(person, text, emotion, ref joaoHooks);
         }
+        else
+        {
+            OptionsShow(person, text, emotion, ref optionsHooks, text_2);
 
-		
-	}
+        }
+    }
+
+    private void OptionsShow(string person, string text, string emotion, ref BalloonsHooks hooks, string text_2)
+    {
+        var ret = optionsController.Show();
+        if (ret == ShowResult.FIRST || ret == ShowResult.OK)
+        {
+            hooks = optionsController.instance.GetComponent<BalloonsHooks>();
+            if (hooks)
+            {
+                hooks.topicLeft.GetComponent<Animator>().runtimeAnimatorController = emotionControllers["Default"];
+
+                hooks.ContentLeft = text;
+                hooks.ContentRight = text_2;
+
+                StartCoroutine(Clean(hooks));
+
+                //currentPlane.ChangeBackgroundColor(emotion);
+            }
+        }
+    }
 
     private void HooksShow(string person, string text, string emotion, ref BalloonsHooks hooks)
     {
@@ -115,6 +141,8 @@ public class BallonsTest : MonoBehaviour {
         if (hooks)
 		{
             hooks.ContentLeft = null;
-		}
+            if(hooks.ContentRight != null)
+                hooks.ContentRight = null;
+        }
 	}
 }

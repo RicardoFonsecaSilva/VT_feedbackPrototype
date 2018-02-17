@@ -778,6 +778,22 @@ Prefab:
       propertyPath: joaoPlane
       value: 
       objectReference: {fileID: 2064355927}
+    - target: {fileID: 114258576299111622, guid: fd2e6ea6db861d142915800bada0265c,
+        type: 2}
+      propertyPath: maleAvatarControllerHook
+      value: 
+      objectReference: {fileID: 1528115950}
+    - target: {fileID: 114258576299111622, guid: fd2e6ea6db861d142915800bada0265c,
+        type: 2}
+      propertyPath: femaleAvatarControllerHook
+      value: 
+      objectReference: {fileID: 1865027259}
+    - target: {fileID: 114869501720331032, guid: fd2e6ea6db861d142915800bada0265c,
+        type: 2}
+      propertyPath: options_prefab
+      value: 
+      objectReference: {fileID: 1785224122849882, guid: 6921fed3e7764ca4ea7cfbd12d7dd8e4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd2e6ea6db861d142915800bada0265c, type: 2}
   m_IsPrefabParent: 0
@@ -935,7 +951,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 474923867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 311.5, y: 249.5, z: 0}
+  m_LocalPosition: {x: 508.5, y: 308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1228447295}
