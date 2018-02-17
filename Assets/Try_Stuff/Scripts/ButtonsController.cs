@@ -54,13 +54,13 @@ public class ButtonsController : MonoBehaviour {
             Generate("Maria");
     }
 
-    private void MaleMoodChange(MoodState state)
+    public void MaleMoodChange(MoodState state)
     {
         SetMood("Joao", state);
         joaoPlane.ChangeBackgroundColor((state == MoodState.HAPPY_LOW || state == MoodState.HAPPY_HIGH) ? "Happy" : (state == MoodState.SAD_HIGH || state == MoodState.SAD_LOW) ? "Sad" : "Default");
     }
 
-    private void FemaleMoodChange(MoodState state)
+    public void FemaleMoodChange(MoodState state)
     {
         SetMood("Maria", state);
         mariaPlane.ChangeBackgroundColor((state == MoodState.HAPPY_LOW || state == MoodState.HAPPY_HIGH) ? "Happy" : (state == MoodState.SAD_HIGH || state == MoodState.SAD_LOW) ? "Sad" : "Default");

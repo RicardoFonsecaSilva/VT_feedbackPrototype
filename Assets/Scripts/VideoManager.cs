@@ -16,6 +16,11 @@ public class VideoManager : MonoBehaviour {
             balloonManager.timeToWait = 2.0f;
             balloonManager.Generate("Joao");
             avatarScriptHelper.talkFor(1);
+            //balloonManager.MaleMoodChange(MoodState.HAPPY_HIGH);
+            //balloonManager.FemaleMoodChange(MoodState.HAPPY_HIGH);
+            //balloonManager.optionsText_1 = "Hello.";
+            //balloonManager.optionsText_2 = "Hello.";
+            //balloonManager.Generate("Options");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
