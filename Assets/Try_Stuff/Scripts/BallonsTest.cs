@@ -33,6 +33,8 @@ public class BallonsTest : MonoBehaviour {
     private Vector3 rotation;
     private float timeToWait;
 
+    bool clean = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -77,7 +79,7 @@ public class BallonsTest : MonoBehaviour {
                 hooks.ContentLeft = text;
                 hooks.ContentRight = text_2;
 
-                StartCoroutine(Clean(hooks));
+                //StartCoroutine(CleanAfterClick(hooks));
 
                 //currentPlane.ChangeBackgroundColor(emotion);
             }
@@ -133,6 +135,13 @@ public class BallonsTest : MonoBehaviour {
                 //currentPlane.ChangeBackgroundColor(emotion);
             }
         }
+    }
+
+    public void CleanOptions(float t)
+    {
+        timeToWait = t;
+        optionsHooks = optionsController.instance.GetComponent<BalloonsHooks>();
+        StartCoroutine(Clean(optionsHooks));
     }
 
     IEnumerator Clean(BalloonsHooks hooks)

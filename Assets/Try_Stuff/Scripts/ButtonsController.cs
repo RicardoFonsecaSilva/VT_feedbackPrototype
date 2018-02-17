@@ -105,4 +105,9 @@ public class ButtonsController : MonoBehaviour {
         else
             balloon.Show("Options", optionsText_1, "Default", timeToWait, optionsText_2);
     }
+
+    public void Clean(float t)
+    {
+        balloon.CleanOptions(t);
+    }
 }
