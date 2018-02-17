@@ -9,11 +9,11 @@ public class avatarScriptManager : MonoBehaviour {
     [SerializeField]
     private AvatarControllerUIHook femaleAvatarControllerHook;
 
-    IEnumerator Example()
+    public IEnumerator TalkFor(int wait)
     {
         print(Time.time);
         maleAvatarControllerHook._requestExpression(19);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(wait);
         print(Time.time);
         maleAvatarControllerHook._requestExpression(0);
     }
@@ -39,7 +39,11 @@ public class avatarScriptManager : MonoBehaviour {
     public void test3()
     {
         
-        StartCoroutine(Example());
+        //StartCoroutine(Example());
         
+    }
+    public void talkFor(int sec)
+    {
+        //StartCoroutine(WaitFor(sec));
     }
 }
