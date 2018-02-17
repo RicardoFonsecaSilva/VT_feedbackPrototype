@@ -26,6 +26,13 @@ public class avatarScriptManager : MonoBehaviour {
         if (who == female)
             femaleAvatarControllerHook._requestExpression(id);
     }
+    public void mood(string who, int id)
+    {
+        if (who == male)
+            maleAvatarControllerHook._requestMood(id);
+        if (who == female)
+            femaleAvatarControllerHook._requestMood(id);
+    }
 
     IEnumerator joaoTalkFor(float wait)
     {
