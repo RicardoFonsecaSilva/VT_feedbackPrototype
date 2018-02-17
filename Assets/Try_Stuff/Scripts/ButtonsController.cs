@@ -42,12 +42,14 @@ public class ButtonsController : MonoBehaviour {
     //Event Handlers
     void MaleExpressionRequest(ExpressionState state)
     {
-        Generate("Joao");
+        if(ExpressionState.VISEMES == state)
+            Generate("Joao");
     }
 
     void FemaleExpressionRequest(ExpressionState state)
     {
-        Generate("Maria");
+        if (ExpressionState.VISEMES == state)
+            Generate("Maria");
     }
 
     private void MaleMoodChange(MoodState state)
