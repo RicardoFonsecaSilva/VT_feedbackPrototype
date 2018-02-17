@@ -44,15 +44,16 @@ public class VideoManager : MonoBehaviour {
 
         yield return new WaitForSeconds(5.5f);
 
-        t = 6.0f;
+        t = 5.0f;
         balloonManager.text = "We see that your performance in this class has been very good lately.";
         balloonManager.timeToWait = t;
         balloonManager.Generate(j);
         avatarScriptHelper.talkFor(j, 4f);
 
-        yield return new WaitForSeconds(6.5f);
+        yield return new WaitForSeconds(5.5f);
 
         balloonManager.FemaleMoodChange(MoodState.HAPPY_LOW);
+        avatarScriptHelper.mood(m, (int)MoodState.HAPPY_LOW);
 
         t = 5.0f;
         balloonManager.text = "You have a lot of completed assignments. Well done.";
