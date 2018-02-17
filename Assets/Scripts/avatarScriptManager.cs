@@ -9,23 +9,21 @@ public class avatarScriptManager : MonoBehaviour {
     [SerializeField]
     private AvatarControllerUIHook femaleAvatarControllerHook;
 
-    public IEnumerator TalkFor(int wait)
+    public IEnumerator TalkFor(float wait)
     {
-        print(Time.time);
         maleAvatarControllerHook._requestExpression(19);
         yield return new WaitForSeconds(wait);
-        print(Time.time);
         maleAvatarControllerHook._requestExpression(0);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("q"))
-            test();
-        if (Input.GetKeyDown("w"))
-            test2();
-        if (Input.GetKeyDown("e"))
-            test3();
+        //if (Input.GetKeyDown("q"))
+        //    test();
+        //if (Input.GetKeyDown("w"))
+        //    test2();
+        //if (Input.GetKeyDown("e"))
+        //    test3();
     }
 
     public void test()
@@ -42,8 +40,8 @@ public class avatarScriptManager : MonoBehaviour {
         //StartCoroutine(Example());
         
     }
-    public void talkFor(int sec)
+    public void talkFor(float sec)
     {
-        //StartCoroutine(WaitFor(sec));
+        StartCoroutine(TalkFor(sec));
     }
 }

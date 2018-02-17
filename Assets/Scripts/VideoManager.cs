@@ -14,7 +14,8 @@ public class VideoManager : MonoBehaviour {
         {
             balloonManager.text = "Hello.";
             balloonManager.timeToWait = 2.0f;
-            balloonManager.Generate("Maria");
+            balloonManager.Generate("Joao");
+            avatarScriptHelper.talkFor(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
