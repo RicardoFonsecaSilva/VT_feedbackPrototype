@@ -8,7 +8,7 @@ public class ButtonsController : MonoBehaviour {
 
     private BallonsTest balloon;
     private GameObject balloonObject;
-    private string joaoEmotion = "Default", mariaEmotion = "Default";
+    public string joaoEmotion = "Default", mariaEmotion = "Default";
     public string optionsText_1 = "asdf", optionsText_2 = "123", text = "hello world";
     public ChangeBackground mariaPlane, joaoPlane;
 
@@ -100,14 +100,9 @@ public class ButtonsController : MonoBehaviour {
 
     public void Generate(string person)
     {
-        balloon.Show(person, text, person == "Joao" ? joaoEmotion : mariaEmotion, timeToWait);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
+        if(person == "Joao" || person == "Maria")
+            balloon.Show(person, text, person == "Joao" ? joaoEmotion : mariaEmotion, timeToWait);
+        else
             balloon.Show("Options", optionsText_1, "Default", timeToWait, optionsText_2);
-        }
     }
 }

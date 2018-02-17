@@ -24,7 +24,7 @@ public class avatarScriptManager : MonoBehaviour {
             test();
         if (Input.GetKeyDown("w"))
             test2();
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown("e"))
             test3();
     }
 
