@@ -4,35 +4,36 @@ using UnityEngine;
 
 public class avatarScriptManager : MonoBehaviour {
 
+    private string male = "Joao";
+    private string female = "Maria";
+
     [SerializeField]
     private AvatarControllerUIHook maleAvatarControllerHook;
     [SerializeField]
     private AvatarControllerUIHook femaleAvatarControllerHook;
 
-    void Update() {}
-
     public void talkFor(string who, float sec)
     {
-        if (who == "joao")
+        if (who == male)
             StartCoroutine(joaoTalkFor(sec));
-        if (who == "maria")
+        if (who == female)
             StartCoroutine(mariaTalkFor(sec));
     }
     public void express(string who, int id)
     {
-        if (who == "joao")
+        if (who == male)
             maleAvatarControllerHook._requestExpression(id);
-        if (who == "maria")
+        if (who == female)
             femaleAvatarControllerHook._requestExpression(id);
     }
 
-    public IEnumerator joaoTalkFor(float wait)
+    IEnumerator joaoTalkFor(float wait)
     {
         maleAvatarControllerHook._requestExpression(19);
         yield return new WaitForSeconds(wait);
         maleAvatarControllerHook._requestExpression(0);
     }
-    public IEnumerator mariaTalkFor(float wait)
+    IEnumerator mariaTalkFor(float wait)
     {
         femaleAvatarControllerHook._requestExpression(19);
         yield return new WaitForSeconds(wait);
