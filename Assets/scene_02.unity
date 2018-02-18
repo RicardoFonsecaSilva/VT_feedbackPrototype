@@ -726,6 +726,18 @@ Prefab:
       propertyPath: m_Name
       value: FemaleAvatarControllerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1632030189339128, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440523065061832, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833757140571872, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
   m_IsPrefabParent: 0
@@ -1001,7 +1013,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 474923867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 265, y: 165.5, z: 0}
+  m_LocalPosition: {x: 232, y: 145, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1228447295}
@@ -1103,22 +1115,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114886921776981086, guid: d26d387d99539d149bb38b2c2f56a250,
-        type: 2}
-      propertyPath: avatar
-      value: 
-      objectReference: {fileID: 644413749}
-    - target: {fileID: 114367970609594226, guid: d26d387d99539d149bb38b2c2f56a250,
-        type: 2}
-      propertyPath: avatar
-      value: 
-      objectReference: {fileID: 644413750}
-    - target: {fileID: 114311237581761826, guid: d26d387d99539d149bb38b2c2f56a250,
+    - target: {fileID: 114495968340875172, guid: d26d387d99539d149bb38b2c2f56a250,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1201572486}
-    - target: {fileID: 114495968340875172, guid: d26d387d99539d149bb38b2c2f56a250,
+    - target: {fileID: 114311237581761826, guid: d26d387d99539d149bb38b2c2f56a250,
         type: 2}
       propertyPath: camera
       value: 
@@ -1126,16 +1128,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d387d99539d149bb38b2c2f56a250, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &644413749 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1595770401717698, guid: d26d387d99539d149bb38b2c2f56a250,
-    type: 2}
-  m_PrefabInternal: {fileID: 644413748}
---- !u!1 &644413750 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1243934245514340, guid: d26d387d99539d149bb38b2c2f56a250,
-    type: 2}
-  m_PrefabInternal: {fileID: 644413748}
 --- !u!114 &644413751 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114779119748146478, guid: d26d387d99539d149bb38b2c2f56a250,
@@ -1763,6 +1755,18 @@ Prefab:
     - target: {fileID: 1454498477931804, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
       propertyPath: m_Name
       value: MaleAvatarControllerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833757140571872, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632030189339128, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440523065061832, guid: fcf3efa20915da645989c2f39fe437db, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcf3efa20915da645989c2f39fe437db, type: 2}

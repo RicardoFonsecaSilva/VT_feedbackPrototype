@@ -7000,12 +7000,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455569134242476}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e41786b1822a48e4d97d2745c58c5829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 0}
+  avatar: {fileID: 1243934245514340}
   beginPoint: {fileID: 4973189066821382}
   endPoint: {fileID: 4532606569973296}
   journeyTime: 0.75
@@ -7043,12 +7043,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892001051860232}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e41786b1822a48e4d97d2745c58c5829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 0}
+  avatar: {fileID: 1595770401717698}
   beginPoint: {fileID: 4416004940690850}
   endPoint: {fileID: 4943140321840688}
   journeyTime: 0.75
