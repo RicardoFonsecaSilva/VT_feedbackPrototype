@@ -33,7 +33,13 @@ public class avatarScriptManager : MonoBehaviour {
         if (who == female)
             femaleAvatarControllerHook._requestMood(id);
     }
-
+    public void gazeFor(string who, float sec, int dir)
+    {
+        if (who == male)
+            StartCoroutine(joaoGazeFor(sec,dir));
+        if (who == female)
+            StartCoroutine(mariaGazeFor(sec, dir));
+    }
     IEnumerator joaoTalkFor(float wait)
     {
         maleAvatarControllerHook._requestExpression(19);
@@ -45,5 +51,17 @@ public class avatarScriptManager : MonoBehaviour {
         femaleAvatarControllerHook._requestExpression(19);
         yield return new WaitForSeconds(wait);
         femaleAvatarControllerHook._requestExpression(0);
+    }
+    IEnumerator joaoGazeFor(float wait, int dir)
+    {
+        maleAvatarControllerHook._requestGaze(dir);
+        yield return new WaitForSeconds(wait+1);
+        maleAvatarControllerHook._requestGaze(0);
+    }
+    IEnumerator mariaGazeFor(float wait, int dir)
+    {
+        femaleAvatarControllerHook._requestGaze(dir);
+        yield return new WaitForSeconds(wait+1);
+        femaleAvatarControllerHook._requestGaze(0);
     }
 }

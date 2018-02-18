@@ -11,6 +11,9 @@ public class AvatarControllerUIHook : MonoBehaviour
     public event ExpressionEventHandler OnExpressionRequest;
 
 
+    public delegate void GazeEventHandler(GazeState state);
+    public event GazeEventHandler OnGazeRequest;
+
     public void _requestMood(int state)
     {
         if (Enum.IsDefined(typeof(MoodState), state))
@@ -31,6 +34,18 @@ public class AvatarControllerUIHook : MonoBehaviour
         else
         {
             Debug.LogWarning("Selected Expression State doesn't exist.");
+        }
+    }
+
+    public void _requestGaze(int state)
+    {
+        if (Enum.IsDefined(typeof(GazeState), state))
+        {
+            OnGazeRequest((GazeState)state);
+        }
+        else
+        {
+            Debug.LogWarning("Selected Gaze State doesn't exist.");
         }
     }
 }

@@ -22,4 +22,10 @@ public partial class AvatarController : MonoBehaviour
     {
         animator.SetInteger("Mood", (int)moodState);
     }
+
+    public void GazeAt(GazeState direction)
+    {
+        animator.SetInteger("Direction", (int)direction);
+        animator.SetTrigger("Gaze");
+    }
 }

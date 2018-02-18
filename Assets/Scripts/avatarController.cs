@@ -16,8 +16,6 @@ public class avatarController : MonoBehaviour
     [SerializeField]
     private AvatarControllerUIHook femaleAvatarControllerHook;
 
-
-
     void Start()
     {
     }
@@ -28,6 +26,8 @@ public class avatarController : MonoBehaviour
         femaleAvatarControllerHook.OnMoodChange += FemaleMoodChange;
         maleAvatarControllerHook.OnExpressionRequest += MaleExpressionRequest;
         femaleAvatarControllerHook.OnExpressionRequest += FemaleExpressionRequest;
+        maleAvatarControllerHook.OnGazeRequest += MaleGazeRequest;
+        femaleAvatarControllerHook.OnGazeRequest += FemaleGazeRequest;
     }
 
     void OnDisable()
@@ -36,6 +36,8 @@ public class avatarController : MonoBehaviour
         femaleAvatarControllerHook.OnMoodChange -= FemaleMoodChange;
         maleAvatarControllerHook.OnExpressionRequest -= MaleExpressionRequest;
         femaleAvatarControllerHook.OnExpressionRequest -= FemaleExpressionRequest;
+        maleAvatarControllerHook.OnGazeRequest -= MaleGazeRequest;
+        femaleAvatarControllerHook.OnGazeRequest -= FemaleGazeRequest;
     }
 
     private void MaleMoodChange(MoodState state)
@@ -73,6 +75,19 @@ public class avatarController : MonoBehaviour
         }
         //zoomIn(source);
         //turnHead(source);
+    }
+
+    private void MaleGazeRequest(GazeState state)
+    {
+        if (maleAvatarController != null)
+            maleAvatarController.GazeAt(state);
+    }
+
+    private void FemaleGazeRequest(GazeState state)
+    {
+
+        if (femaleAvatarController != null)
+            femaleAvatarController.GazeAt(state);
     }
 
     private void turnHead(string source)

@@ -31,3 +31,10 @@ public enum ExpressionState
 	HEAD_NOD = 18,
 	VISEMES = 19
 }
+
+public enum GazeState
+{
+    NEUTRAL = 0,
+    LEFT = 1,
+    RIGHT = 2
+}
