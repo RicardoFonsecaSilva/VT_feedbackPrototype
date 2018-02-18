@@ -114,6 +114,14 @@ public class BallonsTest : MonoBehaviour {
             {
                 hooks.topicLeft.GetComponent<RectTransform>().anchorMin = anchorMin;
                 hooks.topicLeft.GetComponent<RectTransform>().anchorMax = anchorMax;
+
+                //FAST HACK
+                if(emotion == "Sad")
+                {
+                    hooks.topicLeft.GetComponent<RectTransform>().anchorMin -= new Vector2(0.0f, 0.1f);
+                    hooks.topicLeft.GetComponent<RectTransform>().anchorMax -= new Vector2(0.0f, 0.1f);
+                }
+
                 hooks.topicLeft.GetComponent<RectTransform>().localEulerAngles = rotation;
                 try
                 {
