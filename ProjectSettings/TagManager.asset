@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Balloon Manager
   - Plane
+  - button
   layers:
   - Default
   - TransparentFX

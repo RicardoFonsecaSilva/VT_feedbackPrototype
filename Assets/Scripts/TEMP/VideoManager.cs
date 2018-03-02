@@ -11,6 +11,8 @@ public class VideoManager : MonoBehaviour {
     [SerializeField]
     private avatarScriptManager avatarScriptHelper;
 
+    private GameObject[] Buttons;
+
     bool cleanOptions = false;
     float HALFSEC = 0.5f;
     float t,t2,t3;
@@ -170,8 +172,8 @@ public class VideoManager : MonoBehaviour {
         t = 5.0f;
         t2 = 4.0f;
         {
-            avatarScriptHelper.gazeFor(m, t+t2, 2);
-            yield return new WaitForSeconds(HALFSEC); 
+            avatarScriptHelper.gazeFor(m, t + t2, 2);
+            yield return new WaitForSeconds(HALFSEC);
             balloonManager.text = "The grades for the last checkpoint are now available.";
             balloonManager.timeToWait = t;
             balloonManager.Generate(m);
@@ -180,7 +182,7 @@ public class VideoManager : MonoBehaviour {
             avatarScriptHelper.gazeFor(j, 1f, 2);
             yield return new WaitForSeconds(t);
 
-            t = t2; 
+            t = t2;
             balloonManager.text = "Would you like to see how you did?";
             balloonManager.timeToWait = t;
             balloonManager.Generate(m);
@@ -241,9 +243,9 @@ public class VideoManager : MonoBehaviour {
             yield return new WaitForSeconds(t);
         }
 
-        t = 5.0f; t2 = 5.0f;  talker = m; gazer = j;
+        t = 5.0f; t2 = 5.0f; talker = m; gazer = j;
         {
-            avatarScriptHelper.gazeFor(talker, t+t2, (talker == j ? 1 : 2));
+            avatarScriptHelper.gazeFor(talker, t + t2, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
             balloonManager.text = "We feel our help might not be enough to help motivate you.";
             balloonManager.timeToWait = t;
@@ -258,7 +260,7 @@ public class VideoManager : MonoBehaviour {
             balloonManager.timeToWait = t;
             balloonManager.Generate(talker);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
-            //avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
+            avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
         }
 
@@ -269,7 +271,7 @@ public class VideoManager : MonoBehaviour {
             avatarScriptHelper.gazeFor(talker, t + t2, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
             balloonManager.text = "Yes, I agree. A human tutor might be able to further assist you.";
-             balloonManager.timeToWait = t;
+            balloonManager.timeToWait = t;
             balloonManager.Generate(talker);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
@@ -283,7 +285,7 @@ public class VideoManager : MonoBehaviour {
             balloonManager.timeToWait = t;
             balloonManager.Generate(talker);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
-            //avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
+            avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
         }
 
@@ -307,7 +309,7 @@ public class VideoManager : MonoBehaviour {
             balloonManager.timeToWait = t;
             balloonManager.Generate(talker);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
-            //avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
+            avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
         }
 
@@ -319,7 +321,7 @@ public class VideoManager : MonoBehaviour {
             balloonManager.timeToWait = t;
             balloonManager.Generate(talker);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
-            //avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
+            avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
         }
 
@@ -327,32 +329,56 @@ public class VideoManager : MonoBehaviour {
 
         yield return new WaitForSeconds(3);
     }
+    IEnumerator fullScript()
+    {
+        yield return new WaitForSeconds(2);
+        StartCoroutine(Script1());
+        yield return new WaitForSeconds(40);
+        StartCoroutine(Script2());
+        yield return new WaitForSeconds(10);
+        StartCoroutine(Script3());
+        yield return new WaitForSeconds(40);
+        StartCoroutine(Script4());
+        yield return new WaitForSeconds(5);
+        foreach (GameObject button in Buttons)
+            button.SetActive(true);
+    }
 
+    void Start(){
+        if (Buttons == null)
+            Buttons = GameObject.FindGameObjectsWithTag("button");
+    }
     void Update () {
         if (Input.GetMouseButtonDown(0))
         {
             balloonManager.Clean(0.5f);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            StartCoroutine(Script1());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            StartCoroutine(Script2());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            StartCoroutine(Script3());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            StartCoroutine(Script4());
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    StartCoroutine(Script1());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    StartCoroutine(Script2());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    StartCoroutine(Script3());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    StartCoroutine(Script4());
+        //}
     }
 
-    IEnumerator wait(float t)
+    public void _exitApp() {
+        Application.Quit();
+    }
+    public void _startDemo()
     {
-        yield return new WaitForSeconds(t);
+        foreach (GameObject button in Buttons)
+            button.SetActive(false);
+
+        StartCoroutine(fullScript());
     }
 }
