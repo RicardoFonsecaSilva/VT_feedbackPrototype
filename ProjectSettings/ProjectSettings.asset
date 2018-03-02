@@ -11,8 +11,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: Prototype_1
+  companyName: VirtualTutoring
+  productName: demoApp
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -140,7 +140,7 @@ PlayerSettings:
       useProtectedVideoMemory: 0
     hololens:
       depthFormat: 1
-  protectGraphicsMemory: 0
+  protectGraphicsMemory: 1
   useHDRDisplay: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 0
@@ -148,7 +148,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Company.ProductName
+    Android: com.virtualTutoring.demoAPP
     Standalone: unity.DefaultCompany.Prototype_1
     Tizen: com.Company.ProductName
     iOS: com.Company.ProductName
