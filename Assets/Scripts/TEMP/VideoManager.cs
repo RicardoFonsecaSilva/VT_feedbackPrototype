@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VideoManager : MonoBehaviour {
     private string j = "Joao";
@@ -12,6 +13,7 @@ public class VideoManager : MonoBehaviour {
     private avatarScriptManager avatarScriptHelper;
 
     private GameObject[] Buttons;
+    public GameObject notification;
 
     bool cleanOptions = false;
     float HALFSEC = 0.5f;
@@ -333,11 +335,14 @@ public class VideoManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(2);
         StartCoroutine(Script1());
-        yield return new WaitForSeconds(40);
+        yield return new WaitForSeconds(35);
+        yield return StartCoroutine(ShowNotification("Calendar not yet implemented."));
         StartCoroutine(Script2());
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8);
+        yield return StartCoroutine(ShowNotification("Análise Infinitesimal: Test 2 grades are out!"));
         StartCoroutine(Script3());
-        yield return new WaitForSeconds(40);
+        yield return new WaitForSeconds(35);
+        yield return StartCoroutine(ShowNotification("Moodle integration not yet implemented."));
         StartCoroutine(Script4());
         yield return new WaitForSeconds(5);
         foreach (GameObject button in Buttons)
@@ -369,6 +374,14 @@ public class VideoManager : MonoBehaviour {
         //{
         //    StartCoroutine(Script4());
         //}
+    }
+
+    IEnumerator ShowNotification(string text)
+    {
+        notification.GetComponentInChildren<Text>().text = text;
+        notification.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        notification.SetActive(false);
     }
 
     public void _exitApp() {
