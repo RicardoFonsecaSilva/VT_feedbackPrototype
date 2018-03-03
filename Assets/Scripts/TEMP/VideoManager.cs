@@ -352,6 +352,8 @@ public class VideoManager : MonoBehaviour {
     void Start(){
         if (Buttons == null)
             Buttons = GameObject.FindGameObjectsWithTag("button");
+
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     void Update () {
         if (Input.GetMouseButtonDown(0))
