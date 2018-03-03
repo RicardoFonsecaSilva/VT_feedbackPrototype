@@ -344,7 +344,7 @@ public class VideoManager : MonoBehaviour {
         yield return new WaitForSeconds(35);
         yield return StartCoroutine(ShowNotification("Moodle integration not yet implemented."));
         StartCoroutine(Script4());
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(65);
         foreach (GameObject button in Buttons)
             button.SetActive(true);
     }

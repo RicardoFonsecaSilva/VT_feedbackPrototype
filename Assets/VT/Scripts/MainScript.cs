@@ -222,18 +222,18 @@ namespace VT {
             scene.changeTopic("enoughPlan");
 
             Debug.Log("Opening Calendar (Only works on Android)");
-            if (AGCalendar.UserHasCalendarApp()) {
-                var beginTime = DateTime.Now;
-                var endTime = beginTime.AddHours(1.5);
-                var eventBuilder = new AGCalendar.EventBuilder("Study Programming - VT",
-                                                               beginTime);
-                eventBuilder.SetEndTime(endTime);
-                eventBuilder.SetIsAllDay(false);
-                eventBuilder.SetDescription("Open Virtual Tutor to continue your experience.");
-                eventBuilder.SetAccessLevel(AGCalendar.EventAccessLevel.Public);
-                eventBuilder.SetAvailability(AGCalendar.EventAvailability.Busy);
-                eventBuilder.BuildAndShow();
-            }
+            //if (AGCalendar.UserHasCalendarApp()) {
+            //    var beginTime = DateTime.Now;
+            //    var endTime = beginTime.AddHours(1.5);
+            //    var eventBuilder = new AGCalendar.EventBuilder("Study Programming - VT",
+            //                                                   beginTime);
+            //    eventBuilder.SetEndTime(endTime);
+            //    eventBuilder.SetIsAllDay(false);
+            //    eventBuilder.SetDescription("Open Virtual Tutor to continue your experience.");
+            //    eventBuilder.SetAccessLevel(AGCalendar.EventAccessLevel.Public);
+            //    eventBuilder.SetAvailability(AGCalendar.EventAvailability.Busy);
+            //    eventBuilder.BuildAndShow();
+            //}
             //#elif UNITY_WEBGL
             //            Debug.Log("Test");
 #else
