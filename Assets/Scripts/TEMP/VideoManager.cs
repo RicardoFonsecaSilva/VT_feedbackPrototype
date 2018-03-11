@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BubbleSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +7,10 @@ using UnityEngine.UI;
 public class VideoManager : MonoBehaviour {
     private string j = "Joao";
     private string m = "Maria";
-    
+    private string o = "Options";
+
     [SerializeField]
-    private ButtonsController balloonManager;
+    private BubbleSystemManager bubbleSystemManager;
     [SerializeField]
     private avatarScriptManager avatarScriptHelper;
 
@@ -27,9 +29,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(m, t + 1f, 2);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Hello.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(m);
+            bubbleSystemManager.Speak(m, Emotion.Default, 0.0f, new string[] { "Hello." }, t);
             avatarScriptHelper.talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }
@@ -38,40 +38,32 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(j, t+t2+t3, 1);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Good day.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.0f, new string[] { "Good day." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
 
             t = t2;
-            balloonManager.text = "We wanted to inform you that a new checkpoint is out for the Introdução à Programação.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(m, 1f, 1);
             yield return new WaitForSeconds(t);
         
             t = t3;
-            balloonManager.text = "We see that your performance in this class has been very good lately.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
         }
-        balloonManager.FemaleMoodChange(MoodState.HAPPY_LOW);
+        bubbleSystemManager.UpdateBackground(m, Emotion.Happiness, 0.2f, Reason.Grades);
         avatarScriptHelper.mood(m, (int)MoodState.HAPPY_LOW);
 
         t = 5.0f; 
         {
             avatarScriptHelper.gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "You have a lot of completed assignments. Well done.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(m);
+            bubbleSystemManager.Speak(m, Emotion.Happiness, 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
             avatarScriptHelper.talkFor(m, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(j, 1f, 2);
@@ -82,22 +74,17 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(j, t, 1);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "To continue the rhythm, I would ask you to please mark this new checkpoint in your calendar.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.2f, new string[] { "To continue the rhythm, I would ask you to please mark this new checkpoint in your calendar." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(m, 1f, 1);
             yield return new WaitForSeconds(t);
         }
 
-        balloonManager.optionsText_1 = "Mark checkpoint.";
-        balloonManager.optionsText_2 = "Don't mark checkpoint.";
-        balloonManager.timeToWait = 5.0f;
-        balloonManager.Generate("Options");
+        bubbleSystemManager.UpdateOptions(new string[] { "Mark checkpoint.", "Don't mark checkpoint." });
 
         yield return new WaitForSeconds(5);
-        balloonManager.Clean(0.0f);
+        bubbleSystemManager.HideBalloon(o);
 
         yield return new WaitForSeconds(3);
     }
@@ -108,9 +95,7 @@ public class VideoManager : MonoBehaviour {
             avatarScriptHelper.gazeFor(j, t, 1);
             yield return new WaitForSeconds(0.5f);
             avatarScriptHelper.express(m, (int)MoodState.HAPPY_LOW);
-            balloonManager.text = "I am glad that you decided to continue working hard for this class.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.2f, new string[] { "I am glad that you decided to continue working hard for this class." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(m, 1f, 1);
@@ -127,9 +112,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(j, t, 1);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "We will talk further about this class next week.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.2f, new string[] { "We will talk further about this class next week." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(m, 1f, 1);
@@ -137,21 +120,18 @@ public class VideoManager : MonoBehaviour {
         }
 
         t = 2.0f;
-        balloonManager.text = "Agreed.";
-        balloonManager.timeToWait = t;
-        balloonManager.Generate(m);
+        bubbleSystemManager.Speak(m, Emotion.Happiness, 0.2f, new string[] { "Agreed." }, t);
         avatarScriptHelper.talkFor(m, t - HALFSEC);
         yield return new WaitForSeconds(t);
 
         avatarScriptHelper.mood(m, (int)MoodState.NEUTRAL);
+        bubbleSystemManager.UpdateBackground(m, Emotion.Default, 0.2f, Reason.Grades);
 
         t = 5.0f;
         {
             avatarScriptHelper.gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Now, I would like to talk about the “Análise Infinitesimal” class.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(m);
+            bubbleSystemManager.Speak(m, Emotion.Default, 0.2f, new string[] { "Now, I would like to talk about the “Análise Infinitesimal” class." }, t);
             avatarScriptHelper.talkFor(m, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(j, 1f, 2);
@@ -162,9 +142,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(j, t, 1);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "We should. I would remind you that your performance in this class has not been the best.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(j);
+            bubbleSystemManager.Speak(j, Emotion.Default, 0.2f, new string[] { "We should. I would remind you that your performance in this class has not been the best." }, t);
             avatarScriptHelper.talkFor(j, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(m, 1f, 1);
@@ -176,30 +154,23 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(m, t + t2, 2);
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "The grades for the last checkpoint are now available.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(m);
+            bubbleSystemManager.Speak(m, Emotion.Default, 0.2f, new string[] { "The grades for the last checkpoint are now available." }, t);
             avatarScriptHelper.talkFor(m, t - HALFSEC);
 
             avatarScriptHelper.gazeFor(j, 1f, 2);
             yield return new WaitForSeconds(t);
 
             t = t2;
-            balloonManager.text = "Would you like to see how you did?";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(m);
+            bubbleSystemManager.Speak(m, Emotion.Default, 0.2f, new string[] { "Would you like to see how you did?" }, t);
             avatarScriptHelper.talkFor(m, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
         }
 
-        balloonManager.optionsText_1 = "Check grades.";
-        balloonManager.optionsText_2 = "Maybe later.";
-        balloonManager.timeToWait = 5.0f;
-        balloonManager.Generate("Options");
+        bubbleSystemManager.UpdateOptions(new string[] { "Check grades.", "Maybe later." });
 
         yield return new WaitForSeconds(5);
-        balloonManager.Clean(0.0f);
+        bubbleSystemManager.HideBalloon(o);
 
         yield return new WaitForSeconds(3);
     }
@@ -207,14 +178,14 @@ public class VideoManager : MonoBehaviour {
     {
         avatarScriptHelper.mood(m, (int)MoodState.SAD_LOW);
         avatarScriptHelper.mood(j, (int)MoodState.SAD_HIGH);
+        bubbleSystemManager.UpdateBackground(m, Emotion.Sadness, 0.2f, Reason.Grades);
+        bubbleSystemManager.UpdateBackground(j, Emotion.Sadness, 0.2f, Reason.None);
 
         t = 8.0f; talker = j; gazer = m;
         {
             avatarScriptHelper.gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "I see that your grade was lower than the one from the previous checkpoint.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Sadness, 0.2f, new string[] { "I see that your grade was lower than the one from the previous checkpoint." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -225,9 +196,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "We know that you have been having difficulties with this class for the last few weeks.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Sadness, 0.2f, new string[] { "We know that you have been having difficulties with this class for the last few weeks." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -237,9 +206,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Your interest in this class is low, but the class is very important.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Sadness, 0.2f, new string[] { "Your interest in this class is low, but the class is very important." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -249,43 +216,37 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(talker, t + t2, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "We feel our help might not be enough to help motivate you.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Sadness, 0.2f, new string[] { "We feel our help might not be enough to help motivate you." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
 
             t = t2;
 
-            balloonManager.text = "I suggest that you, additionally, seek the advice of a human tutor.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Sadness, 0.2f, new string[] { "I suggest that you, additionally, seek the advice of a human tutor." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
         }
 
         avatarScriptHelper.mood(j, (int)MoodState.NEUTRAL);
+        bubbleSystemManager.UpdateBackground(j, Emotion.Default, 0.2f, Reason.None);
 
         t = 5.0f; t2 = 7.0f; talker = j; gazer = m;
         {
             avatarScriptHelper.gazeFor(talker, t + t2, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Yes, I agree. A human tutor might be able to further assist you.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Default, 0.0f, new string[] { "Yes, I agree. A human tutor might be able to further assist you." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
 
             avatarScriptHelper.mood(m, (int)MoodState.NEUTRAL);
+            bubbleSystemManager.UpdateBackground(m, Emotion.Default, 0.2f, Reason.Grades);
 
             t = t2;
 
-            balloonManager.text = "We will talk again in a few days, to schedule further study periods for this class.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Default, 0.0f, new string[] { "We will talk again in a few days, to schedule further study periods for this class." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -295,9 +256,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Yes, those should help with mastering the material.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Default, 0.0f, new string[] { "Yes, those should help with mastering the material." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -307,9 +266,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "We will see you next week then.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Default, 0.0f, new string[] { "We will see you next week then." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -319,9 +276,7 @@ public class VideoManager : MonoBehaviour {
         {
             avatarScriptHelper.gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            balloonManager.text = "Good luck on your studies.";
-            balloonManager.timeToWait = t;
-            balloonManager.Generate(talker);
+            bubbleSystemManager.Speak(talker, Emotion.Default, 0.0f, new string[] { "Good luck on your studies." }, t);
             avatarScriptHelper.talkFor(talker, t - HALFSEC);
             avatarScriptHelper.gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -358,7 +313,8 @@ public class VideoManager : MonoBehaviour {
     void Update () {
         if (Input.GetMouseButtonDown(0))
         {
-            balloonManager.Clean(0.5f);
+            bubbleSystemManager.HideBalloon(o, 0.5f);
+            //balloonManager.Clean(0.5f);
         }
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //{

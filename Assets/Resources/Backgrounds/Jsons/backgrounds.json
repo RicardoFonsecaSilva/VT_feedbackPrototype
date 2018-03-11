@@ -1,0 +1,40 @@
+{
+	"Sadness": {
+		"1": {
+			"Grades": {
+				"image_path": "Images/graph",
+				"color": [0,0,1,1.0]
+			},
+			"None": {
+				"image_path": "Images/joaoBackground",
+				"color": [0,0,1,1.0]
+			}
+		}
+	},
+
+	"Happiness": {
+		"1": {
+			"Grades": {
+				"image_path": "Images/graph",
+				"color": [1.0,1.0,0.5,1.0]
+			},
+			"None": {
+				"image_path": "Images/joaoBackground",
+				"color": [1.0,1.0,0.5,1.0]
+			}
+		}
+	},
+
+	"Default": {
+		"1": {
+			"Grades": {
+				"image_path": "Images/graph",
+				"color": [1.0,1.0,1.0,1.0]
+			},
+			"None":{
+				"image_path": "Images/joaoBackground",
+				"color": [1.0,1.0,1.0,1.0]
+			}
+		}
+	}
+}
