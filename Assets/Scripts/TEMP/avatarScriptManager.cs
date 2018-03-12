@@ -8,60 +8,54 @@ public class avatarScriptManager : MonoBehaviour {
     private string female = "Maria";
 
     [SerializeField]
-    private AvatarControllerUIHook maleAvatarControllerHook;
-    [SerializeField]
-    private AvatarControllerUIHook femaleAvatarControllerHook;
+    private AvatarManager manager;
+
+    private enum GAZE_DIR
+    {
+        LEFT = 1,
+        RIGHT = 2
+    }
+
+    public void express(string who, Expression expression)
+    {
+        manager.Express(new Tutor(who), expression);
+    }
+
+    public void mood(string who, Emotion emotion)
+    {
+        manager.Feel(new Tutor(who), emotion);
+    }
 
     public void talkFor(string who, float sec)
     {
-        if (who == male)
-            StartCoroutine(joaoTalkFor(sec));
-        if (who == female)
-            StartCoroutine(mariaTalkFor(sec));
+        StartCoroutine(avatarTalkFor(new Tutor(who), sec));
     }
-    public void express(string who, int id)
+
+    IEnumerator avatarTalkFor(Tutor tutor, float wait)
     {
-        if (who == male)
-            maleAvatarControllerHook._requestExpression(id);
-        if (who == female)
-            femaleAvatarControllerHook._requestExpression(id);
+        manager.Act(tutor, new HeadAction("Talk", ""));
+        yield return new WaitForSeconds(wait);
+        manager.Act(tutor, new HeadAction("Talk", "End"));
     }
-    public void mood(string who, int id)
-    {
-        if (who == male)
-            maleAvatarControllerHook._requestMood(id);
-        if (who == female)
-            femaleAvatarControllerHook._requestMood(id);
-    }
+
     public void gazeFor(string who, float sec, int dir)
     {
-        if (who == male)
-            StartCoroutine(joaoGazeFor(sec,dir));
-        if (who == female)
-            StartCoroutine(mariaGazeFor(sec, dir));
+        StartCoroutine(avatarGazeFor(new Tutor(who), sec, (GAZE_DIR)dir));
     }
-    IEnumerator joaoTalkFor(float wait)
+
+    IEnumerator avatarGazeFor(Tutor tutor, float wait, GAZE_DIR gazeDir)
     {
-        maleAvatarControllerHook._requestExpression(19);
-        yield return new WaitForSeconds(wait);
-        maleAvatarControllerHook._requestExpression(0);
-    }
-    IEnumerator mariaTalkFor(float wait)
-    {
-        femaleAvatarControllerHook._requestExpression(19);
-        yield return new WaitForSeconds(wait);
-        femaleAvatarControllerHook._requestExpression(0);
-    }
-    IEnumerator joaoGazeFor(float wait, int dir)
-    {
-        maleAvatarControllerHook._requestGaze(dir);
-        yield return new WaitForSeconds(wait+1);
-        maleAvatarControllerHook._requestGaze(0);
-    }
-    IEnumerator mariaGazeFor(float wait, int dir)
-    {
-        femaleAvatarControllerHook._requestGaze(dir);
-        yield return new WaitForSeconds(wait+1);
-        femaleAvatarControllerHook._requestGaze(0);
+        if (gazeDir == GAZE_DIR.LEFT)
+        {
+            manager.Act(tutor, new HeadAction("Gaze", "Middle to Left"));
+            yield return new WaitForSeconds(wait + 1);
+            manager.Act(tutor, new HeadAction("Gaze", "Left to Middle"));
+        }
+        if (gazeDir == GAZE_DIR.RIGHT)
+        {
+            manager.Act(tutor, new HeadAction("Gaze", "Middle to Right"));
+            yield return new WaitForSeconds(wait + 1);
+            manager.Act(tutor, new HeadAction("Gaze", "Right to Middle"));
+        }
     }
 }
