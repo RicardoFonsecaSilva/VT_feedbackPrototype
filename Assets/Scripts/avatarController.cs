@@ -77,17 +77,17 @@ public class avatarController : MonoBehaviour
         //turnHead(source);
     }
 
-    private void MaleGazeRequest(GazeState state)
+    private void MaleGazeRequest(ActionState state)
     {
         if (maleAvatarController != null)
-            maleAvatarController.GazeAt(state);
+            maleAvatarController.PerformAction(state);
     }
 
-    private void FemaleGazeRequest(GazeState state)
+    private void FemaleGazeRequest(ActionState state)
     {
 
         if (femaleAvatarController != null)
-            femaleAvatarController.GazeAt(state);
+            femaleAvatarController.PerformAction(state);
     }
 
     private void turnHead(string source)

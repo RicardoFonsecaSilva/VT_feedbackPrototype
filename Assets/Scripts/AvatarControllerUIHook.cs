@@ -11,7 +11,7 @@ public class AvatarControllerUIHook : MonoBehaviour
     public event ExpressionEventHandler OnExpressionRequest;
 
 
-    public delegate void GazeEventHandler(GazeState state);
+    public delegate void GazeEventHandler(ActionState state);
     public event GazeEventHandler OnGazeRequest;
 
     public void _requestMood(int state)
@@ -39,9 +39,9 @@ public class AvatarControllerUIHook : MonoBehaviour
 
     public void _requestGaze(int state)
     {
-        if (Enum.IsDefined(typeof(GazeState), state))
+        if (Enum.IsDefined(typeof(ActionState), state))
         {
-            OnGazeRequest((GazeState)state);
+            OnGazeRequest((ActionState)state);
         }
         else
         {

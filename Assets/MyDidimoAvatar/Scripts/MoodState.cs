@@ -23,18 +23,21 @@ public enum ExpressionState
     DISGUST_HIGH = 10,
     SURPRISE_LOW = 11,
     SURPRISE_HIGH = 12,
-    EYES_CLOSE = 13,
-    EYES_RIGHT = 14,
-    EYES_LEFT = 15,
-    EYES_DOWN = 16,
-    EYES_UP = 17,
-	HEAD_NOD = 18,
-	VISEMES = 19
 }
 
-public enum GazeState
+public enum ActionState
 {
     NEUTRAL = 0,
-    LEFT = 1,
-    RIGHT = 2
+    EYES_CLOSE = 1,
+    EYES_RIGHT = 2,
+    EYES_LEFT = 3,
+    EYES_DOWN = 4,
+    EYES_UP = 5,
+    TALK = 6,
+    TALK_END = 0,
+    HEAD_NOD = 7,
+    GAZE_MIDDLETOLEFT = 8,
+    GAZE_LEFTTOMIDDLE = -8,
+    GAZE_MIDDLETORIGHT = 9,
+    GAZE_RIGHTTOMIDDLE = -9
 }
