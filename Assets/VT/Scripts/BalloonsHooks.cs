@@ -7,27 +7,47 @@ namespace VT {
     public class BalloonsHooks : Hook
     {
         [SerializeField]
-        private Text topicTextLeft = null;
+        public Text topicTextLeft = null;
         [SerializeField]
-        private Text topicTextTop = null;
+        public Text topicTextTop = null;
         [SerializeField]
-        private Text topicTextRight = null;
+        public Text topicTextRight = null;
         [SerializeField]
-        private Text topicTextExtra = null;
+        public Text topicTextExtra = null;
         [SerializeField]
         public GameObject topicLeft = null;
         [SerializeField]
-        private GameObject topicRight = null;
+        public GameObject topicRight = null;
         [SerializeField]
-        private GameObject topicTop = null;
+        public GameObject topicTop = null;
         [SerializeField]
-        private GameObject topicExtra = null;
-        
+        public GameObject topicExtra = null;
+        [SerializeField]
+        public GameObject peakTopLeft = null;
+        [SerializeField]
+        public GameObject peakTopRight = null;
+        [SerializeField]
+        public GameObject peakBotLeft = null;
+        [SerializeField]
+        public GameObject peakBotRight = null;
+
 
         public VoidFunc onLeft;
         public VoidFunc onTop;
         public VoidFunc onRight;
         public VoidFunc onExtra;
+
+        public void SetPeak(bool top, bool left)
+        {
+            if(peakTopLeft)
+                peakTopLeft.SetActive(top && left);
+            if(peakBotLeft)
+                peakBotLeft.SetActive(!top && left);
+            if(peakTopRight)
+                peakTopRight.SetActive(top && !left);
+            if(peakBotRight)
+                peakBotRight.SetActive(!top && !left);
+        }
 
         public void UIExtra()
         {
@@ -53,50 +73,117 @@ namespace VT {
         }
 
         public string ContentLeft {
-            get{ return this.topicTextLeft.text; }
-            set {
-                if (!string.IsNullOrEmpty (value)) {
-                    show(topicLeft);
-                    this.topicTextLeft.text = value;
-                } else if (string.IsNullOrEmpty (value))
-                    hide(topicLeft);
+            get
+            {
+                if (topicTextLeft)
+                    return this.topicTextLeft.text;
+                throw new MissingComponentException("Component topic text left does not exist");
+            }
+            set
+            {
+                if (topicLeft && topicTextLeft)
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        topicLeft.SetActive(true);
+                        this.topicTextLeft.text = value;
+                    }
+                    else if (string.IsNullOrEmpty(value))
+                    {
+                        topicLeft.SetActive(false);
+                    }
+                }
             }
         }
 
         public string ContentTop {
-            get{ return this.topicTextTop.text; }
+            get
+            {
+                if (topicTextTop)
+                    return this.topicTextTop.text;
+                throw new MissingComponentException("Component topic text top does not exist");
+            }
             set {
-                if (!string.IsNullOrEmpty (value)) {
-                    show(topicTop);
-                    this.topicTextTop.text = value;
-                } else if (string.IsNullOrEmpty (value))
-                    hide(topicTop);
+                if (topicTop && topicTextTop)
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        topicTop.SetActive(true);
+                        this.topicTextTop.text = value;
+                    }
+                    else if (string.IsNullOrEmpty(value))
+                    {
+                        topicTop.SetActive(false);
+                    }
+                }
             }
         }
 
         public string ContentRight {
-            get{ return this.topicTextRight.text; }
+            get
+            {
+                if (topicTextRight)
+                    return this.topicTextRight.text;
+                throw new MissingComponentException("Component topic text right does not exist");
+            }
             set {
-                if (!string.IsNullOrEmpty (value)) {
-                    show(topicRight);
-                    this.topicTextRight.text = value;
-                } else if (string.IsNullOrEmpty (value))
-                    hide(topicRight);
+                if (topicRight && topicTextRight)
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        topicRight.SetActive(true);
+                        this.topicTextRight.text = value;
+                    }
+                    else if (string.IsNullOrEmpty(value))
+                    {
+                        topicRight.SetActive(false);
+                    }
+                }
             }
         }
 
         public string ContentExtra {
-            get{ return this.topicTextExtra.text; }
-            set{if (!string.IsNullOrEmpty (value)) {
-                    show (topicExtra);
-                    this.topicTextExtra.text = value;
-                } else if (string.IsNullOrEmpty (value))
-                    hide (topicExtra);
+            get
+            {
+                if (topicTextExtra)
+                    return this.topicTextExtra.text;
+                throw new MissingComponentException("Component topic text extra does not exist");
+            }
+            set
+            {
+                if (topicExtra && topicTextExtra)
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        topicExtra.SetActive(true);
+                        this.topicTextExtra.text = value;
+                    }
+                    else if (string.IsNullOrEmpty(value))
+                    {
+                        topicExtra.SetActive(false);
+                    }
+                }
             }
         }
 
+        public void Show()
+        {
+            show(topicTop);
+            show(topicLeft);
+            show(topicRight);
+            show(topicExtra);
+        }
+
+        public void Hide()
+        {
+            hide(topicTop);
+            hide(topicLeft);
+            hide(topicRight);
+            hide(topicExtra);
+        }
+
         protected void show(GameObject ballon) {
-            if (!ballon) {
+            if (!ballon || !ballon.activeSelf) {
                 return;
             }
             var animator = ballon.GetComponent<Animator>();
@@ -108,7 +195,7 @@ namespace VT {
         }
 
         protected void hide(GameObject ballon) {
-            if (!ballon) {
+            if (!ballon || !ballon.activeSelf) {
                 return;
             }
             var animator = ballon.GetComponent<Animator>();
