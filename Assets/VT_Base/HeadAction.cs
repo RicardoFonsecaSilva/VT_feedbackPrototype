@@ -1,11 +1,11 @@
 ﻿[System.Serializable]
-public class Action : IState
+public class HeadAction : IState
 {
     public string Name { get; set; }
     public string Mode { get; set; }
 
-    public Action() { }
-    public Action(string name, string mode)
+    public HeadAction() { }
+    public HeadAction(string name, string mode)
     {
         Name = name;
         Mode = mode;

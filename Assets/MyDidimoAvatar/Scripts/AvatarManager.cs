@@ -27,7 +27,7 @@ public class AvatarManager : MonoBehaviour
 
         controller.ExpressEmotion(expressionState);
     }
-    public void Act(Tutor tutor, Action action)
+    public void Act(Tutor tutor, HeadAction action)
     {
         string actionString = getStateString(action);
         ActionState actionState = getStateValue<ActionState>(actionString);
