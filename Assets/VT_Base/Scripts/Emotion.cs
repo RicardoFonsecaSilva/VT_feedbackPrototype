@@ -5,6 +5,10 @@ public class Emotion : IState
     public string Intensity { get; set; }
 
     public Emotion() { }
+    public Emotion(string name)
+    {
+        Name = name;
+    }
     public Emotion(string name, string intensity)
     {
         Name = name;
