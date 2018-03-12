@@ -30,8 +30,6 @@ namespace BubbleSystem
         [SerializeField]
         private BalloonAnimationSelector balloonAnimationSelector;
 
-        private float defaultDuration = 5.0f;
-
         private void Start()
         {
             foreach(Balloon balloon in balloons)
@@ -49,11 +47,6 @@ namespace BubbleSystem
         private BalloonAnimationData SelectAnimator(Data data)
         {
             return balloonAnimationSelector.SelectBalloonAnimation(data);
-        }
-
-        private DefaultAnimationData SelectDefaultAnimator(Data data)
-        {
-            return balloonAnimationSelector.SelectDefaultAnimation(data);
         }
 
         private TextData SelectText(Data data)
@@ -96,7 +89,7 @@ namespace BubbleSystem
                 hooksTopic.GetComponent<Animator>().runtimeAnimatorController = animator;
         }
 
-        private void SetAnimator(GameObject hooksTopic, UnityEditor.Animations.AnimatorController animator)
+        private void SetAnimator(GameObject hooksTopic, RuntimeAnimatorController animator)
         {
             if (hooksTopic)
                 hooksTopic.GetComponent<Animator>().runtimeAnimatorController = animator;
@@ -110,7 +103,7 @@ namespace BubbleSystem
             SetAnimator(hooks.topicExtra, animatorData.animator);
         }
 
-        private void SetAnimators(BalloonsHooks hooks, DefaultAnimationData animatorData)
+        private void SetAnimators(BalloonsHooks hooks, DefaultBalloonAnimationData animatorData)
         {
             SetAnimator(hooks.topicTop, animatorData.animator);
             SetAnimator(hooks.topicLeft, animatorData.animator);
@@ -155,27 +148,49 @@ namespace BubbleSystem
 
                 if (hooks != null)
                 {
-                    float realDuration = defaultDuration;
+                    float realDuration = DefaultData.Instance.defaultBalloonAnimationData.duration;
                     SetContent(hooks, data.text);
 
                     try
                     {
-                        var spriteData = SelectBalloon(data);
-                        if (data.emotion.Equals(Emotion.Default))
+                        SpriteData spriteData;
+                        TextData textData;
+                        if (data.emotion.Equals(Emotion.Neutral))
                         {
-                            var defaultAnimationData = SelectDefaultAnimator(data);
-                            SetAnimators(hooks, defaultAnimationData);
-                            realDuration = defaultAnimationData.duration;
+                            spriteData = DefaultData.Instance.defaultBalloonData;
+                            textData = DefaultData.Instance.defaultTextData;
+                            SetAnimators(hooks, DefaultData.Instance.defaultBalloonAnimationData);
                         }
                         else
                         {
-                            var balloonAnimationData = SelectAnimator(data);
-                            SetAnimators(hooks, balloonAnimationData);
-                            realDuration = balloonAnimationData.duration;
+                            try
+                            {
+                                spriteData = SelectBalloon(data);
+                            }
+                            catch
+                            {
+                                spriteData = DefaultData.Instance.defaultBalloonData;
+                            }
+                            try
+                            {
+                                textData = SelectText(data);
+                            }
+                            catch
+                            {
+                                textData = DefaultData.Instance.defaultTextData;
+                            }
+                            try
+                            {
+                                var balloonAnimationData = SelectAnimator(data);
+                                SetAnimators(hooks, balloonAnimationData);
+                                realDuration = balloonAnimationData.duration;
+                            }
+                            catch
+                            {
+                                realDuration = DefaultData.Instance.defaultBalloonAnimationData.duration;
+                                SetAnimators(hooks, DefaultData.Instance.defaultBalloonAnimationData);
+                            }
                         }
-
-                        var textData = SelectText(data);
-
                         SetSprites(hooks, spriteData);
                         SetTexts(hooks, textData);
                     }

@@ -1,28 +1,15 @@
 {
-	"Default": {
-		"1": {
-			"None": {
-				"animator_path": "Animators/BallonPopup",
-				"duration": 5
-			}
-		}
-	},
-
 	"Happiness": {
 		"1": {
-			"None": {
-				"animator_path": "Animators/HappyAnimator",
-				"duration": 5
-			}
+			"animator_path": "Animators/HappyAnimator",
+			"duration": 5
 		}
 	},
 
 	"Sadness": {
 		"1": {
-			"None": {
-				"animator_path": "Animators/SadAnimator",
-				"duration": 5
-			}
+			"animator_path": "Animators/SadAnimator",
+			"duration": 5
 		}
 	}
 }

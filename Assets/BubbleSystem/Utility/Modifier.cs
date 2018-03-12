@@ -8,8 +8,50 @@ namespace BubbleSystem
 {
     public abstract class Modifier : MonoBehaviour
     {
+        protected bool considerReason = false;
+
         protected abstract void Add(Data data);
         protected abstract void Set<T>(T data, string attribute, bool defaultData = false);
+
+        protected void Cases(string folder, Texture2D tex, string dictKey, Dictionary<string, System.Object> dictionary)
+        {
+            switch (dictKey)
+            {
+                case "image_path":
+                    tex = (Texture2D)Resources.Load(folder + dictionary[dictKey]);
+                    Set(tex, dictKey);
+                    return;
+                case "color":
+                    var colorList = dictionary[dictKey] as List<System.Object>;
+                    Set(colorList, dictKey);
+                    return;
+                case "font":
+                    Font font = (Font)Resources.GetBuiltinResource(typeof(Font), dictionary[dictKey] + ".ttf");
+                    Set(font, dictKey);
+                    return;
+                case "size":
+                    Set(Convert.ToSingle(dictionary[dictKey]), dictKey);
+                    return;
+                case "transition_fade":
+                    Set(Convert.ToSingle(dictionary[dictKey]), dictKey);
+                    return;
+                case "color_duration":
+                    Set(Convert.ToSingle(dictionary[dictKey]), dictKey);
+                    return;
+                case "color_smoothness":
+                    Set(Convert.ToSingle(dictionary[dictKey]), dictKey);
+                    return;
+                case "animator_path":
+                    Set((AnimatorOverrideController)Resources.Load(folder + dictionary[dictKey]), dictKey);
+                    return;
+                case "duration":
+                    Set(Convert.ToSingle(dictionary[dictKey]), dictKey);
+                    return;
+                default:
+                    Debug.Log("Key " + dictKey + " not found");
+                    return;
+            }
+        }
 
         protected void SetDictionary(string folder, string file)
         {
@@ -30,52 +72,23 @@ namespace BubbleSystem
                     var intensity = emotion[intensityKey] as Dictionary<string, System.Object>;
                     foreach (var reasonKey in intensity.Keys)
                     {
-                        data.reason = (Reason)Enum.Parse(typeof(Reason), reasonKey as string);
-                        var reason = intensity[reasonKey] as Dictionary<string, System.Object>;
-                        foreach (var dictKey in reason.Keys)
+                        if (considerReason)
                         {
-                            switch (dictKey)
+                            data.reason = (Reason)Enum.Parse(typeof(Reason), reasonKey as string);
+                            var reason = intensity[reasonKey] as Dictionary<string, System.Object>;
+                            foreach (var dictKey in reason.Keys)
                             {
-                                case "image_path":
-                                    tex = (Texture2D)Resources.Load(folder + reason[dictKey]);
-                                    Set(tex, dictKey);
-                                    continue;
-                                case "color":
-                                    var colorList = reason[dictKey] as List<System.Object>;
-                                    Set(colorList, dictKey);
-                                    continue;
-                                case "font":
-                                    Font font = (Font)Resources.GetBuiltinResource(typeof(Font), reason[dictKey] + ".ttf");
-                                    Set(font, dictKey);
-                                    continue;
-                                case "size":
-                                    Set(Convert.ToSingle(reason[dictKey]), dictKey);
-                                    continue;
-                                case "transition_fade":
-                                    Set(Convert.ToSingle(reason[dictKey]), dictKey);
-                                    continue;
-                                case "color_duration":
-                                    Set(Convert.ToSingle(reason[dictKey]), dictKey);
-                                    continue;
-                                case "color_smoothness":
-                                    Set(Convert.ToSingle(reason[dictKey]), dictKey);
-                                    continue;
-                                case "animator_path":
-                                    if (data.emotion.Equals(Emotion.Default))
-                                        Set((UnityEditor.Animations.AnimatorController)Resources.Load(folder + reason[dictKey]), dictKey);
-                                    else
-                                        Set((AnimatorOverrideController)Resources.Load(folder + reason[dictKey]), dictKey);
-                                    continue;
-                                case "duration":
-                                    Set(Convert.ToSingle(reason[dictKey]), dictKey, data.emotion.Equals(Emotion.Default) ? true : false);
-                                    continue;
-                                default:
-                                    Debug.Log("Key " + dictKey + " not found");
-                                    continue;
+                                Cases(folder, tex, dictKey, reason);
                             }
+                            Add(data);
                         }
-                        Add(data);
+                        else
+                        {
+                            Cases(folder, tex, reasonKey, intensity);
+                        }                        
                     }
+                    if(!considerReason)
+                        Add(data);
                 }
             }
         }

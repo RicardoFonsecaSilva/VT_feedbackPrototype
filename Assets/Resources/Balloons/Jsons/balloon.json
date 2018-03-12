@@ -1,37 +1,15 @@
 {
-	"Default": {
-		"1": {
-			"None": {
-				"image_path": "Images/SpeechBubbles/Default/balloon",
-				"color": [0.0,0.0,1.0,1.0]
-			}
-		}
-	},
-
 	"Happiness": {
 		"1": {
-			"None": {
-				"image_path": "Images/SpeechBubbles/Default/balloon",
-				"color": [0.0,0.0,1.0,1.0]
-			}
+			"image_path": "Images/SpeechBubbles/Default/balloon",
+			"color": [0,0,255,255]
 		}
 	},
 
 	"Sadness": {
 		"1": {
-			"None": {
-				"image_path": "Images/SpeechBubbles/Default/balloon",
-				"color": [0.0,0.0,1.0,1.0]
-			}
-		}
-	},
-	
-	"Anger": {
-		"0.3": {
-			"None": {
-				"image_path": "Images/SpeechBubbles/Default/balloon",
-				"color": [0.0,0.0,1.0,1.0]
-			}
+			"image_path": "Images/SpeechBubbles/Default/balloon",
+			"color": [0,0,255,255]
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace BubbleSystem
 
         private Data data = new Data();
 
-        private void SetData(Emotion emotion = Emotion.Default, float intensity = 0, Reason reason = Reason.Grades, string[] text = null )
+        private void SetData(Emotion emotion = Emotion.Neutral, float intensity = 0, Reason reason = Reason.Grades, string[] text = null )
         {
             data.emotion = emotion;
             data.intensity = intensity;
@@ -41,7 +41,7 @@ namespace BubbleSystem
 
         public void UpdateOptions(string[] text, float duration = 0.0f)
         {
-            SetData(Emotion.Default, 0.0f, Reason.None, text);
+            SetData(Emotion.Neutral, 0.0f, Reason.None, text);
             balloonManager.ShowBalloon("Options", data, duration);
         }
     }

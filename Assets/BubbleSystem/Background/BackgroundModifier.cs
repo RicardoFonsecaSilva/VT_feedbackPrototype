@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.IO;
-using UnityEditor;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -15,6 +14,7 @@ namespace BubbleSystem
 
         protected void Start()
         {
+            considerReason = true;
             SetDictionary("Backgrounds/", "Jsons/backgrounds");
         }
 

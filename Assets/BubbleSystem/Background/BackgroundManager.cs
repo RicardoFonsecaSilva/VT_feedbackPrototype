@@ -30,9 +30,9 @@ namespace BubbleSystem
         private float initialAlpha;
 
         
-        public Texture2D defaultTexture;
-        public Color defaultColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
-        public float defaultImageFadePercentage = 0.5f, defaultDuration = 5f, defaultSmoothness = 0.02f;
+        //public Texture2D defaultTexture;
+        //public Color defaultColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+        //public float defaultImageFadePercentage = 0.5f, defaultDuration = 5f, defaultSmoothness = 0.02f;
 
         public TextureData SelectBackground(Data data)
         {
@@ -56,22 +56,22 @@ namespace BubbleSystem
             {
                 try
                 {
-                    textureData.texture = defaultTexture;
+                    textureData.texture = DefaultData.Instance.defaultBackgroundDataDictionary[data.reason].texture;
                 }
                 catch
                 {
                     throw new MissingComponentException("There is no default background texture defined. Define one in the component or the corresponding .json file.");
                 }
-                textureData.colorData.color = defaultColor;
+                textureData.colorData.color = DefaultData.Instance.defaultBackgroundDataDictionary[data.reason].colorData.color;
             }
             try
             {
                 backgroundAnimationData = SelectBackgroundData(data);
             }
             catch{
-                backgroundAnimationData.imageFadePercentage = defaultImageFadePercentage;
-                backgroundAnimationData.colorTransitionData.duration = defaultDuration;
-                backgroundAnimationData.colorTransitionData.smoothness = defaultSmoothness;
+                backgroundAnimationData.imageFadePercentage = DefaultData.Instance.defaultBackgroundAnimationData.imageFadePercentage;
+                backgroundAnimationData.colorTransitionData.duration = DefaultData.Instance.defaultBackgroundAnimationData.colorTransitionData.duration;
+                backgroundAnimationData.colorTransitionData.smoothness = DefaultData.Instance.defaultBackgroundAnimationData.colorTransitionData.smoothness;
             }
             renderer = GetBackground(bg).GetComponent<Renderer>();
             SetImage(bg, renderer, textureData, backgroundAnimationData, true);

@@ -1,21 +1,17 @@
 {
-	"Default": {
+	"Happiness": {
 		"1": {
-			"None": {
-				"font": "Arial",
-				"color": [1.0,0.0,1.0,1.0],
-				"size": 12
-			}
+			"font": "Arial",
+			"color": [255,255,255,255],
+			"size": 12
 		}
 	},
 
-	"Anger": {
-		"0.3": {
-			"None": {
-				"font": "Arial",
-				"color": [1.0,0.0,1.0,1.0],
-				"size": 12
-			}
+	"Sadness": {
+		"1": {
+			"font": "Arial",
+			"color": [255,255,255,255],
+			"size": 12
 		}
 	}
 }

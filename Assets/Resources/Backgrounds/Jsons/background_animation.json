@@ -1,36 +1,17 @@
 {
 	"Happiness": {
 		"1": {
-			"None": {
-				"transition_fade": 0.5,
-				"color_duration": 5,
-				"color_smoothness": 0.02,
-			}
+			"transition_fade": 0.5,
+			"color_duration": 5,
+			"color_smoothness": 0.02,
 		}
 	},
 
 	"Sadness": {
 		"1": {
-			"None": {
-				"transition_fade": 0.5,
-				"color_duration": 5,
-				"color_smoothness": 0.02,
-			},
-			"Grades": {
-				"transition_fade": 0.5,
-				"color_duration": 5,
-				"color_smoothness": 0.02,
-			}
-		}
-	},
-
-	"Default": {
-		"1": {
-			"None": {
-				"transition_fade": 0.5,
-				"color_duration": 5,
-				"color_smoothness": 0.02,
-			}
+			"transition_fade": 0.5,
+			"color_duration": 5,
+			"color_smoothness": 0.02,
 		}
 	}
 }

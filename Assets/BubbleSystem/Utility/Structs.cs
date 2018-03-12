@@ -6,7 +6,7 @@ namespace BubbleSystem
 {
     public enum Emotion
     {
-        Default,
+        Neutral,
         Happiness,
         Sadness,
         Anger,
@@ -23,14 +23,14 @@ namespace BubbleSystem
 
     public struct ColorData
     {
-        public Color color;
+        public Color32 color;
 
         public void SetColor(List<System.Object> list)
         {
-            color.r = Convert.ToSingle(list[0]);
-            color.g = Convert.ToSingle(list[1]);
-            color.b = Convert.ToSingle(list[2]);
-            color.a = Convert.ToSingle(list[3]);
+            color.r = Convert.ToByte(list[0]);
+            color.g = Convert.ToByte(list[1]);
+            color.b = Convert.ToByte(list[2]);
+            color.a = Convert.ToByte(list[3]);
         }
     }
 
@@ -53,9 +53,9 @@ namespace BubbleSystem
         public float duration;
     }
 
-    public struct DefaultAnimationData
+    public struct DefaultBalloonAnimationData
     {
-        public UnityEditor.Animations.AnimatorController animator;
+        public RuntimeAnimatorController animator;
         public float duration;
     }
 
