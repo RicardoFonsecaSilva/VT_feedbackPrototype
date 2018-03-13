@@ -6,9 +6,9 @@ AnimatorOverrideController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SadAnimator
-  m_Controller: {fileID: 9100000, guid: 5eea77926b6844e999d8a4831dfb14d8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 01ee9991dbce5d849b7b538071a52602, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: c39df00da9001434f9b2cd32f17b9c84, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cfc63a290c4b5e3418dafd65d9c2b9ad, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 269f70cce92013347a8516de3b8c3de8, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: a0314c06743494b7ab78272d10914af7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f64e15c600c248947923fd4f0374fcc6, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: fbc3c92a16505be4c93cb6aac8aafd35, type: 2}

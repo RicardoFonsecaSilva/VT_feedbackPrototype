@@ -62,7 +62,7 @@ namespace BubbleSystem
                 Data data = new Data();
                 Texture2D tex = new Texture2D(2, 2);
 
-                data.emotion = (EmotionEnum)Enum.Parse(typeof(EmotionEnum), emotionKey);
+                data.emotion = (Emotion)Enum.Parse(typeof(Emotion), emotionKey);
 
                 var emotion = json[emotionKey] as Dictionary<string, System.Object>;
 

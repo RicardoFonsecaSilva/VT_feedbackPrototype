@@ -29,11 +29,6 @@ namespace BubbleSystem
 
         private float initialAlpha;
 
-        
-        //public Texture2D defaultTexture;
-        //public Color defaultColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
-        //public float defaultImageFadePercentage = 0.5f, defaultDuration = 5f, defaultSmoothness = 0.02f;
-
         public TextureData SelectBackground(Data data)
         {
             return backgroundModifier.SelectTexture(data);
