@@ -4,17 +4,6 @@ using UnityEngine;
 
 namespace BubbleSystem
 {
-    public enum Emotion
-    {
-        Neutral,
-        Happiness,
-        Sadness,
-        Anger,
-        Fear,
-        Disgust,
-        Surprise
-    }
-
     public enum Reason
     {
         None,
@@ -79,7 +68,7 @@ namespace BubbleSystem
 
     public struct Data
     {
-        public Emotion emotion;
+        public EmotionEnum emotion;
         public float intensity;
         public Reason reason;
         //Top, Left, Right, Extra

@@ -155,7 +155,7 @@ namespace BubbleSystem
                     {
                         SpriteData spriteData;
                         TextData textData;
-                        if (data.emotion.Equals(Emotion.Neutral))
+                        if (data.emotion.Equals(EmotionEnum.Neutral))
                         {
                             spriteData = DefaultData.Instance.defaultBalloonData;
                             textData = DefaultData.Instance.defaultTextData;
