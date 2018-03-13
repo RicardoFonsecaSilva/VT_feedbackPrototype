@@ -61,7 +61,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t + 1f, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "Hello." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Hello." }, t);
             talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }
@@ -70,32 +70,32 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t+t2+t3, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "Good day." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Good day." }, t);
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
 
             t = t2;
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t);
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
             yield return new WaitForSeconds(t);
         
             t = t3;
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t);
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
         }
-        bubbleSystemManager.UpdateBackground(m, BubbleSystem.Emotion.Happiness, 0.2f, Reason.Grades);
-        mood(m, new Emotion("Happy", "Low"));
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Happiness.ToString(), 0.2f, Reason.Grades);
+        mood(m, new Emotion(EmotionEnum.Happiness, 0.2f));
 
         t = 5.0f; 
         {
             gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, BubbleSystem.Emotion.Happiness, 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
             talkFor(m, t - HALFSEC);
 
             gazeFor(j, 1f, 2);
@@ -106,7 +106,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "To continue the rhythm, I would ask you to please mark this new checkpoint in your calendar." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "To continue the rhythm, I would ask you to please mark this new checkpoint in your calendar." }, t);
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
@@ -127,7 +127,7 @@ public class VideoManager : MonoBehaviour {
             gazeFor(j, t, 1);
             yield return new WaitForSeconds(0.5f);
             express(m, new Expression("Happy", "Low"));
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "I am glad that you decided to continue working hard for this class." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "I am glad that you decided to continue working hard for this class." }, t);
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
@@ -144,7 +144,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "We will talk further about this class next week." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "We will talk further about this class next week." }, t);
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
@@ -152,18 +152,18 @@ public class VideoManager : MonoBehaviour {
         }
 
         t = 2.0f;
-        bubbleSystemManager.Speak(m, BubbleSystem.Emotion.Happiness, 0.2f, new string[] { "Agreed." }, t);
+        bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.2f, new string[] { "Agreed." }, t);
         talkFor(m, t - HALFSEC);
         yield return new WaitForSeconds(t);
 
-        mood(m, new Emotion("Neutral", ""));
-        bubbleSystemManager.UpdateBackground(m, BubbleSystem.Emotion.Neutral, 0.2f, Reason.Grades);
+        mood(m, new Emotion(EmotionEnum.Neutral, -1.0f));
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, Reason.Grades);
 
         t = 5.0f;
         {
             gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "Now, I would like to talk about the “Análise Infinitesimal” class." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "Now, I would like to talk about the “Análise Infinitesimal” class." }, t);
             talkFor(m, t - HALFSEC);
 
             gazeFor(j, 1f, 2);
@@ -174,7 +174,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "We should. I would remind you that your performance in this class has not been the best." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "We should. I would remind you that your performance in this class has not been the best." }, t);
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
@@ -186,14 +186,14 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t + t2, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "The grades for the last checkpoint are now available." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "The grades for the last checkpoint are now available." }, t);
             talkFor(m, t - HALFSEC);
 
             gazeFor(j, 1f, 2);
             yield return new WaitForSeconds(t);
 
             t = t2;
-            bubbleSystemManager.Speak(m, BubbleSystem.Emotion.Neutral, 0.2f, new string[] { "Would you like to see how you did?" }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Neutral.ToString(), 0.2f, new string[] { "Would you like to see how you did?" }, t);
             talkFor(m, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
@@ -208,16 +208,16 @@ public class VideoManager : MonoBehaviour {
     }
     IEnumerator Script4()
     {
-        mood(m, new Emotion("Sad", "Low"));
-        mood(j, new Emotion("Sad", "High"));
-        bubbleSystemManager.UpdateBackground(m, BubbleSystem.Emotion.Sadness, 0.2f, Reason.Grades);
-        bubbleSystemManager.UpdateBackground(j, BubbleSystem.Emotion.Sadness, 0.2f, Reason.None);
+        mood(m, new Emotion(EmotionEnum.Sadness, 0.2f));
+        mood(j, new Emotion(EmotionEnum.Sadness, 0.8f));
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Sadness.ToString(), 0.2f, Reason.Grades);
+        bubbleSystemManager.UpdateBackground(j, EmotionEnum.Sadness.ToString(), 0.2f, Reason.None);
 
         t = 8.0f; talker = j; gazer = m;
         {
             gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Sadness, 0.2f, new string[] { "I see that your grade was lower than the one from the previous checkpoint." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Sadness.ToString(), 0.2f, new string[] { "I see that your grade was lower than the one from the previous checkpoint." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -228,7 +228,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Sadness, 0.2f, new string[] { "We know that you have been having difficulties with this class for the last few weeks." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Sadness.ToString(), 0.2f, new string[] { "We know that you have been having difficulties with this class for the last few weeks." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -238,7 +238,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Sadness, 0.2f, new string[] { "Your interest in this class is low, but the class is very important." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Sadness.ToString(), 0.2f, new string[] { "Your interest in this class is low, but the class is very important." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -248,37 +248,37 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(talker, t + t2, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Sadness, 0.2f, new string[] { "We feel our help might not be enough to help motivate you." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Sadness.ToString(), 0.2f, new string[] { "We feel our help might not be enough to help motivate you." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
 
             t = t2;
 
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Sadness, 0.2f, new string[] { "I suggest that you, additionally, seek the advice of a human tutor." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Sadness.ToString(), 0.2f, new string[] { "I suggest that you, additionally, seek the advice of a human tutor." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
         }
 
-        mood(j, new Emotion("Neutral", ""));
-        bubbleSystemManager.UpdateBackground(j, BubbleSystem.Emotion.Neutral, 0.2f, Reason.None);
+        mood(j, new Emotion(EmotionEnum.Neutral, -1.0f));
+        bubbleSystemManager.UpdateBackground(j, EmotionEnum.Neutral.ToString(), 0.2f, Reason.None);
 
         t = 5.0f; t2 = 7.0f; talker = j; gazer = m;
         {
             gazeFor(talker, t + t2, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "Yes, I agree. A human tutor might be able to further assist you." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Yes, I agree. A human tutor might be able to further assist you." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
 
-            mood(m, new Emotion("Neutral", ""));
-            bubbleSystemManager.UpdateBackground(m, BubbleSystem.Emotion.Neutral, 0.2f, Reason.Grades);
+            mood(m, new Emotion(EmotionEnum.Neutral, -1.0f));
+            bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, Reason.Grades);
 
             t = t2;
 
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "We will talk again in a few days, to schedule further study periods for this class." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We will talk again in a few days, to schedule further study periods for this class." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -288,7 +288,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "Yes, those should help with mastering the material." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Yes, those should help with mastering the material." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -298,7 +298,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "We will see you next week then." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We will see you next week then." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);
@@ -308,7 +308,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(talker, t, (talker == j ? 1 : 2));
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(talker, BubbleSystem.Emotion.Neutral, 0.0f, new string[] { "Good luck on your studies." }, t);
+            bubbleSystemManager.Speak(talker, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Good luck on your studies." }, t);
             talkFor(talker, t - HALFSEC);
             gazeFor(gazer, 1f, (gazer == j ? 2 : 1));
             yield return new WaitForSeconds(t);

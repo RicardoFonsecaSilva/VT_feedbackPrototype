@@ -24,15 +24,15 @@ public class AvatarTestMain : MonoBehaviour
 
         // Emotion
         if (Input.GetKey("q"))
-            manager.Feel(new Tutor(tutorName), new Emotion("Neutral", ""));
+            manager.Feel(new Tutor(tutorName), new Emotion(EmotionEnum.Neutral, -1.0f));
         if (Input.GetKey("w"))
-            manager.Feel(new Tutor(tutorName), new Emotion("Happy", "Low"));
+            manager.Feel(new Tutor(tutorName), new Emotion(EmotionEnum.Happiness, 0.2f));
         if (Input.GetKey("e"))
-            manager.Feel(new Tutor(tutorName), new Emotion("Happy", "High"));
+            manager.Feel(new Tutor(tutorName), new Emotion(EmotionEnum.Happiness, 0.8f));
         if (Input.GetKey("r"))
-            manager.Feel(new Tutor(tutorName), new Emotion("Sad", "Low"));
+            manager.Feel(new Tutor(tutorName), new Emotion(EmotionEnum.Sadness, 0.2f));
         if (Input.GetKey("t"))
-            manager.Feel(new Tutor(tutorName), new Emotion("Sad", "High"));
+            manager.Feel(new Tutor(tutorName), new Emotion(EmotionEnum.Sadness, 0.8f));
 
         // Expression
         if (Input.GetKey("a"))
