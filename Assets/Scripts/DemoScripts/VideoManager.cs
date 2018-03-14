@@ -1,5 +1,6 @@
 ﻿using BubbleSystem;
 using DeadMosquito.AndroidGoodies;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -324,7 +325,8 @@ public class VideoManager : MonoBehaviour {
         yield return new WaitForSeconds(2);
         StartCoroutine(Script1());
         yield return new WaitForSeconds(35);
-        yield return StartCoroutine(ShowNotification("Calendar not yet implemented."));
+        //yield return StartCoroutine(ShowNotification("Calendar not yet implemented."));
+        OpenCalendar();
         StartCoroutine(Script2());
         yield return new WaitForSeconds(8);
         //yield return StartCoroutine(ShowNotification("Análise Infinitesimal: Test 2 grades are out!"));
@@ -401,6 +403,11 @@ public class VideoManager : MonoBehaviour {
             AGDialogTheme.Dark);
     }
     #endregion
+    
+    public void OpenCalendar()
+    {
+        AGCalendar.OpenCalendarForDate(DateTime.Now.AddDays(7));
+    }
 
     public void _exitApp() {
         Application.Quit();
