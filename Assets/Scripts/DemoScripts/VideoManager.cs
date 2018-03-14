@@ -1,4 +1,5 @@
 ﻿using BubbleSystem;
+using DeadMosquito.AndroidGoodies;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -326,7 +327,9 @@ public class VideoManager : MonoBehaviour {
         yield return StartCoroutine(ShowNotification("Calendar not yet implemented."));
         StartCoroutine(Script2());
         yield return new WaitForSeconds(8);
-        yield return StartCoroutine(ShowNotification("Análise Infinitesimal: Test 2 grades are out!"));
+        //yield return StartCoroutine(ShowNotification("Análise Infinitesimal: Test 2 grades are out!"));
+        CheckpointAlert();
+        yield return new WaitForSeconds(4);
         StartCoroutine(Script3());
         yield return new WaitForSeconds(35);
         yield return StartCoroutine(ShowNotification("Moodle integration not yet implemented."));
@@ -389,6 +392,15 @@ public class VideoManager : MonoBehaviour {
         yield return new WaitForSeconds(3.0f);
         notification.SetActive(false);
     }
+
+    #region message_dialog
+    public void CheckpointAlert()
+    {
+        AGAlertDialog.ShowMessageDialog("Checkpoint Notification", "Análise Infinitesimal: Test 2 grades are out!", "Ok",
+            () => AGUIMisc.ShowToast(""), () => AGUIMisc.ShowToast(""),
+            AGDialogTheme.Dark);
+    }
+    #endregion
 
     public void _exitApp() {
         Application.Quit();
