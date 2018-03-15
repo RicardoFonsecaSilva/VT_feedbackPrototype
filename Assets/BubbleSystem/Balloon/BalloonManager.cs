@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -110,13 +111,13 @@ namespace BubbleSystem
             SetAnimator(hooks.topicExtra, animatorData.animator);
         }
 
-        private void SetText(Text hooksTopicText, TextData textData)
+        private void SetText(TMP_Text hooksTopicText, TextData textData)
         {
             if (hooksTopicText)
             {
-                hooksTopicText.font = textData.font;
-                hooksTopicText.fontSize = (int)textData.size;
-                hooksTopicText.color = textData.colorData.color;
+                //hooksTopicText.font = textData.font;
+                //hooksTopicText.fontSize = (int)textData.size;
+                //hooksTopicText.color = textData.colorData.color;
             }
         }
 

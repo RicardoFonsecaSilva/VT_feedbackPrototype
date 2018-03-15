@@ -58,7 +58,6 @@ public class VideoManager : MonoBehaviour {
 
     IEnumerator Script1()
     {
-
         t = 1.5f;
         {
             gazeFor(m, t + 1f, 2);
