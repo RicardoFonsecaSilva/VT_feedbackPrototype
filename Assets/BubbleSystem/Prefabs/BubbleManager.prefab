@@ -240,7 +240,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1534671672076992}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -334,13 +334,10 @@ MonoBehaviour:
     background: {fileID: 0}
   - name: Joao
     background: {fileID: 0}
+  - name: User
+    background: {fileID: 0}
   backgroundModifier: {fileID: 114568846382227510}
   backgroundAnimator: {fileID: 114213206490142706}
-  defaultTexture: {fileID: 2800000, guid: a33643ccab5192346999378a4a54b3d1, type: 3}
-  defaultColor: {r: 0.6745098, g: 0.6745098, b: 0.6745098, a: 1}
-  defaultImageFadePercentage: 0.5
-  defaultDuration: 5
-  defaultSmoothness: 0.02
 --- !u!114 &114333212685621962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,12 +386,6 @@ MonoBehaviour:
   backgroundManager: {fileID: 114246121150242748}
   balloonManager: {fileID: 114057946565684350}
   textManager: {fileID: 114447403223571864}
-  tutorToTest: Joao
-  optionsToTest:
-  - Hello
-  - Goodbye
-  - Sup
-  - Cya
 --- !u!114 &114821075160611900
 MonoBehaviour:
   m_ObjectHideFlags: 1

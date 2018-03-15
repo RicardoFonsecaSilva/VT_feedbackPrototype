@@ -35,7 +35,7 @@ public class DefaultData : Singleton<DefaultData> {
 
         defaultBackgroundAnimationData.colorTransitionData.duration = 5;
         defaultBackgroundAnimationData.colorTransitionData.smoothness = 0.02f;
-        defaultBackgroundAnimationData.imageFadePercentage = 5;
+        defaultBackgroundAnimationData.imageFadePercentage = 0.5f;
 
         TextureData defaultBackgroundData;
         defaultBackgroundData.colorData.color = Color.white;
