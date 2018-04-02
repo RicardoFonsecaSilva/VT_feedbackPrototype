@@ -64,18 +64,40 @@ public class AvatarTestMain : MonoBehaviour
 
         // Action
         if (Input.GetKey("b"))
-            manager.Act(new Tutor(tutorName), new HeadAction("Head", "Nod"));
+            manager.Act(new Tutor(tutorName), new HeadAction("Nod", ""));
+        if (Input.GetKey("p"))
+            manager.Act(new Tutor(tutorName), new HeadAction("Nod", "End"));
         if (Input.GetKey("n"))
             manager.Act(new Tutor(tutorName), new HeadAction("Talk", ""));
         if (Input.GetKey("m"))
             manager.Act(new Tutor(tutorName), new HeadAction("Talk", "End"));
         if (Input.GetKey("y"))
-            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Middle to Left"));
+            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "At Partner"));
         if (Input.GetKey("u"))
-            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Left to Middle"));
+            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Back From Partner"));
         if (Input.GetKey("i"))
-            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Middle to Right"));
+            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "At User"));
         if (Input.GetKey("o"))
-            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Right to Middle"));
+            manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Back From User"));
+
+        if (Input.GetKey("["))
+            manager.sendRequest("maria_nodspeed_2.0");
+        if (Input.GetKey("]"))
+        {
+            manager.sendRequest("maria_gazeatspeed_1.5");
+            manager.sendRequest("maria_gazebackspeed_2");
+        }
+                       
+    }
+
+    // UI commands
+
+    public void talk(string who)
+    {
+        manager.Act(new Tutor(who), new HeadAction("Talk", ""));
+    }
+    public void stopTalking(string who)
+    {
+        manager.Act(new Tutor(who), new HeadAction("Talk", "End"));
     }
 }

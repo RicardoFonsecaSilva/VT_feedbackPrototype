@@ -1,100 +1,100 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class avatarController : MonoBehaviour
-{
+//public class avatarController : MonoBehaviour
+//{
 
-    [SerializeField]
-    private AvatarController maleAvatarController;
-    [SerializeField]
-    private AvatarController femaleAvatarController;
+//    [SerializeField]
+//    private AvatarController maleAvatarController;
+//    [SerializeField]
+//    private AvatarController femaleAvatarController;
 
-    [SerializeField]
-    private AvatarControllerUIHook maleAvatarControllerHook;
-    [SerializeField]
-    private AvatarControllerUIHook femaleAvatarControllerHook;
+//    [SerializeField]
+//    private AvatarControllerUIHook maleAvatarControllerHook;
+//    [SerializeField]
+//    private AvatarControllerUIHook femaleAvatarControllerHook;
 
-    void Start()
-    {
-    }
+//    void Start()
+//    {
+//    }
 
-    void OnEnable()
-    {
-        maleAvatarControllerHook.OnMoodChange += MaleMoodChange;
-        femaleAvatarControllerHook.OnMoodChange += FemaleMoodChange;
-        maleAvatarControllerHook.OnExpressionRequest += MaleExpressionRequest;
-        femaleAvatarControllerHook.OnExpressionRequest += FemaleExpressionRequest;
-        maleAvatarControllerHook.OnGazeRequest += MaleGazeRequest;
-        femaleAvatarControllerHook.OnGazeRequest += FemaleGazeRequest;
-    }
+//    void OnEnable()
+//    {
+//        maleAvatarControllerHook.OnMoodChange += MaleMoodChange;
+//        femaleAvatarControllerHook.OnMoodChange += FemaleMoodChange;
+//        maleAvatarControllerHook.OnExpressionRequest += MaleExpressionRequest;
+//        femaleAvatarControllerHook.OnExpressionRequest += FemaleExpressionRequest;
+//        maleAvatarControllerHook.OnGazeRequest += MaleGazeRequest;
+//        femaleAvatarControllerHook.OnGazeRequest += FemaleGazeRequest;
+//    }
 
-    void OnDisable()
-    {
-        maleAvatarControllerHook.OnMoodChange -= MaleMoodChange;
-        femaleAvatarControllerHook.OnMoodChange -= FemaleMoodChange;
-        maleAvatarControllerHook.OnExpressionRequest -= MaleExpressionRequest;
-        femaleAvatarControllerHook.OnExpressionRequest -= FemaleExpressionRequest;
-        maleAvatarControllerHook.OnGazeRequest -= MaleGazeRequest;
-        femaleAvatarControllerHook.OnGazeRequest -= FemaleGazeRequest;
-    }
+//    void OnDisable()
+//    {
+//        maleAvatarControllerHook.OnMoodChange -= MaleMoodChange;
+//        femaleAvatarControllerHook.OnMoodChange -= FemaleMoodChange;
+//        maleAvatarControllerHook.OnExpressionRequest -= MaleExpressionRequest;
+//        femaleAvatarControllerHook.OnExpressionRequest -= FemaleExpressionRequest;
+//        maleAvatarControllerHook.OnGazeRequest -= MaleGazeRequest;
+//        femaleAvatarControllerHook.OnGazeRequest -= FemaleGazeRequest;
+//    }
 
-    private void MaleMoodChange(MoodState state)
-    {
-        if (maleAvatarController != null)
-        {
-            maleAvatarController.SetMood(state);
-        }
-    }
+//    private void MaleMoodChange(MoodState state)
+//    {
+//        if (maleAvatarController != null)
+//        {
+//            maleAvatarController.SetMood(state);
+//        }
+//    }
 
-    private void FemaleMoodChange(MoodState state)
-    {
-        if (femaleAvatarController != null)
-        {
-            femaleAvatarController.SetMood(state);
-        }
-    }
+//    private void FemaleMoodChange(MoodState state)
+//    {
+//        if (femaleAvatarController != null)
+//        {
+//            femaleAvatarController.SetMood(state);
+//        }
+//    }
 
-    private void MaleExpressionRequest(ExpressionState state)
-    {
-        if (maleAvatarController != null)
-        {
-            maleAvatarController.ExpressEmotion(state);
-        }
-        //zoomIn(source);
-        //turnHead(source);
-    }
+//    private void MaleExpressionRequest(ExpressionState state)
+//    {
+//        if (maleAvatarController != null)
+//        {
+//            maleAvatarController.ExpressEmotion(state);
+//        }
+//        //zoomIn(source);
+//        //turnHead(source);
+//    }
 
-    private void FemaleExpressionRequest(ExpressionState state)
-    {
+//    private void FemaleExpressionRequest(ExpressionState state)
+//    {
 
-        if (femaleAvatarController != null)
-        {
-            femaleAvatarController.ExpressEmotion(state);
-        }
-        //zoomIn(source);
-        //turnHead(source);
-    }
+//        if (femaleAvatarController != null)
+//        {
+//            femaleAvatarController.ExpressEmotion(state);
+//        }
+//        //zoomIn(source);
+//        //turnHead(source);
+//    }
 
-    private void MaleGazeRequest(ActionState state)
-    {
-        if (maleAvatarController != null)
-            maleAvatarController.PerformAction(state);
-    }
+//    private void MaleGazeRequest(ActionState state)
+//    {
+//        if (maleAvatarController != null)
+//            maleAvatarController.PerformAction(state);
+//    }
 
-    private void FemaleGazeRequest(ActionState state)
-    {
+//    private void FemaleGazeRequest(ActionState state)
+//    {
 
-        if (femaleAvatarController != null)
-            femaleAvatarController.PerformAction(state);
-    }
+//        if (femaleAvatarController != null)
+//            femaleAvatarController.PerformAction(state);
+//    }
 
-    private void turnHead(string source)
-    {
-    }
+//    private void turnHead(string source)
+//    {
+//    }
 
-    private void zoomIn(string source)
-    {
-    }
-}
+//    private void zoomIn(string source)
+//    {
+//    }
+//}
