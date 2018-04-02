@@ -18,8 +18,7 @@ public class VideoManager : MonoBehaviour {
 
     private GameObject[] Buttons;
     public GameObject notification;
-
-    bool cleanOptions = false;
+    
     float HALFSEC = 0.5f;
     float t,t2,t3;
     string talker, gazer;
@@ -62,7 +61,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t + 1f, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Hello." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.0f, new string[] { "Hello." }, t);
             talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }
@@ -71,20 +70,20 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t+t2+t3, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Good day." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Sadness.ToString(), 0.5f, new string[] { "Good day." }, t, new string[] { "FadeIn" }, new string[] { "FadeOut" });
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
 
             t = t2;
-            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Sadness.ToString(), 1.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t, new string[] { "None" });
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
             yield return new WaitForSeconds(t);
         
             t = t3;
-            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t, new string[] { "WaveCharacters" });
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
@@ -96,7 +95,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t, new string[]  { "WaveCharacters" });
             talkFor(m, t - HALFSEC);
 
             gazeFor(j, 1f, 2);
@@ -324,12 +323,12 @@ public class VideoManager : MonoBehaviour {
         yield return new WaitForSeconds(2);
         StartCoroutine(Script1());
         yield return new WaitForSeconds(35);
-        //yield return StartCoroutine(ShowNotification("Calendar not yet implemented."));
-        OpenCalendar();
+        yield return StartCoroutine(ShowNotification("Calendar not yet implemented."));
+        //OpenCalendar();
         StartCoroutine(Script2());
         yield return new WaitForSeconds(8);
-        //yield return StartCoroutine(ShowNotification("Análise Infinitesimal: Test 2 grades are out!"));
-        CheckpointAlert();
+        yield return StartCoroutine(ShowNotification("Análise Infinitesimal: Test 2 grades are out!"));
+        //CheckpointAlert();
         yield return new WaitForSeconds(4);
         StartCoroutine(Script3());
         yield return new WaitForSeconds(35);
@@ -394,19 +393,19 @@ public class VideoManager : MonoBehaviour {
         notification.SetActive(false);
     }
 
-    #region message_dialog
-    public void CheckpointAlert()
-    {
-        AGAlertDialog.ShowMessageDialog("Checkpoint Notification", "Análise Infinitesimal: Test 2 grades are out!", "Ok",
-            () => AGUIMisc.ShowToast(""), () => AGUIMisc.ShowToast(""),
-            AGDialogTheme.Dark);
-    }
-    #endregion
+    //#region message_dialog
+    //public void CheckpointAlert()
+    //{
+    //    AGAlertDialog.ShowMessageDialog("Checkpoint Notification", "Análise Infinitesimal: Test 2 grades are out!", "Ok",
+    //        () => AGUIMisc.ShowToast(""), () => AGUIMisc.ShowToast(""),
+    //        AGDialogTheme.Dark);
+    //}
+    //#endregion
     
-    public void OpenCalendar()
-    {
-        AGCalendar.OpenCalendarForDate(DateTime.Now.AddDays(7));
-    }
+    //public void OpenCalendar()
+    //{
+    //    AGCalendar.OpenCalendarForDate(DateTime.Now.AddDays(7));
+    //}
 
     public void _exitApp() {
         Application.Quit();

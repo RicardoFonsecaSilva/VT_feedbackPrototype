@@ -26,7 +26,7 @@ namespace BubbleSystem
                     Set(colorList, dictKey);
                     return;
                 case "font":
-                    Font font = (Font)Resources.GetBuiltinResource(typeof(Font), dictionary[dictKey] + ".ttf");
+                    TMPro.TMP_FontAsset font = (TMPro.TMP_FontAsset)Resources.Load(folder + "/TextMesh_Fonts/" + dictionary[dictKey]);
                     Set(font, dictKey);
                     return;
                 case "size":
@@ -46,6 +46,14 @@ namespace BubbleSystem
                     return;
                 case "duration":
                     Set(Convert.ToSingle(dictionary[dictKey]), dictKey);
+                    return;
+                case "showEffect":
+                    var showEffectList = dictionary[dictKey] as List<System.Object>;
+                    Set(showEffectList, dictKey);
+                    return;
+                case "hideEffect":
+                    var hideEffectList = dictionary[dictKey] as List<System.Object>;
+                    Set(hideEffectList, dictKey);
                     return;
                 default:
                     Debug.Log("Key " + dictKey + " not found");

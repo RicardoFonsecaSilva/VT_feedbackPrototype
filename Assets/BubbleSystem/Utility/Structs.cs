@@ -36,9 +36,11 @@ namespace BubbleSystem
 
     public struct TextData
     {
-        public Font font;
+        public TMPro.TMP_FontAsset font;
         public float size;
         public ColorData colorData;
+        public List<Effect> showEffect;
+        public List<Effect> hideEffect;
     }
 
     public struct BackgroundAnimationData

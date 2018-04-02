@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace BubbleSystem
 {
-    public class BackgroundManager : ImageManager
+    public class BackgroundManager : MonoBehaviour
     {
         [Serializable]
         public struct Background
@@ -102,7 +102,7 @@ namespace BubbleSystem
         public void ChangeColor(string bg, Renderer renderer, Color nextColor, ColorTransitionData backgroundColorAnimationData)
         {
             if (colorCoroutines.ContainsKey(bg))
-                StopCoroutineWithCheck(colorCoroutines[bg]);
+                CoroutineStopper.Instance.StopCoroutineWithCheck(colorCoroutines[bg]);
 
             colorCoroutines[bg] = LerpColor(renderer, nextColor, backgroundColorAnimationData);
             StartCoroutine(colorCoroutines[bg]);
@@ -111,7 +111,7 @@ namespace BubbleSystem
         public void ChangeTexture(string bg, Renderer renderer, Texture nextTexture, float fade)
         {
             if (textureCoroutines.ContainsKey(bg))
-                StopCoroutineWithCheck(textureCoroutines[bg]);
+                CoroutineStopper.Instance.StopCoroutineWithCheck(textureCoroutines[bg]);
             textureCoroutines[bg] = LerpTexture(renderer, nextTexture, fade);
             StartCoroutine(textureCoroutines[bg]);
         }

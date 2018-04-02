@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 6f6cec5cfa426784d83230dbcbd4bab9
+timeCreated: 1522338320
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Feast of Flesh BB
+  fontNames:
+  - Feast of Flesh BB
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4dc3e1b875800564b84671cab0260ea3, type: 3}
+  - {fileID: 12800000, guid: 11bf74797e01c644d87d31ed060ac32d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

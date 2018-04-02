@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 224900526655726434}
   - component: {fileID: 222412957867597286}
   - component: {fileID: 114367557239885930}
+  - component: {fileID: 114997460064392332}
   m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -281,6 +282,7 @@ GameObject:
   - component: {fileID: 224230225271484644}
   - component: {fileID: 222056389672928956}
   - component: {fileID: 114681222669951760}
+  - component: {fileID: 114817525690443788}
   m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -367,6 +369,7 @@ GameObject:
   - component: {fileID: 224286146931127106}
   - component: {fileID: 222034490674843362}
   - component: {fileID: 114669220828068912}
+  - component: {fileID: 114113938952935992}
   m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -418,6 +421,7 @@ GameObject:
   - component: {fileID: 224454318062477506}
   - component: {fileID: 222239435577288124}
   - component: {fileID: 114975091958747510}
+  - component: {fileID: 114650994729595838}
   m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -659,6 +663,51 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114113938952935992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773660608525856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7783a7b55f20ab8408a8c31508480147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  MeshAnimationMode: 0
+  palpitations: 0
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensity: 1
+  characters: 0
+  x: 0
+  y: 0
+  timeToWait: 0
+  timeBetweenPalpitations: 0.1
+  blushColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114118977589301032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1230,6 +1279,51 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114650994729595838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854576557180026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7783a7b55f20ab8408a8c31508480147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  MeshAnimationMode: 0
+  palpitations: 0
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensity: 1
+  characters: 0
+  x: 0
+  y: 0
+  timeToWait: 0
+  timeBetweenPalpitations: 0.1
+  blushColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114669220828068912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1508,6 +1602,51 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114817525690443788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1600097689995652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7783a7b55f20ab8408a8c31508480147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  MeshAnimationMode: 0
+  palpitations: 0
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensity: 1
+  characters: 0
+  x: 0
+  y: 0
+  timeToWait: 0
+  timeBetweenPalpitations: 0.1
+  blushColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114838675752824434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1834,6 +1973,51 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114997460064392332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1460628069662584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7783a7b55f20ab8408a8c31508480147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  MeshAnimationMode: 0
+  palpitations: 0
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  intensity: 1
+  characters: 0
+  x: 0
+  y: 0
+  timeToWait: 0
+  timeBetweenPalpitations: 0.1
+  blushColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!222 &222016815439655300
 CanvasRenderer:
   m_ObjectHideFlags: 1

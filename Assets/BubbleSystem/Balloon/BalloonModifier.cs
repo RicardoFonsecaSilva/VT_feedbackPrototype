@@ -32,6 +32,7 @@ namespace BubbleSystem
         protected override void Add(Data data)
         {
             dictionary.Add(data, spriteData);
+            spriteData = new SpriteData();
         }
 
         protected override void Set<T>(T data, string attribute, bool defaultData)

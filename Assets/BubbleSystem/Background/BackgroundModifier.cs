@@ -21,6 +21,7 @@ namespace BubbleSystem
         protected override void Add(Data data)
         {
             dictionary.Add(data, textureData);
+            textureData = new TextureData();
         }
 
         public TextureData SelectTexture(Data data)

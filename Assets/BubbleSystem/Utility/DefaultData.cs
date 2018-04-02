@@ -1,4 +1,5 @@
 ﻿using BubbleSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class DefaultData : Singleton<DefaultData> {
 
     [HideInInspector]
-    public TextData defaultTextData;
+    public Dictionary<BubbleSystem.Emotion, TextData> defaultTextData = new Dictionary<BubbleSystem.Emotion, TextData>();
     [HideInInspector]
     public DefaultBalloonAnimationData defaultBalloonAnimationData;
     [HideInInspector]
@@ -22,11 +23,26 @@ public class DefaultData : Singleton<DefaultData> {
 
     private void Awake()
     {
-        defaultTextData.font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        defaultTextData.colorData.color = Color.black;
-        defaultTextData.size = 12.0f;
+        TMPro.TMP_FontAsset font = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/arial");
+        Color color = Color.black;
+        float size = 12.0f;
+        foreach(BubbleSystem.Emotion emotion in Enum.GetValues(typeof(BubbleSystem.Emotion)))
+        {
+            TextData text = new TextData();
+            text.font = font;
+            text.colorData.color = color;
+            text.size = size;
+            text.showEffect = new List<Effect>();
+            text.hideEffect = new List<Effect>();
+            defaultTextData.Add(emotion, text);
+        }
+        defaultTextData[BubbleSystem.Emotion.Happiness].showEffect.Add(Effect.Wave);
+        defaultTextData[BubbleSystem.Emotion.Happiness].hideEffect.Add(Effect.Wave);
 
-        defaultBalloonAnimationData.animator = (RuntimeAnimatorController)Resources.Load("Balloons/Animators/BallonPopup");
+        defaultTextData[BubbleSystem.Emotion.Sadness].showEffect.Add(Effect.FadeIn);
+        defaultTextData[BubbleSystem.Emotion.Sadness].hideEffect.Add(Effect.FadeOut);
+
+        defaultBalloonAnimationData.animator = (RuntimeAnimatorController)Resources.Load("Balloons/Animators/BallonPopup_v2");
         defaultBalloonAnimationData.duration = 5;
 
         var tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Default/balloon");
@@ -44,7 +60,5 @@ public class DefaultData : Singleton<DefaultData> {
 
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/graph");
         defaultBackgroundDataDictionary.Add(Reason.Grades, defaultBackgroundData);
-        
-        
     }
 }

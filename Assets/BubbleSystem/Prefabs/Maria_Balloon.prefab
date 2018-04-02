@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 224422685657901838}
   - component: {fileID: 222063205772743584}
   - component: {fileID: 114575742090447604}
+  - component: {fileID: 114178037882374278}
   m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -159,7 +160,7 @@ Animator:
   m_GameObject: {fileID: 1899421817117508}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 01ee9991dbce5d849b7b538071a52602, type: 2}
+  m_Controller: {fileID: 9100000, guid: 492abb71bba6a8d4c83043f12509438c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -273,6 +274,45 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114178037882374278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400512681464672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7783a7b55f20ab8408a8c31508480147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  palpitations: 2
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeToWait: 0
+  timeBetweenPalpitations: 0.2
+  blushColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114243480451690456
 MonoBehaviour:
   m_ObjectHideFlags: 1
