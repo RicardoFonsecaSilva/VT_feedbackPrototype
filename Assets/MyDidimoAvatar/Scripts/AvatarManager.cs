@@ -72,13 +72,13 @@ public class AvatarManager : MonoBehaviour
         if (actionState.Equals(TalkState.TALK))
         {
             AvatarController partnerController = getPartnerController(tutor);
-            partnerController.toggleListeningState();
+            partnerController.isListening(true);
             partnerController.DoGazing(GazeState.GAZE_ATPARTNER);
         }
         if (actionState.Equals(TalkState.TALK_END))
         {
             AvatarController partnerController = getPartnerController(tutor);
-            partnerController.toggleListeningState();
+            partnerController.isListening(false);
             partnerController.DoGazing(GazeState.GAZE_BACKFROMPARTNER);
         }
     }

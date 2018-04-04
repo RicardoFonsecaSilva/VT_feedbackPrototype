@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class randomInt : StateMachineBehaviour
+public class FloatRandomizer : StateMachineBehaviour
 {
     [SerializeField]
     private int maxRange;
@@ -11,6 +11,7 @@ public class randomInt : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetFloat("Mood Randomizer", (float)Random.Range(0, maxRange+1));
+        animator.SetFloat("Mood Float", (float)Random.Range(0, maxRange + 1));
     }
 
     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
@@ -26,7 +27,11 @@ public class randomInt : StateMachineBehaviour
     //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
 
     // OnStateMachineEnter is called when entering a statemachine via its Entry Node
-    //override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
+    override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
+    {
+        animator.SetFloat("Mood Randomizer", (float)Random.Range(0, maxRange + 1));
+        animator.SetFloat("Mood Float", (float)Random.Range(0, maxRange + 1));
+    }
 
     // OnStateMachineExit is called when exiting a statemachine via its Exit Node
     //override public void OnStateMachineExit(Animator animator, int stateMachinePathHash) 

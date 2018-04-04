@@ -81,13 +81,17 @@ public class AvatarTestMain : MonoBehaviour
             manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Back From User"));
 
         if (Input.GetKey("["))
-            manager.sendRequest("maria_nodspeed_2.0");
+            manager.sendRequest("maria_nodfrequency_0.5");
         if (Input.GetKey("]"))
         {
             manager.sendRequest("maria_gazeatspeed_1.5");
             manager.sendRequest("maria_gazebackspeed_2");
         }
-                       
+        if (Input.GetKey(","))
+            manager.sendRequest("maria_nodspeed_2.0");
+        if (Input.GetKey("."))
+            manager.sendRequest("maria_gazefrequency_0.5");
+
     }
 
     // UI commands
