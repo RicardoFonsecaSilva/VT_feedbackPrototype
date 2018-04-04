@@ -27,7 +27,7 @@ public partial class AvatarController : MonoBehaviour
         animParams.gazeFrequency = 1.0f;
 
         StartCoroutine("NoddingRoutine");
-        StartCoroutine("DEBUGRoutine");
+        //StartCoroutine("DEBUGRoutine");
     }
 
     void FixedUpdate()
