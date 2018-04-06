@@ -172,7 +172,7 @@ namespace BubbleSystem
                 if (hooks != null)
                 {
                     float realDuration = DefaultData.Instance.defaultBalloonAnimationData.duration;
-                    SetContent(hooks, data.text);                  
+                    SetContent(hooks, data.text);
 
                     try
                     {

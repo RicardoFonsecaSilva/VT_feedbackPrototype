@@ -93,5 +93,6 @@ namespace BubbleSystem
             SetData("Options", "Neutral", 0.0f, Reason.None, text);
             balloonManager.ShowBalloon("Options", tutorData["Options"], duration, getEffectsArray(showEffects), getEffectsArray(hideEffects));
         }
+
     }
 }
