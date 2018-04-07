@@ -70,6 +70,7 @@ namespace BubbleSystem
     public struct SpriteData
     {
         public Sprite sprite;
+        public Sprite beak;
         public ColorData colorData;
     }
 
