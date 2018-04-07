@@ -180,7 +180,7 @@ namespace BubbleSystem
                         TextData textData;
                         if (data.emotion.Equals(Emotion.Neutral))
                         {
-                            spriteData = DefaultData.Instance.defaultBalloonData;
+                            spriteData = DefaultData.Instance.defaultBalloonData[data.emotion];
                             textData = DefaultData.Instance.defaultTextData[data.emotion];
                             SetAnimators(hooks, DefaultData.Instance.defaultBalloonAnimationData);
                             SetEffects(hooks, (showEffects == null) ? DefaultData.Instance.defaultTextData[data.emotion].showEffect.ToArray() : showEffects, data.intensity, duration > 0 ? duration : realDuration);
@@ -193,7 +193,7 @@ namespace BubbleSystem
                             }
                             catch
                             {
-                                spriteData = DefaultData.Instance.defaultBalloonData;
+                                spriteData = DefaultData.Instance.defaultBalloonData[data.emotion];
                             }
                             try
                             {
