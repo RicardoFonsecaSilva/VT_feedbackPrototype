@@ -19,6 +19,17 @@ public class DefaultData : Singleton<DefaultData> {
     [HideInInspector]
     public RuntimeAnimatorController defaultAnimatorController;
 
+    [HideInInspector]
+    public Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> > defaultPositions = new Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> >();
+
+
+    public struct PositionData
+    {
+        public Vector2 anchorMin;
+        public Vector2 anchorMax;
+        public Quaternion localRotation;
+    }
+
     private DefaultData() { }
 
     private void Awake()
@@ -28,6 +39,194 @@ public class DefaultData : Singleton<DefaultData> {
         SetBallon();
         SetBackground();
         SetBackgroundAnimation();
+        SetBalloonPositions();
+    }
+
+    private void SetBalloonPositions()
+    {
+        Dictionary<string, PositionData> neutralPositions = new Dictionary<string, PositionData>();
+        Dictionary<string, PositionData> happinessPositions = new Dictionary<string, PositionData>();
+        Dictionary<string, PositionData> sadnessPositions = new Dictionary<string, PositionData>();
+        Dictionary<string, PositionData> angerPositions = new Dictionary<string, PositionData>();
+        Dictionary<string, PositionData> fearPositions = new Dictionary<string, PositionData>();
+        Dictionary<string, PositionData> disgustPositions = new Dictionary<string, PositionData>();
+        Dictionary<string, PositionData> surprisePositions = new Dictionary<string, PositionData>();
+
+        PositionData rect = new PositionData();
+
+        //NEUTRAL
+
+        rect.anchorMin = new Vector2(0.6f, 0.91f);
+        rect.anchorMax = new Vector2(0.8f, 1.35f);
+        rect.localRotation = Quaternion.Euler(0, 180, 180);
+        neutralPositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, 0.91f);
+        rect.anchorMax = new Vector2(0.4f, 1.35f);
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
+        neutralPositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.38f);
+        rect.anchorMax = new Vector2(0.8f, 0.1f);
+        rect.localRotation = Quaternion.Euler(0, 0, 0);
+        neutralPositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, -0.38f);
+        rect.anchorMax = new Vector2(0.4f, 0.1f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        neutralPositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Neutral, neutralPositions);
+
+
+        //HAPPINESS
+
+        rect.anchorMin = new Vector2(0.6f, 0.81f);
+        rect.anchorMax = new Vector2(0.8f, 1.25f);
+        rect.localRotation = Quaternion.Euler(0, 40, 190);
+        happinessPositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, 0.81f);
+        rect.anchorMax = new Vector2(0.4f, 1.25f);
+        rect.localRotation = Quaternion.Euler(0, 180, 190);
+        happinessPositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.28f);
+        rect.anchorMax = new Vector2(0.8f, 0.2f);
+        rect.localRotation = Quaternion.Euler(0, 180, 10);
+        happinessPositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, -0.28f);
+        rect.anchorMax = new Vector2(0.4f, 0.2f);
+        rect.localRotation = Quaternion.Euler(0, 0, 10);
+        happinessPositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Happiness, happinessPositions);
+
+
+        //SADNESS
+
+        rect.anchorMin = new Vector2(0.6f, 0.86f);
+        rect.anchorMax = new Vector2(0.8f, 1.3f);
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
+        sadnessPositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, 0.86f);
+        rect.anchorMax = new Vector2(0.4f, 1.3f);
+        rect.localRotation = Quaternion.Euler(0, 180, 180);
+        sadnessPositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.28f);
+        rect.anchorMax = new Vector2(0.8f, 0.2f);
+        rect.localRotation = Quaternion.Euler(0, 180, 10);
+        sadnessPositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, -0.28f);
+        rect.anchorMax = new Vector2(0.4f, 0.2f);
+        rect.localRotation = Quaternion.Euler(0, 0, 0);
+        sadnessPositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Sadness, sadnessPositions);
+
+
+        //ANGER
+
+        rect.anchorMin = new Vector2(0.6f, 0.71f);
+        rect.anchorMax = new Vector2(0.8f, 1.15f);
+        rect.localRotation = Quaternion.Euler(0, 180, 170);
+        angerPositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, 0.61f);
+        rect.anchorMax = new Vector2(0.4f, 1.05f);
+        rect.localRotation = Quaternion.Euler(0, 180, 170);
+        angerPositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.08f);
+        rect.anchorMax = new Vector2(0.8f, 0.4f);
+        rect.localRotation = Quaternion.Euler(0, 0, -5);
+        angerPositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, -0.08f);
+        rect.anchorMax = new Vector2(0.4f, 0.4f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        angerPositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Anger, angerPositions);
+
+
+        //FEAR
+
+        rect.anchorMin = new Vector2(0.65f, 0.71f);
+        rect.anchorMax = new Vector2(0.8f, 1.25f);
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
+        fearPositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.25f, 0.81f);
+        rect.anchorMax = new Vector2(0.4f, 1.35f);
+        rect.localRotation = Quaternion.Euler(0, 180, 180);
+        fearPositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.28f);
+        rect.anchorMax = new Vector2(0.8f, 0.2f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        fearPositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.25f, -0.3f);
+        rect.anchorMax = new Vector2(0.4f, 0.25f);
+        rect.localRotation = Quaternion.Euler(0, 0, 0);
+        fearPositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Fear, fearPositions);
+
+
+        //DISGUST
+
+        rect.anchorMin = new Vector2(0.65f, 0.71f);
+        rect.anchorMax = new Vector2(0.85f, 1.55f);
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
+        disgustPositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.15f, 0.71f);
+        rect.anchorMax = new Vector2(0.35f, 1.55f);
+        rect.localRotation = Quaternion.Euler(0, 180, 180);
+        disgustPositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.48f);
+        rect.anchorMax = new Vector2(0.85f, 0.3f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        disgustPositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.15f, -0.48f);
+        rect.anchorMax = new Vector2(0.35f, 0.3f);
+        rect.localRotation = Quaternion.Euler(0, 0, 0);
+        disgustPositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Disgust, disgustPositions);
+
+
+        //SURPRISE
+
+        rect.anchorMin = new Vector2(0.6f, 0.66f);
+        rect.anchorMax = new Vector2(0.8f, 1.2f);
+        rect.localRotation = Quaternion.Euler(0, 180, 180);
+        surprisePositions.Add("Peak_top_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, 0.66f);
+        rect.anchorMax = new Vector2(0.4f, 1.2f);
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
+        surprisePositions.Add("Peak_top_left", rect);
+
+        rect.anchorMin = new Vector2(0.65f, -0.18f);
+        rect.anchorMax = new Vector2(0.8f, 0.3f);
+        rect.localRotation = Quaternion.Euler(0, 0, 0);
+        surprisePositions.Add("Peak_bot_right", rect);
+
+        rect.anchorMin = new Vector2(0.2f, -0.23f);
+        rect.anchorMax = new Vector2(0.4f, 0.35f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        surprisePositions.Add("Peak_bot_left", rect);
+
+        defaultPositions.Add(BubbleSystem.Emotion.Surprise, surprisePositions);
     }
 
     private void SetTextData()

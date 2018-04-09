@@ -70,32 +70,32 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t+t2+t3, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, EmotionEnum.Sadness.ToString(), 0.5f, new string[] { "Good day." }, t, new string[] { "FadeIn" }, new string[] { "FadeOut" });
+            bubbleSystemManager.Speak(j, EmotionEnum.Happiness.ToString(), 0.5f, new string[] { "Good day." }, t);
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
 
             t = t2;
-            bubbleSystemManager.Speak(j, EmotionEnum.Sadness.ToString(), 1.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t, new string[] { "None" });
+            bubbleSystemManager.Speak(j, EmotionEnum.Anger.ToString(), 1.0f, new string[] { "We wanted to inform you that a new checkpoint is out for the Introdução à Programação." }, t);
             talkFor(j, t - HALFSEC);
 
             gazeFor(m, 1f, 1);
             yield return new WaitForSeconds(t);
         
             t = t3;
-            bubbleSystemManager.Speak(j, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t, new string[] { "WaveCharacters" });
+            bubbleSystemManager.Speak(j, EmotionEnum.Fear.ToString(), 0.0f, new string[] { "We see that your performance in this class has been very good lately." }, t);
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
         }
-        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Happiness.ToString(), 0.2f, Reason.Grades);
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, Reason.Grades);
         mood(m, new Emotion(EmotionEnum.Happiness, 0.2f));
 
         t = 5.0f; 
         {
             gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t, new string[]  { "WaveCharacters" });
+            bubbleSystemManager.Speak(m, EmotionEnum.Disgust.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
             talkFor(m, t - HALFSEC);
 
             gazeFor(j, 1f, 2);
