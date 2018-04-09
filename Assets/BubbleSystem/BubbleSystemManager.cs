@@ -7,14 +7,16 @@ namespace BubbleSystem
 {
     public class BubbleSystemManager : MonoBehaviour
     {
-        [SerializeField]
         private BackgroundManager backgroundManager;
-        [SerializeField]
         private BalloonManager balloonManager;
-        [SerializeField]
-        private TextManager textManager;
 
         private Dictionary<string, Data> tutorData = new Dictionary<string, Data>();
+
+        private void Start()
+        {
+            backgroundManager = GetComponent<BackgroundManager>();
+            balloonManager = GetComponent<BalloonManager>();
+        }
 
         private void SetData(string tutor, string emotion = "Neutral", float intensity = 0.0f, Reason reason = Reason.Grades, string[] text = null )
         {

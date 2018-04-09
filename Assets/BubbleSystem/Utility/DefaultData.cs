@@ -9,15 +9,15 @@ public class DefaultData : Singleton<DefaultData> {
     [HideInInspector]
     public Dictionary<BubbleSystem.Emotion, TextData> defaultTextData = new Dictionary<BubbleSystem.Emotion, TextData>();
     [HideInInspector]
-    public DefaultBalloonAnimationData defaultBalloonAnimationData;
+    public DefaultBalloonAnimationData neutralBalloonAnimationData;
+    [HideInInspector]
+    public Dictionary<BubbleSystem.Emotion, BalloonAnimationData> balloonAnimationData = new Dictionary<BubbleSystem.Emotion, BalloonAnimationData>();
     [HideInInspector]
     public Dictionary<BubbleSystem.Emotion, SpriteData> defaultBalloonData = new Dictionary<BubbleSystem.Emotion, SpriteData>();
     [HideInInspector]
-    public BackgroundAnimationData defaultBackgroundAnimationData;
+    public Dictionary<BubbleSystem.Emotion, BackgroundAnimationData> defaultBackgroundAnimationData = new Dictionary<BubbleSystem.Emotion, BackgroundAnimationData>();
     [HideInInspector]
     public Dictionary<Reason, TextureData> defaultBackgroundDataDictionary = new Dictionary<Reason, TextureData>();
-    [HideInInspector]
-    public RuntimeAnimatorController defaultAnimatorController;
 
     [HideInInspector]
     public Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> > defaultPositions = new Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> >();
@@ -244,17 +244,65 @@ public class DefaultData : Singleton<DefaultData> {
             text.hideEffect = new List<Effect>();
             defaultTextData.Add(emotion, text);
         }
+
+        defaultTextData[BubbleSystem.Emotion.Neutral].showEffect.Add(Effect.FadeIn);
+        defaultTextData[BubbleSystem.Emotion.Neutral].hideEffect.Add(Effect.FadeOut);
+
         defaultTextData[BubbleSystem.Emotion.Happiness].showEffect.Add(Effect.Wave);
         defaultTextData[BubbleSystem.Emotion.Happiness].hideEffect.Add(Effect.Wave);
 
         defaultTextData[BubbleSystem.Emotion.Sadness].showEffect.Add(Effect.FadeIn);
         defaultTextData[BubbleSystem.Emotion.Sadness].hideEffect.Add(Effect.FadeOut);
+
+        defaultTextData[BubbleSystem.Emotion.Anger].showEffect.Add(Effect.FadeIn);
+        defaultTextData[BubbleSystem.Emotion.Anger].hideEffect.Add(Effect.FadeOut);
+
+        defaultTextData[BubbleSystem.Emotion.Fear].showEffect.Add(Effect.FadeIn);
+        defaultTextData[BubbleSystem.Emotion.Fear].hideEffect.Add(Effect.FadeOut);
+
+        defaultTextData[BubbleSystem.Emotion.Disgust].showEffect.Add(Effect.FadeIn);
+        defaultTextData[BubbleSystem.Emotion.Disgust].hideEffect.Add(Effect.FadeOut);
+
+        defaultTextData[BubbleSystem.Emotion.Surprise].showEffect.Add(Effect.FadeIn);
+        defaultTextData[BubbleSystem.Emotion.Surprise].hideEffect.Add(Effect.FadeOut);
     }
 
     private void SetBalloonAnimation()
     {
-        defaultBalloonAnimationData.animator = (RuntimeAnimatorController)Resources.Load("Balloons/Animators/BallonPopup_v2");
-        defaultBalloonAnimationData.duration = 5;
+        neutralBalloonAnimationData.animator = (RuntimeAnimatorController)Resources.Load("Balloons/Animators/BallonPopup_v2");
+        neutralBalloonAnimationData.duration = 5;
+
+        BalloonAnimationData balloon = new BalloonAnimationData();
+        balloon.animator = (AnimatorOverrideController)Resources.Load("Balloons/Animators/HappyAnimator");
+        balloon.duration = 5;
+        balloonAnimationData.Add(BubbleSystem.Emotion.Happiness, balloon);
+
+        balloon = new BalloonAnimationData();
+        balloon.animator = (AnimatorOverrideController)Resources.Load("Balloons/Animators/SadAnimator");
+        balloon.duration = 5;
+        balloonAnimationData.Add(BubbleSystem.Emotion.Sadness, balloon);
+
+        balloon = new BalloonAnimationData();
+        balloon.animator = (AnimatorOverrideController)Resources.Load("Balloons/Animators/AngerAnimator");
+        balloon.duration = 5;
+        balloonAnimationData.Add(BubbleSystem.Emotion.Anger, balloon);
+
+        balloon = new BalloonAnimationData();
+        balloon.animator = (AnimatorOverrideController)Resources.Load("Balloons/Animators/FearAnimator");
+        balloon.duration = 5;
+        balloonAnimationData.Add(BubbleSystem.Emotion.Fear, balloon);
+
+        balloon = new BalloonAnimationData();
+        balloon.animator = (AnimatorOverrideController)Resources.Load("Balloons/Animators/DisgustAnimator");
+        balloon.duration = 5;
+        balloonAnimationData.Add(BubbleSystem.Emotion.Disgust, balloon);
+
+        balloon = new BalloonAnimationData();
+        balloon.animator = (AnimatorOverrideController)Resources.Load("Balloons/Animators/SurpriseAnimator");
+        balloon.duration = 5;
+        balloonAnimationData.Add(BubbleSystem.Emotion.Surprise, balloon);
+
+
     }
 
     private void SetBallon()
@@ -318,9 +366,11 @@ public class DefaultData : Singleton<DefaultData> {
 
     private void SetBackground()
     {
-        defaultBackgroundAnimationData.colorTransitionData.duration = 5;
-        defaultBackgroundAnimationData.colorTransitionData.smoothness = 0.02f;
-        defaultBackgroundAnimationData.imageFadePercentage = 0.5f;
+        BackgroundAnimationData backgroundData = new BackgroundAnimationData();
+        backgroundData.colorTransitionData.duration = 5;
+        backgroundData.colorTransitionData.smoothness = 0.02f;
+        backgroundData.imageFadePercentage = 0.5f;
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Neutral, backgroundData);
     }
 
     private void SetBackgroundAnimation()

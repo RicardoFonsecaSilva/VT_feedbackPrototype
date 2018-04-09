@@ -16,12 +16,7 @@ namespace BubbleSystem
         }
         
         public Background[] backgrounds;
-
-        [SerializeField]
-        private BackgroundModifier backgroundModifier;
-        [SerializeField]
-        private BackgroundAnimationSelector backgroundAnimator;
-
+        
         private new Renderer renderer;
 
         private Dictionary<string, IEnumerator> textureCoroutines = new Dictionary<string, IEnumerator>();
@@ -29,45 +24,10 @@ namespace BubbleSystem
 
         private float initialAlpha;
 
-        public TextureData SelectBackground(Data data)
-        {
-            return backgroundModifier.SelectTexture(data);
-        }
-
-        public BackgroundAnimationData SelectBackgroundData(Data data)
-        {
-            return backgroundAnimator.SelectBackgroundAnimation(data);
-        }
-
         public void SetBackground(string bg, Data data)
         {
-            TextureData textureData;
-            BackgroundAnimationData backgroundAnimationData;
-            try
-            {
-                textureData = SelectBackground(data);
-            }
-            catch
-            {
-                try
-                {
-                    textureData.texture = DefaultData.Instance.defaultBackgroundDataDictionary[data.reason].texture;
-                }
-                catch
-                {
-                    throw new MissingComponentException("There is no default background texture defined. Define one in the component or the corresponding .json file.");
-                }
-                textureData.colorData.color = DefaultData.Instance.defaultBackgroundDataDictionary[data.reason].colorData.color;
-            }
-            try
-            {
-                backgroundAnimationData = SelectBackgroundData(data);
-            }
-            catch{
-                backgroundAnimationData.imageFadePercentage = DefaultData.Instance.defaultBackgroundAnimationData.imageFadePercentage;
-                backgroundAnimationData.colorTransitionData.duration = DefaultData.Instance.defaultBackgroundAnimationData.colorTransitionData.duration;
-                backgroundAnimationData.colorTransitionData.smoothness = DefaultData.Instance.defaultBackgroundAnimationData.colorTransitionData.smoothness;
-            }
+            TextureData textureData = DefaultData.Instance.defaultBackgroundDataDictionary[data.reason];
+            BackgroundAnimationData backgroundAnimationData = DefaultData.Instance.defaultBackgroundAnimationData[data.emotion];
             renderer = GetBackground(bg).GetComponent<Renderer>();
             SetImage(bg, renderer, textureData, backgroundAnimationData, true);
         }

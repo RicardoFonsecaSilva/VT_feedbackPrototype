@@ -23,13 +23,6 @@ namespace BubbleSystem
         private Dictionary<string, Control> controllers = new Dictionary<string, Control>();
         private Dictionary<string, IEnumerator> hideCoroutines = new Dictionary<string, IEnumerator>();
 
-        [SerializeField]
-        private BalloonModifier balloonModifier;
-        [SerializeField]
-        private TextManager textManager;
-        [SerializeField]
-        private BalloonAnimationSelector balloonAnimationSelector;
-
         private void Start()
         {
             foreach(Balloon balloon in balloons)
@@ -38,21 +31,6 @@ namespace BubbleSystem
                 if(balloon.name != "Options")
                     balloon.balloon.GetComponentInChildren<NewBalloonsHooks>().SetPeak(balloon.isPeakTop, balloon.isPeakLeft);
             }
-        }
-
-        private SpriteData SelectBalloon(Data data)
-        {
-            return balloonModifier.SelectSprite(data);
-        }
-
-        private BalloonAnimationData SelectAnimator(Data data)
-        {
-            return balloonAnimationSelector.SelectBalloonAnimation(data);
-        }
-
-        private TextData SelectText(Data data)
-        {
-            return textManager.SelectText(data);
         }
 
         public void HideBalloon(string tutor, float duration, Effect[] hideEffects, Data data)
@@ -173,64 +151,33 @@ namespace BubbleSystem
                 {
                     if (hooks != null)
                     {
-                        float realDuration = DefaultData.Instance.defaultBalloonAnimationData.duration;
+                        float realDuration = DefaultData.Instance.neutralBalloonAnimationData.duration;
                         SetContent(hooks, data.text.Length > i ? data.text[i] : null);
 
                         try
                         {
-                            SpriteData spriteData;
-                            TextData textData;
+                            SpriteData spriteData = DefaultData.Instance.defaultBalloonData[data.emotion];
+                            TextData textData = DefaultData.Instance.defaultTextData[data.emotion];
                             if (data.emotion.Equals(Emotion.Neutral))
                             {
-                                spriteData = DefaultData.Instance.defaultBalloonData[data.emotion];
-                                textData = DefaultData.Instance.defaultTextData[data.emotion];
-                                //SetAnimators(hooks, DefaultData.Instance.defaultBalloonAnimationData);
-                                //SetEffects(hooks, (showEffects == null) ? DefaultData.Instance.defaultTextData[data.emotion].showEffect.ToArray() : showEffects, data.intensity, duration > 0 ? duration : realDuration);
+                                SetAnimators(hooks, DefaultData.Instance.neutralBalloonAnimationData);
                             }
                             else
                             {
-                                //try
-                                //{
-                                //    spriteData = SelectBalloon(data);
-                                //}
-                                //catch
-                                //{
-                                    spriteData = DefaultData.Instance.defaultBalloonData[data.emotion];
-                                //}
-                                try
-                                {
-                                    textData = SelectText(data);
-                                }
-                                catch
-                                {
-                                    textData = DefaultData.Instance.defaultTextData[data.emotion];
-                                }
-                                try
-                                {
-                                    var balloonAnimationData = SelectAnimator(data);
-                                    SetAnimators(hooks, balloonAnimationData);
-                                    realDuration = balloonAnimationData.duration;
-                                }
-                                catch
-                                {
-                                    realDuration = DefaultData.Instance.defaultBalloonAnimationData.duration;
-                                    SetAnimators(hooks, DefaultData.Instance.defaultBalloonAnimationData);
-                                }
+                                realDuration = DefaultData.Instance.balloonAnimationData[data.emotion].duration;
+                                SetAnimators(hooks, DefaultData.Instance.balloonAnimationData[data.emotion]);
                             }
                             SetSprites(data.emotion, hooks, spriteData);
                             SetTexts(hooks, textData, data.emotion);
 
                             realDuration = duration > 0 ? duration : realDuration;
 
-                            //if (showEffects != null)
-                            //    SetEffects(hooks, showEffects, data.intensity, realDuration);
-                            //else
-                            //{
-                            //    if (textData.showEffect != null)
-                            //        SetEffects(hooks, textData.showEffect.ToArray(), data.intensity, realDuration);
-                            //    else
-                            //        SetEffects(hooks, DefaultData.Instance.defaultTextData[data.emotion].showEffect.ToArray(), data.intensity, realDuration);
-                            //}
+                            if (showEffects != null)
+                                SetEffects(hooks, showEffects, data.intensity, realDuration);
+                            else
+                            {
+                                SetEffects(hooks, textData.showEffect.ToArray(), data.intensity, realDuration);
+                            }
                         }
                         catch { }
 
@@ -259,30 +206,15 @@ namespace BubbleSystem
             {
                 hooks.Hide();
 
-                //if(hideEffects != null)
-                //{
-                //    SetEffects(hooks, hideEffects, 10f, 10f);
-                //}
-                //else
-                //{
-                //    TextData textData;
-
-                //    try
-                //    {
-                //        textData = SelectText(data);
-                //    }
-                //    catch
-                //    {
-                //        textData = DefaultData.Instance.defaultTextData[data.emotion];
-                //    }
-
-                //    if (textData.hideEffect != null)
-                //        SetEffects(hooks, textData.hideEffect.ToArray(), 10f, 10f);
-                //    else
-                //        SetEffects(hooks, DefaultData.Instance.defaultTextData[data.emotion].hideEffect.ToArray(), 10f, 10f);
-                //}
-                
-                //SetEffects(hooks, new Effect[] { Effect.FadeOut }, 1.0f, 1.0f);
+                if (hideEffects != null)
+                {
+                    SetEffects(hooks, hideEffects, 10f, 10f);
+                }
+                else
+                {
+                    TextData textData = DefaultData.Instance.defaultTextData[data.emotion];
+                    SetEffects(hooks, textData.hideEffect.ToArray(), 10f, 10f);
+                }
             }
         }
     }

@@ -21,13 +21,7 @@ GameObject:
   - component: {fileID: 4425734625848454}
   - component: {fileID: 114676005032338540}
   - component: {fileID: 114361873975393698}
-  - component: {fileID: 114605678324543978}
-  - component: {fileID: 114390103150938244}
   - component: {fileID: 114144051545504298}
-  - component: {fileID: 114568541720003682}
-  - component: {fileID: 114736071861820454}
-  - component: {fileID: 114064070046652950}
-  - component: {fileID: 114601107509596864}
   - component: {fileID: 114344145208420760}
   m_Layer: 0
   m_Name: BubbleManager_v2
@@ -49,18 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114064070046652950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026085270474014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2326c5b8a4d553d478d0e260f07a2935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textModifier: {fileID: 114601107509596864}
 --- !u!114 &114144051545504298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,9 +67,6 @@ MonoBehaviour:
     balloon: {fileID: 1467566230843786, guid: 99a71db5137f7804b9acbf2c41bae08f, type: 2}
     isPeakTop: 0
     isPeakLeft: 0
-  balloonModifier: {fileID: 114736071861820454}
-  textManager: {fileID: 114064070046652950}
-  balloonAnimationSelector: {fileID: 114568541720003682}
 --- !u!114 &114344145208420760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,52 +97,6 @@ MonoBehaviour:
     background: {fileID: 0}
   - name: User
     background: {fileID: 0}
-  backgroundModifier: {fileID: 114390103150938244}
-  backgroundAnimator: {fileID: 114605678324543978}
---- !u!114 &114390103150938244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026085270474014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683cb9c5148b77f4f87380d8c6e80a71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114568541720003682
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026085270474014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661b13e71bdf2c04f98954a8e6d98cf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114601107509596864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026085270474014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3e6bfa85245e94eb3d16ef75dab0af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114605678324543978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026085270474014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19ae34124ecc4b4b8b8a40227ce57c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114676005032338540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,15 +110,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundManager: {fileID: 114361873975393698}
   balloonManager: {fileID: 114144051545504298}
-  textManager: {fileID: 114064070046652950}
---- !u!114 &114736071861820454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026085270474014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a68e0e8c06d97ae468df7fb7c311ac21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
