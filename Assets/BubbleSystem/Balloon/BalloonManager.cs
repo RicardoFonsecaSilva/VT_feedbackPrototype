@@ -33,7 +33,7 @@ namespace BubbleSystem
             }
         }
 
-        public void HideBalloon(string tutor, float duration, Effect[] hideEffects, Data data)
+        public void HideBalloon(string tutor, float duration, Dictionary<Effect, AnimationCurve> hideEffects, Data data)
         {
             var controller = controllers[tutor];
             try
@@ -98,7 +98,7 @@ namespace BubbleSystem
             SetAnimator(hooks, animatorData.animator);
         }
 
-        private void SetEffect(TMP_Text hooksTopicText, Effect[] effects, float intensity, float duration)
+        private void SetEffect(TMP_Text hooksTopicText, Dictionary<Effect, AnimationCurve> effects, float intensity, float duration)
         {
             if (hooksTopicText)
             {
@@ -106,7 +106,7 @@ namespace BubbleSystem
             }
         }
 
-        private void SetEffects(NewBalloonsHooks hooks, Effect[] effects, float intensity, float duration)
+        private void SetEffects(NewBalloonsHooks hooks, Dictionary<Effect, AnimationCurve> effects, float intensity, float duration)
         {
             SetEffect(hooks.text, effects, intensity, duration);
         }
@@ -138,7 +138,7 @@ namespace BubbleSystem
             hooks.Content = text;
         }
 
-        public void ShowBalloon(string balloon, Data data, float duration, Effect[] showEffects, Effect[] hideEffects)
+        public void ShowBalloon(string balloon, Data data, float duration, Dictionary<Effect, AnimationCurve> showEffects, Dictionary<Effect, AnimationCurve> hideEffects)
         {
             var controller = controllers[balloon];
 
@@ -176,7 +176,7 @@ namespace BubbleSystem
                                 SetEffects(hooks, showEffects, data.intensity, realDuration);
                             else
                             {
-                                SetEffects(hooks, textData.showEffect.ToArray(), data.intensity, realDuration);
+                                SetEffects(hooks, textData.showEffect, data.intensity, realDuration);
                             }
                         }
                         catch { }
@@ -189,7 +189,7 @@ namespace BubbleSystem
             }
         }
 
-        public void AddCoroutine(string balloon, NewBalloonsHooks hooks, float duration, float intensity, Effect[] hideEffects, Data data)
+        public void AddCoroutine(string balloon, NewBalloonsHooks hooks, float duration, float intensity, Dictionary<Effect, AnimationCurve> hideEffects, Data data)
         {
             IEnumerator clean = Clean(hooks, duration, hideEffects, data);
             if (hideCoroutines.ContainsKey(balloon))
@@ -199,7 +199,7 @@ namespace BubbleSystem
             StartCoroutine(clean);
         }
 
-        IEnumerator Clean(NewBalloonsHooks hooks, float duration, Effect[] hideEffects, Data data)
+        IEnumerator Clean(NewBalloonsHooks hooks, float duration, Dictionary<Effect, AnimationCurve> hideEffects, Data data)
         {
             yield return new WaitForSeconds(duration);
             if (hooks)
@@ -208,12 +208,12 @@ namespace BubbleSystem
 
                 if (hideEffects != null)
                 {
-                    SetEffects(hooks, hideEffects, 10f, 10f);
+                    SetEffects(hooks, hideEffects, 1f, 1f);
                 }
                 else
                 {
                     TextData textData = DefaultData.Instance.defaultTextData[data.emotion];
-                    SetEffects(hooks, textData.hideEffect.ToArray(), 10f, 10f);
+                    SetEffects(hooks, textData.hideEffect, 1f, 1f);
                 }
             }
         }

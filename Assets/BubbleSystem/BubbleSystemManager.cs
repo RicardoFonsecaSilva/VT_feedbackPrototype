@@ -50,39 +50,36 @@ namespace BubbleSystem
             backgroundManager.SetBackground(tutor, tutorData[tutor]);
         }
 
-        private Effect[] getEffectsArray(string[] effects)
+        private Dictionary<Effect, AnimationCurve> getEffectsDictionary(Dictionary<string, string> effects)
         {
-            Effect[] effectsArray = null;
+            Dictionary<Effect, AnimationCurve> effectsDictionary = null;
             if (effects != null)
             {
-                effectsArray = new Effect[effects.Length];
-                for (int i = 0; i < effects.Length; i++)
+                foreach (string fx in effects.Keys)
                 {
-                    effectsArray[i] = (Effect)Enum.Parse(typeof(Effect), effects[i]);
+                    Effect effect = (Effect)Enum.Parse(typeof(Effect), fx);
+                    AnimationCurve curve = DefaultData.Instance.GetCurve(effects[fx]);
+                    effectsDictionary.Add(effect, curve);
                 }
+                return effectsDictionary;
             }
-            //else
-            //{
-            //    effectsArray = new Effect[1];
-            //    effectsArray[0] = (Effect)Enum.Parse(typeof(Effect), "None");
-            //}
-            return effectsArray;
+            return null;
         }
 
-        public void Speak(string tutor, string emotion, float intensity, string[] text, float duration = 0.0f, string[] showEffects = null, string[] hideEffects = null)
+        public void Speak(string tutor, string emotion, float intensity, string[] text, float duration = 0.0f, Dictionary<string, string> showEffects = null, Dictionary<string, string> hideEffects = null)
         {
             intensity = Mathf.Clamp01(intensity);
             SetData(tutor, emotion, intensity, Reason.None, text);
             
 
-            balloonManager.ShowBalloon(tutor, tutorData[tutor], duration, getEffectsArray(showEffects), getEffectsArray(hideEffects));
+            balloonManager.ShowBalloon(tutor, tutorData[tutor], duration, getEffectsDictionary(showEffects), getEffectsDictionary(hideEffects));
         }
 
-        public void HideBalloon(string tutor, float duration = 0.0f, string[] hideEffects = null)
+        public void HideBalloon(string tutor, float duration = 0.0f, Dictionary<string, string> hideEffects = null)
         {
             if (tutorData.ContainsKey(tutor))
             {
-                balloonManager.HideBalloon(tutor, duration, getEffectsArray(hideEffects), tutorData[tutor]);
+                balloonManager.HideBalloon(tutor, duration, getEffectsDictionary(hideEffects), tutorData[tutor]);
             }
             else
             {
@@ -90,10 +87,10 @@ namespace BubbleSystem
             }
         }
 
-        public void UpdateOptions(string[] text, float duration = 0.0f, string[] showEffects = null, string[] hideEffects = null)
+        public void UpdateOptions(string[] text, float duration = 0.0f, Dictionary<string, string> showEffects = null, Dictionary<string, string> hideEffects = null)
         {
             SetData("Options", "Neutral", 0.0f, Reason.None, text);
-            balloonManager.ShowBalloon("Options", tutorData["Options"], duration, getEffectsArray(showEffects), getEffectsArray(hideEffects));
+            balloonManager.ShowBalloon("Options", tutorData["Options"], duration, getEffectsDictionary(showEffects), getEffectsDictionary(hideEffects));
         }
 
     }

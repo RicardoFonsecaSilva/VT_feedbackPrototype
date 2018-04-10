@@ -22,6 +22,20 @@ public class DefaultData : Singleton<DefaultData> {
     [HideInInspector]
     public Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> > defaultPositions = new Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> >();
 
+    public Color blushColor = Color.red;
+    public AnimationCurve warpCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1.0f, 0));
+    public AnimationCurve appearCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve blushCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve deflectionFontCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve eraseCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve fadeCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve flashCurve = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f), new Keyframe(4f, 1f), new Keyframe(5f, 1f), new Keyframe(6f, 0f));
+    public AnimationCurve jitterCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
+    public AnimationCurve shakeCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
+    public AnimationCurve squashCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve stretchCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve swellingFontCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve palpitationCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f), new Keyframe(1f, 0f), new Keyframe(1.5f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f));
 
     public struct PositionData
     {
@@ -40,6 +54,39 @@ public class DefaultData : Singleton<DefaultData> {
         SetBackground();
         SetBackgroundAnimation();
         SetBalloonPositions();
+    }
+
+    public AnimationCurve GetCurve(string name)
+    {
+        switch (name){
+            case "warpCurve":
+                return warpCurve;
+            case "appearCurve":
+                return appearCurve;
+            case "blushCurve":
+                return warpCurve;
+            case "deflectionFontCurve":
+                return deflectionFontCurve;
+            case "eraseCurve":
+                return eraseCurve;
+            case "fadeCurve":
+                return fadeCurve;
+            case "flashCurve":
+                return flashCurve;
+            case "jitterCurve":
+                return jitterCurve;
+            case "shakeCurve":
+                return shakeCurve;
+            case "squashCurve":
+                return squashCurve;
+            case "stretchCurve":
+                return stretchCurve;
+            case "swellingFontCurve":
+                return swellingFontCurve;
+            case "palpitationCurve":
+                return palpitationCurve;
+        }
+        throw new KeyNotFoundException("Animation Curve with name " + name + " does not exist.");
     }
 
     private void SetBalloonPositions()
@@ -240,31 +287,31 @@ public class DefaultData : Singleton<DefaultData> {
             text.font = font;
             text.colorData.color = color;
             text.size = size;
-            text.showEffect = new List<Effect>();
-            text.hideEffect = new List<Effect>();
+            text.showEffect = new Dictionary<Effect, AnimationCurve>();
+            text.hideEffect = new Dictionary<Effect, AnimationCurve>();
             defaultTextData.Add(emotion, text);
         }
 
-        defaultTextData[BubbleSystem.Emotion.Neutral].showEffect.Add(Effect.FadeIn);
-        defaultTextData[BubbleSystem.Emotion.Neutral].hideEffect.Add(Effect.FadeOut);
+        defaultTextData[BubbleSystem.Emotion.Neutral].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Neutral].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Happiness].showEffect.Add(Effect.Wave);
-        defaultTextData[BubbleSystem.Emotion.Happiness].hideEffect.Add(Effect.Wave);
+        defaultTextData[BubbleSystem.Emotion.Happiness].showEffect.Add(Effect.Wave, warpCurve);
+        defaultTextData[BubbleSystem.Emotion.Happiness].hideEffect.Add(Effect.Wave, warpCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Sadness].showEffect.Add(Effect.FadeIn);
-        defaultTextData[BubbleSystem.Emotion.Sadness].hideEffect.Add(Effect.FadeOut);
+        defaultTextData[BubbleSystem.Emotion.Sadness].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Sadness].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Anger].showEffect.Add(Effect.FadeIn);
-        defaultTextData[BubbleSystem.Emotion.Anger].hideEffect.Add(Effect.FadeOut);
+        defaultTextData[BubbleSystem.Emotion.Anger].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Anger].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Fear].showEffect.Add(Effect.FadeIn);
-        defaultTextData[BubbleSystem.Emotion.Fear].hideEffect.Add(Effect.FadeOut);
+        defaultTextData[BubbleSystem.Emotion.Fear].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Fear].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Disgust].showEffect.Add(Effect.FadeIn);
-        defaultTextData[BubbleSystem.Emotion.Disgust].hideEffect.Add(Effect.FadeOut);
+        defaultTextData[BubbleSystem.Emotion.Disgust].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Disgust].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Surprise].showEffect.Add(Effect.FadeIn);
-        defaultTextData[BubbleSystem.Emotion.Surprise].hideEffect.Add(Effect.FadeOut);
+        defaultTextData[BubbleSystem.Emotion.Surprise].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Surprise].hideEffect.Add(Effect.FadeOut, fadeCurve);
     }
 
     private void SetBalloonAnimation()

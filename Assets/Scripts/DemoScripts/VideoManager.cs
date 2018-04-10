@@ -61,7 +61,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t + 1f, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, EmotionEnum.Happiness.ToString(), 0.0f, new string[] { "Hello." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Sadness.ToString(), 0.0f, new string[] { "Hello." }, t);
             talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }
@@ -70,7 +70,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(j, t+t2+t3, 1);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(j, EmotionEnum.Happiness.ToString(), 0.5f, new string[] { "Good day." }, t);
+            bubbleSystemManager.Speak(j, EmotionEnum.Sadness.ToString(), 0.5f, new string[] { "Good day." }, t);
             talkFor(j, t - HALFSEC);
 
             yield return new WaitForSeconds(t);
@@ -95,7 +95,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, EmotionEnum.Disgust.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Sadness.ToString(), 0.2f, new string[] { "You have a lot of completed assignments. Well done." }, t);
             talkFor(m, t - HALFSEC);
 
             gazeFor(j, 1f, 2);

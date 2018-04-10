@@ -39,8 +39,8 @@ namespace BubbleSystem
         public TMPro.TMP_FontAsset font;
         public float size;
         public ColorData colorData;
-        public List<Effect> showEffect;
-        public List<Effect> hideEffect;
+        public Dictionary<Effect, AnimationCurve> showEffect;
+        public Dictionary<Effect, AnimationCurve> hideEffect;
     }
 
     public struct BackgroundAnimationData
