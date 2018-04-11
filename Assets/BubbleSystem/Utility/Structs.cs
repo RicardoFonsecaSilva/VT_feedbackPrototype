@@ -45,7 +45,8 @@ namespace BubbleSystem
 
     public struct BackgroundAnimationData
     {
-        public Dictionary<BackgroundEffect, AnimationCurve> bannerEffect;
+        public Dictionary<BackgroundEffect, AnimationCurve> showBannerEffect;
+        public Dictionary<BackgroundEffect, AnimationCurve> hideBannerEffect;
         public Dictionary<BackgroundEffect, AnimationCurve> colorEffect;
     }
 

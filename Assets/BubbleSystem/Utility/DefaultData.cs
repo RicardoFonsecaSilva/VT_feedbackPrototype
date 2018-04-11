@@ -391,11 +391,13 @@ public class DefaultData : Singleton<DefaultData> {
     {
         BackgroundAnimationData backgroundData = new BackgroundAnimationData();
 
-        backgroundData.bannerEffect = new Dictionary<BackgroundEffect, AnimationCurve>();
+        backgroundData.showBannerEffect = new Dictionary<BackgroundEffect, AnimationCurve>();
+        backgroundData.hideBannerEffect = new Dictionary<BackgroundEffect, AnimationCurve>();
         backgroundData.colorEffect = new Dictionary<BackgroundEffect, AnimationCurve>();
 
-        backgroundData.bannerEffect.Add(BackgroundEffect.Fade, fadeCurve);
-        backgroundData.colorEffect.Add(BackgroundEffect.Fade, fadeCurve);
+        backgroundData.showBannerEffect.Add(BackgroundEffect.FadeTexture, fadeCurve);
+        backgroundData.hideBannerEffect.Add(BackgroundEffect.FadeTexture, fadeCurve);
+        backgroundData.colorEffect.Add(BackgroundEffect.FadeColor, fadeCurve);
 
         defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Neutral, backgroundData);
         defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Happiness, backgroundData);

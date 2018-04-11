@@ -1001,6 +1001,7 @@ public class Effects : MonoBehaviour
             finalScale.x = wantedScaleX;
         if (y)
             finalScale.y = wantedScaleY;
+        rectTransform.localScale = finalScale;
     }
 
     IEnumerator Stretch(AnimationCurve curve, bool x, bool y, float wantedScaleX = 1f, float wantedScaleY = 1f)
@@ -1038,6 +1039,7 @@ public class Effects : MonoBehaviour
             finalScale.x = wantedScaleX;
         if (y)
             finalScale.y = wantedScaleY;
+        rectTransform.localScale = finalScale;
     }
 
     IEnumerator SwellingFontSize(AnimationCurve curve)
