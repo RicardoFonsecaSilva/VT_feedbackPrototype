@@ -43,11 +43,11 @@ namespace BubbleSystem
             }
         }
 
-        public void UpdateBackground(string tutor, string emotion, float intensity, Reason reason)
+        public void UpdateBackground(string tutor, string emotion, float intensity, float duration, Reason reason)
         {
             intensity = Mathf.Clamp01(intensity);
             SetData(tutor, emotion, intensity, reason);
-            backgroundManager.SetBackground(tutor, tutorData[tutor]);
+            backgroundManager.SetBackground(tutor, tutorData[tutor], duration);
         }
 
         private Dictionary<Effect, AnimationCurve> getEffectsDictionary(Dictionary<string, string> effects)

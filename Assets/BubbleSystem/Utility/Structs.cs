@@ -45,8 +45,8 @@ namespace BubbleSystem
 
     public struct BackgroundAnimationData
     {
-        public float imageFadePercentage;
-        public ColorTransitionData colorTransitionData;
+        public Dictionary<BackgroundEffect, AnimationCurve> bannerEffect;
+        public Dictionary<BackgroundEffect, AnimationCurve> colorEffect;
     }
 
     public struct BalloonAnimationData

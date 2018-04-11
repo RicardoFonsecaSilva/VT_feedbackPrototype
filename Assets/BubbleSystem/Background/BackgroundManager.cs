@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 namespace BubbleSystem
 {
+
+    public enum BackgroundEffect
+    {
+        Fade
+    }
+
     public class BackgroundManager : MonoBehaviour
     {
         [Serializable]
@@ -14,27 +20,25 @@ namespace BubbleSystem
             public string name;
             public GameObject background;
         }
-        
+
         public Background[] backgrounds;
-        
+
         private new Renderer renderer;
 
         private Dictionary<string, IEnumerator> textureCoroutines = new Dictionary<string, IEnumerator>();
         private Dictionary<string, IEnumerator> colorCoroutines = new Dictionary<string, IEnumerator>();
 
-        private float initialAlpha;
-
-        public void SetBackground(string bg, Data data)
+        public void SetBackground(string bg, Data data, float duration)
         {
-            TextureData textureData = DefaultData.Instance.defaultBackgroundDataDictionary[data.reason];
+            TextureData textureData = DefaultData.Instance.defaultBackgroundDataDictionary[data.emotion][data.reason];
             BackgroundAnimationData backgroundAnimationData = DefaultData.Instance.defaultBackgroundAnimationData[data.emotion];
             renderer = GetBackground(bg).GetComponent<Renderer>();
-            SetImage(bg, renderer, textureData, backgroundAnimationData, true);
+            StartCoroutine(ChangeImage(bg, renderer, textureData, backgroundAnimationData, duration));
         }
 
         private GameObject GetBackground(string bg)
         {
-            foreach(Background b in backgrounds)
+            foreach (Background b in backgrounds)
             {
                 if (b.name.Equals(bg))
                 {
@@ -44,100 +48,119 @@ namespace BubbleSystem
 
             throw new KeyNotFoundException("Background with name: " + bg + " not found.");
         }
-
-        public void SetImage(string bg, Renderer renderer, TextureData textureData, BackgroundAnimationData backgroundAnimationData, bool lerp)
-        {
-            if (lerp)
-            {
-                initialAlpha = renderer.material.color.a;
-                StartCoroutine(ChangeImage(bg, renderer, textureData, backgroundAnimationData));
-            }
-            else
-            {
-                renderer.material.mainTexture = textureData.texture;
-                renderer.material.color = textureData.colorData.color;
-            }
-        }
-
-        public void ChangeColor(string bg, Renderer renderer, Color nextColor, ColorTransitionData backgroundColorAnimationData)
-        {
-            if (colorCoroutines.ContainsKey(bg))
-                CoroutineStopper.Instance.StopCoroutineWithCheck(colorCoroutines[bg]);
-
-            colorCoroutines[bg] = LerpColor(renderer, nextColor, backgroundColorAnimationData);
-            StartCoroutine(colorCoroutines[bg]);
-        }
-
-        public void ChangeTexture(string bg, Renderer renderer, Texture nextTexture, float fade)
+        
+        private IEnumerator ChangeImage(string bg, Renderer renderer, TextureData textureData, BackgroundAnimationData backgroundAnimationData, float duration)
         {
             if (textureCoroutines.ContainsKey(bg))
                 CoroutineStopper.Instance.StopCoroutineWithCheck(textureCoroutines[bg]);
-            textureCoroutines[bg] = LerpTexture(renderer, nextTexture, fade);
-            StartCoroutine(textureCoroutines[bg]);
-        }
+            if (colorCoroutines.ContainsKey(bg))
+                CoroutineStopper.Instance.StopCoroutineWithCheck(colorCoroutines[bg]);
 
-        private IEnumerator ChangeImage(string bg, Renderer renderer, TextureData textureData, BackgroundAnimationData backgroundAnimationData)
-        {
-            if (!renderer.material.mainTexture.name.Equals(textureData.texture.name))
-            {
-                ChangeTexture(bg, renderer, textureData.texture, backgroundAnimationData.imageFadePercentage);
+            foreach (BackgroundEffect fx in backgroundAnimationData.bannerEffect.Keys) {
+                if (fx == BackgroundEffect.Fade)
+                    textureCoroutines[bg] = FadeTexture(renderer, textureData.texture, backgroundAnimationData.bannerEffect[fx], duration * 2 / 3);
+                yield return StartCoroutine(textureCoroutines[bg]);
             }
-            yield return new WaitUntil(() => renderer.material.mainTexture.name.Equals(textureData.texture.name) && renderer.material.color.a == initialAlpha);
 
-            if (!renderer.material.color.Equals(textureData.colorData.color))
+            foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)
             {
-                ChangeColor(bg, renderer, textureData.colorData.color, backgroundAnimationData.colorTransitionData);
-            }
-            yield return new WaitUntil(() => renderer.material.color == textureData.colorData.color);
-        }
-
-        private IEnumerator LerpColor(Renderer renderer, Color nextColor, ColorTransitionData backgroundColorAnimationData)
-        {
-            float progress = 0;
-            float increment = backgroundColorAnimationData.smoothness / backgroundColorAnimationData.duration;
-
-            while (progress < 1)
-            {
-                renderer.material.color = Color.Lerp(renderer.material.color, nextColor, progress);
-                progress += increment;
-                yield return new WaitForSeconds(backgroundColorAnimationData.smoothness);
+                if (fx == BackgroundEffect.Fade)
+                    colorCoroutines[bg] = LerpColor(renderer, textureData.colorData.color, backgroundAnimationData.colorEffect[fx], duration / 3);
+                yield return StartCoroutine(colorCoroutines[bg]);
             }
         }
 
-        private IEnumerator FadeOut(Renderer renderer, float fade)
+        private IEnumerator FadeTexture(Renderer renderer, Texture nextTexture, AnimationCurve curve, float duration)
         {
-            while (renderer.material.color.a > 0.0f)
-            {
-                var material = renderer.material;
-                var color = material.color;
-                color.a -= (fade * Time.deltaTime);
-                color.a = Mathf.Clamp01(color.a);
+            float initialAlpha = renderer.material.color.a;
 
-                material.color = new Color(color.r, color.g, color.b, color.a);
-                yield return null;
-            }
-        }
-
-        private IEnumerator FadeIn(Renderer renderer, float fade)
-        {
-            while (renderer.material.color.a < initialAlpha)
-            {
-                var material = renderer.material;
-                var color = material.color;
-                color.a += (fade * Time.deltaTime);
-                color.a = Mathf.Clamp(color.a, 0.0f, initialAlpha);
-
-                material.color = new Color(color.r, color.g, color.b, color.a);
-                yield return null;
-            }
-        }
-
-        private IEnumerator LerpTexture(Renderer renderer, Texture nextTexture, float fade)
-        {
-            yield return StartCoroutine(FadeOut(renderer, fade));
+            yield return StartCoroutine(FadeOutTexture(renderer, curve, duration / 2));
             renderer.material.mainTexture = nextTexture;
             renderer.material.mainTexture.wrapMode = TextureWrapMode.Mirror;
-            yield return StartCoroutine(FadeIn(renderer, fade));
+            yield return StartCoroutine(FadeInTexture(renderer, curve, duration / 2, initialAlpha));
+        }
+
+        private IEnumerator FadeOutTexture(Renderer renderer, AnimationCurve curve, float duration, float wantedAlpha = 0)
+        {
+            float finalAlpha;
+            float initialAlpha = renderer.material.color.a;
+            Color finalColor = renderer.material.color;
+
+            float initialTime = Time.time;
+            Keyframe lastframe = curve[curve.length - 1];
+            float lastKeyTime = lastframe.time;
+            float yValue;
+
+            while (((Time.time - initialTime) / duration) < 1)
+            {
+                yValue = Mathf.Clamp01(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration));
+
+                finalAlpha = initialAlpha + yValue * (wantedAlpha - initialAlpha);
+                finalColor.a = finalAlpha;
+
+                renderer.material.color = finalColor;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
+            finalColor.a = wantedAlpha;
+            renderer.material.color = finalColor;
+        }
+
+        private IEnumerator FadeInTexture(Renderer renderer, AnimationCurve curve, float duration, float wantedAlpha = 1)
+        {
+            float finalAlpha;
+            float initialAlpha = renderer.material.color.a;
+            Color finalColor = renderer.material.color;
+
+            float initialTime = Time.time;
+            Keyframe lastframe = curve[curve.length - 1];
+            float lastKeyTime = lastframe.time;
+            float yValue;
+
+            while (((Time.time - initialTime) / duration) < 1)
+            {
+                yValue = Mathf.Clamp01(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration));
+
+                finalAlpha = initialAlpha + yValue * (wantedAlpha - initialAlpha);
+                finalColor.a = finalAlpha;
+
+                renderer.material.color = finalColor;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
+            finalColor.a = wantedAlpha;
+            renderer.material.color = finalColor;
+        }
+
+        private IEnumerator LerpColor(Renderer renderer, Color nextColor, AnimationCurve curve, float duration)
+        {
+            Color32 initialColor = renderer.material.color, finalColor;
+            int red, green, blue, alpha;
+
+            float initialTime = Time.time;
+            Keyframe lastframe = curve[curve.length - 1];
+            float lastKeyTime = lastframe.time;
+            float yValue;
+
+            while (((Time.time - initialTime) / duration) < 1)
+            {
+                yValue = Mathf.Clamp01(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration));
+
+                red = (int)(initialColor.r + yValue * (((byte)(nextColor.r * 255)) - initialColor.r));
+                green = (int)(initialColor.g + yValue * (((byte)(nextColor.g * 255)) - initialColor.g));
+                blue = (int)(initialColor.b + yValue * (((byte)(nextColor.b * 255)) - initialColor.b));
+                alpha = (int)(initialColor.a + yValue * (((byte)(nextColor.a * 255)) - initialColor.a));
+
+                finalColor.r = (byte)red;
+                finalColor.g = (byte)green;
+                finalColor.b = (byte)blue;
+                finalColor.a = (byte)alpha;
+
+                renderer.material.color = finalColor;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
+            renderer.material.color = nextColor;
         }
     }
 }

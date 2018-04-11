@@ -88,7 +88,7 @@ public class VideoManager : MonoBehaviour {
 
             yield return new WaitForSeconds(t);
         }
-        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, Reason.Grades);
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, 5f, Reason.Grades);
         mood(m, new Emotion(EmotionEnum.Happiness, 0.2f));
 
         t = 5.0f; 
@@ -157,7 +157,7 @@ public class VideoManager : MonoBehaviour {
         yield return new WaitForSeconds(t);
 
         mood(m, new Emotion(EmotionEnum.Neutral, -1.0f));
-        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, Reason.Grades);
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, 5f, Reason.Grades);
 
         t = 5.0f;
         {
@@ -210,8 +210,8 @@ public class VideoManager : MonoBehaviour {
     {
         mood(m, new Emotion(EmotionEnum.Sadness, 0.2f));
         mood(j, new Emotion(EmotionEnum.Sadness, 0.8f));
-        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Sadness.ToString(), 0.2f, Reason.Grades);
-        bubbleSystemManager.UpdateBackground(j, EmotionEnum.Sadness.ToString(), 0.2f, Reason.None);
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Sadness.ToString(), 0.2f, 5f, Reason.Grades);
+        bubbleSystemManager.UpdateBackground(j, EmotionEnum.Sadness.ToString(), 0.2f, 5f, Reason.None);
 
         t = 8.0f; talker = j; gazer = m;
         {
@@ -262,7 +262,7 @@ public class VideoManager : MonoBehaviour {
         }
 
         mood(j, new Emotion(EmotionEnum.Neutral, -1.0f));
-        bubbleSystemManager.UpdateBackground(j, EmotionEnum.Neutral.ToString(), 0.2f, Reason.None);
+        bubbleSystemManager.UpdateBackground(j, EmotionEnum.Neutral.ToString(), 0.2f, 5f, Reason.None);
 
         t = 5.0f; t2 = 7.0f; talker = j; gazer = m;
         {
@@ -274,7 +274,7 @@ public class VideoManager : MonoBehaviour {
             yield return new WaitForSeconds(t);
 
             mood(m, new Emotion(EmotionEnum.Neutral, -1.0f));
-            bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, Reason.Grades);
+            bubbleSystemManager.UpdateBackground(m, EmotionEnum.Neutral.ToString(), 0.2f, 5f, Reason.Grades);
 
             t = t2;
 

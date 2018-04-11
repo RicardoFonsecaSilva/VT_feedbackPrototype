@@ -17,24 +17,16 @@ public class DefaultData : Singleton<DefaultData> {
     [HideInInspector]
     public Dictionary<BubbleSystem.Emotion, BackgroundAnimationData> defaultBackgroundAnimationData = new Dictionary<BubbleSystem.Emotion, BackgroundAnimationData>();
     [HideInInspector]
-    public Dictionary<Reason, TextureData> defaultBackgroundDataDictionary = new Dictionary<Reason, TextureData>();
+    public Dictionary<BubbleSystem.Emotion, Dictionary<Reason, TextureData>> defaultBackgroundDataDictionary = new Dictionary<BubbleSystem.Emotion, Dictionary<Reason, TextureData>>();
 
     [HideInInspector]
     public Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> > defaultPositions = new Dictionary<BubbleSystem.Emotion, Dictionary<string, PositionData> >();
 
     public Color blushColor = Color.red;
-    public AnimationCurve warpCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1.0f, 0));
-    public AnimationCurve appearCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
-    public AnimationCurve blushCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
-    public AnimationCurve deflectionFontCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
-    public AnimationCurve eraseCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve bellCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1.0f, 0));
     public AnimationCurve fadeCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
     public AnimationCurve flashCurve = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f), new Keyframe(4f, 1f), new Keyframe(5f, 1f), new Keyframe(6f, 0f));
-    public AnimationCurve jitterCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
-    public AnimationCurve shakeCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
-    public AnimationCurve squashCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
-    public AnimationCurve stretchCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
-    public AnimationCurve swellingFontCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f, 1f));
+    public AnimationCurve lowerBellCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
     public AnimationCurve palpitationCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f), new Keyframe(1f, 0f), new Keyframe(1.5f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f));
 
     public struct PositionData
@@ -59,31 +51,15 @@ public class DefaultData : Singleton<DefaultData> {
     public AnimationCurve GetCurve(string name)
     {
         switch (name){
-            case "warpCurve":
-                return warpCurve;
-            case "appearCurve":
-                return appearCurve;
-            case "blushCurve":
-                return warpCurve;
-            case "deflectionFontCurve":
-                return deflectionFontCurve;
-            case "eraseCurve":
-                return eraseCurve;
+            case "bellCurve":
+                return bellCurve;
             case "fadeCurve":
                 return fadeCurve;
             case "flashCurve":
                 return flashCurve;
             case "jitterCurve":
-                return jitterCurve;
-            case "shakeCurve":
-                return shakeCurve;
-            case "squashCurve":
-                return squashCurve;
-            case "stretchCurve":
-                return stretchCurve;
-            case "swellingFontCurve":
-                return swellingFontCurve;
-            case "palpitationCurve":
+                return lowerBellCurve;
+            case "lowerBellCurve":
                 return palpitationCurve;
         }
         throw new KeyNotFoundException("Animation Curve with name " + name + " does not exist.");
@@ -295,8 +271,8 @@ public class DefaultData : Singleton<DefaultData> {
         defaultTextData[BubbleSystem.Emotion.Neutral].showEffect.Add(Effect.FadeIn, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Neutral].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Happiness].showEffect.Add(Effect.Wave, warpCurve);
-        defaultTextData[BubbleSystem.Emotion.Happiness].hideEffect.Add(Effect.Wave, warpCurve);
+        defaultTextData[BubbleSystem.Emotion.Happiness].showEffect.Add(Effect.Wave, bellCurve);
+        defaultTextData[BubbleSystem.Emotion.Happiness].hideEffect.Add(Effect.Wave, bellCurve);
 
         defaultTextData[BubbleSystem.Emotion.Sadness].showEffect.Add(Effect.FadeIn, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Sadness].hideEffect.Add(Effect.FadeOut, fadeCurve);
@@ -414,20 +390,72 @@ public class DefaultData : Singleton<DefaultData> {
     private void SetBackground()
     {
         BackgroundAnimationData backgroundData = new BackgroundAnimationData();
-        backgroundData.colorTransitionData.duration = 5;
-        backgroundData.colorTransitionData.smoothness = 0.02f;
-        backgroundData.imageFadePercentage = 0.5f;
+
+        backgroundData.bannerEffect = new Dictionary<BackgroundEffect, AnimationCurve>();
+        backgroundData.colorEffect = new Dictionary<BackgroundEffect, AnimationCurve>();
+
+        backgroundData.bannerEffect.Add(BackgroundEffect.Fade, fadeCurve);
+        backgroundData.colorEffect.Add(BackgroundEffect.Fade, fadeCurve);
+
         defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Neutral, backgroundData);
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Happiness, backgroundData);
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Sadness, backgroundData);
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Anger, backgroundData);
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Fear, backgroundData);
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Disgust, backgroundData);
+        defaultBackgroundAnimationData.Add(BubbleSystem.Emotion.Surprise, backgroundData);
     }
 
     private void SetBackgroundAnimation()
     {
         TextureData defaultBackgroundData;
-        defaultBackgroundData.colorData.color = Color.white;
+        Dictionary<Reason, TextureData> neutralDict = new Dictionary<Reason, TextureData>();
+        Dictionary<Reason, TextureData> happinessDict = new Dictionary<Reason, TextureData>();
+        Dictionary<Reason, TextureData> sadnessDict = new Dictionary<Reason, TextureData>();
+        Dictionary<Reason, TextureData> angerDict = new Dictionary<Reason, TextureData>();
+        Dictionary<Reason, TextureData> fearDict = new Dictionary<Reason, TextureData>();
+        Dictionary<Reason, TextureData> disgustDict = new Dictionary<Reason, TextureData>();
+        Dictionary<Reason, TextureData> surpriseDict = new Dictionary<Reason, TextureData>();
+
+        
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/joaoBackground");
-        defaultBackgroundDataDictionary.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.white;
+        neutralDict.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.yellow;
+        happinessDict.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.blue;
+        sadnessDict.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.red;
+        angerDict.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.grey;
+        fearDict.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.green;
+        disgustDict.Add(Reason.None, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.cyan;
+        surpriseDict.Add(Reason.None, defaultBackgroundData);
 
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/graph");
-        defaultBackgroundDataDictionary.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.white;
+        neutralDict.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.yellow;
+        happinessDict.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.blue;
+        sadnessDict.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.red;
+        angerDict.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.grey;
+        fearDict.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.green;
+        disgustDict.Add(Reason.Grades, defaultBackgroundData);
+        defaultBackgroundData.colorData.color = Color.cyan;
+        surpriseDict.Add(Reason.Grades, defaultBackgroundData);
+
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Neutral, neutralDict);
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Happiness, happinessDict);
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Sadness, sadnessDict);
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Anger, angerDict);
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Fear, fearDict);
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Disgust, disgustDict);
+        defaultBackgroundDataDictionary.Add(BubbleSystem.Emotion.Surprise, surpriseDict);
     }
 }
