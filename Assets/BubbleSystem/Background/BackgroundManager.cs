@@ -57,55 +57,65 @@ namespace BubbleSystem
             Renderer renderer = GetBackground(bg).GetComponent<Renderer>();
             Transform rect = GetBackground(bg).GetComponent<Transform>();
             float initialAlpha = renderer.material.color.a;
+            float realDuration = duration / 3;
 
             textureCoroutines[bg].Clear();
+            colorCoroutines[bg].Clear();
 
             if (textureCoroutines.ContainsKey(bg))
-                foreach(BackgroundEffect fx in textureCoroutines[bg].Keys)
+                foreach (BackgroundEffect fx in textureCoroutines[bg].Keys)
                     CoroutineStopper.Instance.StopCoroutineWithCheck(textureCoroutines[bg][fx]);
             if (colorCoroutines.ContainsKey(bg))
                 foreach (BackgroundEffect fx in colorCoroutines[bg].Keys)
                     CoroutineStopper.Instance.StopCoroutineWithCheck(colorCoroutines[bg][fx]);
 
-            foreach (BackgroundEffect fx in backgroundAnimationData.hideBannerEffect.Keys)
+            if (!textureData.texture.name.Equals(renderer.material.mainTexture.name))
             {
-                if (fx == BackgroundEffect.FadeTexture)
-                    textureCoroutines[bg].Add(fx, FadeOutTexture(renderer, backgroundAnimationData.hideBannerEffect[fx], duration / 3));
+                foreach (BackgroundEffect fx in backgroundAnimationData.hideBannerEffect.Keys)
+                {
+                    if (fx == BackgroundEffect.FadeTexture)
+                        textureCoroutines[bg].Add(fx, FadeOutTexture(renderer, backgroundAnimationData.hideBannerEffect[fx], realDuration));
+                }
+
+                foreach (BackgroundEffect fx in backgroundAnimationData.hideBannerEffect.Keys)
+                    StartCoroutine(textureCoroutines[bg][fx]);
+
+                yield return new WaitForSeconds(realDuration);
+
+                textureCoroutines[bg].Clear();
+                renderer.material.mainTexture = textureData.texture;
+                renderer.material.mainTexture.wrapMode = TextureWrapMode.Mirror;
+
+                foreach (BackgroundEffect fx in backgroundAnimationData.showBannerEffect.Keys)
+                {
+                    if (fx == BackgroundEffect.FadeTexture)
+                        textureCoroutines[bg].Add(fx, FadeInTexture(renderer, backgroundAnimationData.showBannerEffect[fx], realDuration, initialAlpha));
+                }
+
+                foreach (BackgroundEffect fx in backgroundAnimationData.showBannerEffect.Keys)
+                    StartCoroutine(textureCoroutines[bg][fx]);
+
+                yield return new WaitForSeconds(realDuration);
+            }
+            else
+            {
+                realDuration = duration;
             }
 
-            foreach (BackgroundEffect fx in backgroundAnimationData.hideBannerEffect.Keys)
-                StartCoroutine(textureCoroutines[bg][fx]);
-
-            yield return new WaitForSeconds(duration / 3);
-
-            textureCoroutines[bg].Clear();
-            renderer.material.mainTexture = textureData.texture;
-            renderer.material.mainTexture.wrapMode = TextureWrapMode.Mirror;
-
-            foreach (BackgroundEffect fx in backgroundAnimationData.showBannerEffect.Keys)
+            if (!renderer.material.color.Equals(textureData.colorData.color))
             {
-                if (fx == BackgroundEffect.FadeTexture)
-                    textureCoroutines[bg].Add(fx, FadeInTexture(renderer, backgroundAnimationData.showBannerEffect[fx], duration / 3, initialAlpha));
+
+                foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)
+                {
+                    if (fx == BackgroundEffect.FadeColor)
+                        colorCoroutines[bg].Add(fx, LerpColor(renderer, textureData.colorData.color, backgroundAnimationData.colorEffect[fx], realDuration));
+                }
+
+                foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)
+                    StartCoroutine(colorCoroutines[bg][fx]);
+
+                yield return new WaitForSeconds(realDuration);
             }
-
-            foreach (BackgroundEffect fx in backgroundAnimationData.showBannerEffect.Keys)
-                StartCoroutine(textureCoroutines[bg][fx]);
-
-            yield return new WaitForSeconds(duration / 3);
-            textureCoroutines[bg].Clear();
-
-            foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)
-            {
-                if (fx == BackgroundEffect.FadeColor)
-                    colorCoroutines[bg].Add(fx, LerpColor(renderer, textureData.colorData.color, backgroundAnimationData.colorEffect[fx], duration / 3));
-            }
-
-            foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)
-                StartCoroutine(colorCoroutines[bg][fx]);
-
-            yield return new WaitForSeconds(duration / 3);
-
-            colorCoroutines.Clear();
         }
 
         private IEnumerator FadeOutTexture(Renderer renderer, AnimationCurve curve, float duration, float wantedAlpha = 0)

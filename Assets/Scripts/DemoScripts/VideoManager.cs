@@ -65,7 +65,6 @@ public class VideoManager : MonoBehaviour {
             talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }
-        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Happiness.ToString(), 0.2f, 5f, Reason.Grades);
 
         t = 2.5f; t2 = 5f; t3 = 5.5f;
         {

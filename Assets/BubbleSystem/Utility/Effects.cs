@@ -127,11 +127,6 @@ public class Effects : MonoBehaviour
         }
     }
 
-    public void ResetFontSize()
-    {
-        m_TextComponent.enableAutoSizing = true;
-    }
-
     public void ResetRectTransform(bool squash, bool x, bool y)
     {
         if (squash)
@@ -176,20 +171,34 @@ public class Effects : MonoBehaviour
         }
     }
 
+    //HACK TO CALCULATE FONTSIZE (ENABLE AUTO SIZE TAKES TIME TO CALCULATE)
+    private IEnumerator ResetFontSize()
+    {
+        float initialFontSize = m_TextComponent.fontSize;
+        m_TextComponent.enableAutoSizing = true;
+        yield return null;
+        float maxFontSize = m_TextComponent.fontSize;
+        m_TextComponent.enableAutoSizing = false;
+        m_TextComponent.fontSize = initialFontSize > maxFontSize ? maxFontSize : initialFontSize;
+    }
+
     public void SetEffect(Dictionary<Effect, AnimationCurve> effects, float _intensity, float _duration)
     {
         initialColor = m_TextComponent.color;
         duration = _duration;
         intensity = _intensity;
+
         foreach (Effect key in coroutines.Keys)
         {
             StopEffect(coroutines[key]);
-            ResetCharacters(true);
-            ResetColor(true, true);
-            ResetFontSize();
-            ResetRectTransform(true, true, true);
-            ResetCharacterCount();
         }
+
+        ResetCharacters(true);
+        ResetColor(true, true);
+        ResetRectTransform(true, true, true);
+        ResetCharacterCount();
+        StartCoroutine(ResetFontSize());
+
         enumerators.Clear();
 
         foreach (Effect effect in effects.Keys)
@@ -211,7 +220,6 @@ public class Effects : MonoBehaviour
                     AddIenumerator(effect, BlushCharacters(effects[effect]));
                     break;
                 case Effect.DeflectionFont:
-                    ResetFontSize();
                     AddIenumerator(effect, DeflectionFontSize(effects[effect]));
                     break;
                 case Effect.Erase:
@@ -276,7 +284,6 @@ public class Effects : MonoBehaviour
                     AddIenumerator(effect, Stretch(effects[effect], false, true));
                     break;
                 case Effect.SwellingFont:
-                    ResetFontSize();
                     AddIenumerator(effect, SwellingFontSize(effects[effect]));
                     break;
                 case Effect.Swing:
@@ -463,7 +470,6 @@ public class Effects : MonoBehaviour
     IEnumerator DeflectionFontSize(AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
-        m_TextComponent.enableAutoSizing = false;
 
         float initialTime = Time.time;
         Keyframe lastframe = curve[curve.length - 1];
@@ -1045,7 +1051,6 @@ public class Effects : MonoBehaviour
     IEnumerator SwellingFontSize(AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
-        m_TextComponent.enableAutoSizing = false;
 
         float initialTime = Time.time;
         Keyframe lastframe = curve[curve.length - 1];

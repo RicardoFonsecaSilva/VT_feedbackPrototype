@@ -256,7 +256,7 @@ public class DefaultData : Singleton<DefaultData> {
     {
         TMPro.TMP_FontAsset font = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/arial");
         Color color = Color.black;
-        float size = 12.0f;
+        float size = 40.0f;
         foreach (BubbleSystem.Emotion emotion in Enum.GetValues(typeof(BubbleSystem.Emotion)))
         {
             TextData text = new TextData();
