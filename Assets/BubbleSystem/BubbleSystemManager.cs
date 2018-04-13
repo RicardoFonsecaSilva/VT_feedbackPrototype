@@ -52,7 +52,7 @@ namespace BubbleSystem
 
         private Dictionary<Effect, AnimationCurve> getEffectsDictionary(Dictionary<string, string> effects)
         {
-            Dictionary<Effect, AnimationCurve> effectsDictionary = null;
+            Dictionary<Effect, AnimationCurve> effectsDictionary = new Dictionary<Effect, AnimationCurve>();
             if (effects != null)
             {
                 foreach (string fx in effects.Keys)

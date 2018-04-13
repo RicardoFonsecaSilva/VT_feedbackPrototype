@@ -120,7 +120,7 @@ namespace BubbleSystem
             SetEffect(hooks.text, effects, intensity, duration);
         }
 
-        private void SetText(TMP_Text hooksTopicText, TextData textData, BubbleSystem.Emotion emotion)
+        private void SetText(TMP_Text hooksTopicText, TextData textData)
         {
             if (hooksTopicText)
             {
@@ -130,9 +130,9 @@ namespace BubbleSystem
             }
         }
 
-        private void SetTexts(NewBalloonsHooks hooks, TextData textData, BubbleSystem.Emotion emotion)
+        private void SetTexts(NewBalloonsHooks hooks, TextData textData)
         {
-            SetText(hooks.text, textData, emotion);
+            SetText(hooks.text, textData);
         }
 
         private void SetContent(NewBalloonsHooks hooks, string text)
@@ -172,7 +172,7 @@ namespace BubbleSystem
                                 SetAnimators(hooks, balloonAnimationData, data.intensity);
                             }
                             SetSprites(data.emotion, hooks, spriteData, data.intensity);
-                            SetTexts(hooks, textData, data.emotion);
+                            SetTexts(hooks, textData);
 
                             realDuration = duration > 0 ? duration : realDuration;
 

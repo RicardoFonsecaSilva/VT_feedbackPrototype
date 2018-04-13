@@ -96,6 +96,8 @@ public class DefaultData : Singleton<DefaultData>
             case "jitterCurve":
                 return lowerBellCurve;
             case "lowerBellCurve":
+                return lowerBellCurve;
+            case "palpitationCurve":
                 return palpitationCurve;
         }
         throw new KeyNotFoundException("Animation Curve with name " + name + " does not exist.");
@@ -321,25 +323,25 @@ public class DefaultData : Singleton<DefaultData>
             defaultTextData.Add(emotion, dict);
         }
 
-        defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
         defaultTextData[BubbleSystem.Emotion.Happiness][1f].showEffect.Add(Effect.Wave, bellCurve);
         defaultTextData[BubbleSystem.Emotion.Happiness][1f].hideEffect.Add(Effect.Wave, bellCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Sadness][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Sadness][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Sadness][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
         defaultTextData[BubbleSystem.Emotion.Anger][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Anger][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Fear][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Fear][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Fear][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Disgust][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Disgust][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Disgust][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
-        defaultTextData[BubbleSystem.Emotion.Surprise][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Surprise][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Surprise][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
     }
 

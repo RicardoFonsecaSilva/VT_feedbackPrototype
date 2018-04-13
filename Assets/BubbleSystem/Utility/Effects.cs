@@ -73,12 +73,6 @@ public class Effects : MonoBehaviour
         TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(ON_TEXT_CHANGED);
     }
 
-    public void StopEffect(Coroutine coroutine)
-    {
-        CoroutineStopper.Instance.StopCoroutineWithCheck(coroutine);
-        coroutine = null;
-    }
-
     public void ResetCharacters(bool fadeout)
     {
         m_TextComponent.ForceMeshUpdate();
@@ -188,16 +182,13 @@ public class Effects : MonoBehaviour
         duration = _duration;
         intensity = _intensity;
 
-        foreach (Effect key in coroutines.Keys)
-        {
-            StopEffect(coroutines[key]);
-        }
+        StopAllCoroutines();
 
+        StartCoroutine(ResetFontSize());
         ResetCharacters(true);
         ResetColor(true, true);
         ResetRectTransform(true, true, true);
         ResetCharacterCount();
-        StartCoroutine(ResetFontSize());
 
         enumerators.Clear();
 
@@ -296,7 +287,7 @@ public class Effects : MonoBehaviour
                     AddIenumerator(effect, WarpText(effects[effect], false));
                     break;
                 case Effect.WarpCharacters:
-                    AddIenumerator(effect, WarpText(effects[effect], true));
+                    AddIenumerator(effect, WarpTextCharacters(effects[effect]));
                     break;
                 case Effect.Wave:
                     AddIenumerator(effect, Wave(effects[effect], false));
@@ -913,11 +904,11 @@ public class Effects : MonoBehaviour
 
             if (random)
             {
-                range = Random.Range(-0.25f, 0.25f) * intensity;
+                range = Random.Range(-1.25f, 1.25f) * intensity;
             }
             else
             {
-                range = Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -0.25f, 0.25f) * intensity;
+                range = Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -1.25f, 1.25f) * intensity;
             }
 
             // Iterate through each line of the text.
@@ -1245,7 +1236,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator WarpTextCharacters(AnimationCurve curve, bool keepAnimating = false)
+    IEnumerator WarpTextCharacters(AnimationCurve curve)
     {
         curve.preWrapMode = WrapMode.Clamp;
         curve.postWrapMode = WrapMode.Clamp;
