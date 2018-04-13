@@ -34,8 +34,8 @@ namespace BubbleSystem
             if (!colorCoroutines.ContainsKey(bg))
                 colorCoroutines.Add(bg, new Dictionary<BackgroundEffect, IEnumerator>());
 
-            TextureData textureData = DefaultData.Instance.defaultBackgroundDataDictionary[data.emotion][data.reason];
-            BackgroundAnimationData backgroundAnimationData = DefaultData.Instance.defaultBackgroundAnimationData[data.emotion];
+            TextureData textureData = DefaultData.Instance.GetDefaultBackgroundDataDictionary(data.emotion, data.intensity, data.reason);
+            BackgroundAnimationData backgroundAnimationData = DefaultData.Instance.GetDefaultBackgroundAnimationData(data.emotion, data.intensity);
             StartCoroutine(ChangeImage(bg, textureData, backgroundAnimationData, duration));
         }
 

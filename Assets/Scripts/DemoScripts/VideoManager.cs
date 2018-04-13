@@ -61,7 +61,7 @@ public class VideoManager : MonoBehaviour {
         {
             gazeFor(m, t + 1f, 2);
             yield return new WaitForSeconds(HALFSEC);
-            bubbleSystemManager.Speak(m, EmotionEnum.Sadness.ToString(), 0.0f, new string[] { "Hello." }, t);
+            bubbleSystemManager.Speak(m, EmotionEnum.Neutral.ToString(), 0.0f, new string[] { "Hello." }, t);
             talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }

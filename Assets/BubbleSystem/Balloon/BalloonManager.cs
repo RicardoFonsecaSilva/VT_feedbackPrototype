@@ -51,29 +51,30 @@ namespace BubbleSystem
             }
         }
 
-        private void SetBeaks(Emotion emotion, GameObject beakObject, Sprite beak)
+        private void SetBeaks(Emotion emotion, GameObject beakObject, Sprite beak, float intensity)
         {
             beakObject.GetComponent<Image>().sprite = beak;
-            beakObject.GetComponent<RectTransform>().anchorMin = DefaultData.Instance.defaultPositions[emotion][beakObject.name].anchorMin;
-            beakObject.GetComponent<RectTransform>().anchorMax = DefaultData.Instance.defaultPositions[emotion][beakObject.name].anchorMax;
-            beakObject.GetComponent<RectTransform>().localRotation = DefaultData.Instance.defaultPositions[emotion][beakObject.name].localRotation;
+            DefaultData.PositionData positionData = DefaultData.Instance.GetDefaultPositions(emotion, intensity, beakObject.name);
+            beakObject.GetComponent<RectTransform>().anchorMin = positionData.anchorMin;
+            beakObject.GetComponent<RectTransform>().anchorMax = positionData.anchorMax;
+            beakObject.GetComponent<RectTransform>().localRotation = positionData.localRotation;
         }
 
-        private void SetSprite(Emotion emotion, NewBalloonsHooks hooks, Sprite sprite, Sprite beak)
+        private void SetSprite(Emotion emotion, NewBalloonsHooks hooks, Sprite sprite, Sprite beak, float intensity)
         {
             if (hooks)
             {
                 hooks.GetComponentInChildren<Image>().sprite = sprite;
-                SetBeaks(emotion, hooks.peakTopLeft, beak);
-                SetBeaks(emotion, hooks.peakBotLeft, beak);
-                SetBeaks(emotion, hooks.peakTopRight, beak);
-                SetBeaks(emotion, hooks.peakBotRight, beak);
+                SetBeaks(emotion, hooks.peakTopLeft, beak, intensity);
+                SetBeaks(emotion, hooks.peakBotLeft, beak, intensity);
+                SetBeaks(emotion, hooks.peakTopRight, beak, intensity);
+                SetBeaks(emotion, hooks.peakBotRight, beak, intensity);
             }
         }
 
-        private void SetSprites(Emotion emotion, NewBalloonsHooks hooks, SpriteData spriteData)
+        private void SetSprites(Emotion emotion, NewBalloonsHooks hooks, SpriteData spriteData, float intensity)
         {
-            SetSprite(emotion, hooks, spriteData.sprite, spriteData.beak);
+            SetSprite(emotion, hooks, spriteData.sprite, spriteData.beak, intensity);
         }
 
         private void SetAnimator(GameObject hooksTopic, AnimatorOverrideController animator, float intensity)
@@ -152,23 +153,25 @@ namespace BubbleSystem
                 {
                     if (hooks != null)
                     {
-                        float realDuration = DefaultData.Instance.neutralBalloonAnimationData.duration;
+                        DefaultBalloonAnimationData defaultBalloonAnimationData = DefaultData.Instance.GetNeutralBalloonAnimationData(data.intensity);
+                        float realDuration = defaultBalloonAnimationData.duration;
                         SetContent(hooks, data.text.Length > i ? data.text[i] : null);
 
                         try
                         {
-                            SpriteData spriteData = DefaultData.Instance.defaultBalloonData[data.emotion];
-                            TextData textData = DefaultData.Instance.defaultTextData[data.emotion];
+                            SpriteData spriteData = DefaultData.Instance.GetDefaultBalloonData(data.emotion, data.intensity);
+                            TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
                             if (data.emotion.Equals(Emotion.Neutral))
                             {
-                                SetAnimators(hooks, DefaultData.Instance.neutralBalloonAnimationData, data.intensity);
+                                SetAnimators(hooks, defaultBalloonAnimationData, data.intensity);
                             }
                             else
                             {
-                                realDuration = DefaultData.Instance.balloonAnimationData[data.emotion].duration;
-                                SetAnimators(hooks, DefaultData.Instance.balloonAnimationData[data.emotion], data.intensity);
+                                BalloonAnimationData balloonAnimationData = DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity);
+                                realDuration = balloonAnimationData.duration;
+                                SetAnimators(hooks, balloonAnimationData, data.intensity);
                             }
-                            SetSprites(data.emotion, hooks, spriteData);
+                            SetSprites(data.emotion, hooks, spriteData, data.intensity);
                             SetTexts(hooks, textData, data.emotion);
 
                             realDuration = duration > 0 ? duration : realDuration;
@@ -208,7 +211,7 @@ namespace BubbleSystem
             {
                 hooks.Hide();
 
-                var animator = data.emotion.Equals(BubbleSystem.Emotion.Neutral) ? DefaultData.Instance.neutralBalloonAnimationData.animator.animationClips : DefaultData.Instance.balloonAnimationData[data.emotion].animator.animationClips;
+                var animator = data.emotion.Equals(BubbleSystem.Emotion.Neutral) ? DefaultData.Instance.GetNeutralBalloonAnimationData(data.intensity).animator.animationClips : DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity).animator.animationClips;
                 float length = 1f;
                 foreach (AnimationClip clip in animator)
                 {
@@ -223,7 +226,7 @@ namespace BubbleSystem
                 }
                 else
                 {
-                    TextData textData = DefaultData.Instance.defaultTextData[data.emotion];
+                    TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
                     SetEffects(hooks, textData.hideEffect, 1f, length);
                 }
             }
