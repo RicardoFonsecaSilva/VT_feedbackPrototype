@@ -13,7 +13,7 @@ public class AvatarManager : MonoBehaviour
     public void Feel(Tutor tutor, Emotion emotion)
     {
         string moodString = getStateString(emotion);
-        MoodState moodState = getStateValue<MoodState>(moodString);
+        MoodState moodState = getStateType<MoodState>(moodString);
         AvatarController controller = getController(tutor);
         if (controller == null)
             return;
@@ -23,7 +23,7 @@ public class AvatarManager : MonoBehaviour
     public void Express(Tutor tutor, Expression expression)
     {
         string expressionString = getStateString(expression);
-        ExpressionState expressionState = getStateValue<ExpressionState>(expressionString);
+        ExpressionState expressionState = getStateType<ExpressionState>(expressionString);
         AvatarController controller = getController(tutor);
         if (controller == null)
             return;
@@ -40,14 +40,14 @@ public class AvatarManager : MonoBehaviour
 
         try
         {
-            NodState actionState = getStateValue<NodState>(actionString);
+            NodState actionState = getStateType<NodState>(actionString);
             controller.DoNodding(actionState);
         }
         catch (ArgumentException)
         {
             try
             {
-                TalkState actionState = getStateValue<TalkState>(actionString);
+                TalkState actionState = getStateType<TalkState>(actionString);
                 controller.DoTalking(actionState);
                 StartCoroutine(React(tutor, actionState));
             }
@@ -55,7 +55,7 @@ public class AvatarManager : MonoBehaviour
             {
                 try
                 {
-                    GazeState actionState = getStateValue<GazeState>(actionString);
+                    GazeState actionState = getStateType<GazeState>(actionString);
                     controller.DoGazing(actionState);
                 }
                 catch (ArgumentException ae)
@@ -107,7 +107,7 @@ public class AvatarManager : MonoBehaviour
         string[] matchStrings = { "frequency", "speed" };
         if (matchStrings.Any(sArray[1].ToLowerInvariant().Contains))
             ChangeAnimationParameters(new Tutor(sArray[0]), sArray[1], float.Parse(sArray[2], culture.NumberFormat));
-        
+
         //TODO: PROCESS THE REMAINING TAGS
     }
 
@@ -181,7 +181,7 @@ public class AvatarManager : MonoBehaviour
         return string.Concat(emotionString.ToUpperInvariant(), intensityString); ;
     }
 
-    private T getStateValue<T>(string stateString)
+    private static T getStateType<T>(string stateString)
     {
         try
         {
@@ -203,4 +203,41 @@ public class AvatarManager : MonoBehaviour
             throw new ArgumentException(String.Format("'{0}' is not a member of the {1} enumeration.", stateString, typeof(T)));
         }  
     }
+
+    public void sendRequestNew(string input)
+    {
+        TargetOptions targetOptions;
+        ActionGroup actionGroup;
+        RequestType requestType;
+        RequestState requestState;
+        string[] sArray;
+
+        // split the command string and check the length
+        sArray = input.Split('_');
+        if (sArray.Length < 4)
+        {
+            Debug.Log(String.Format("{0} could not be parsed, because it is not a valid tag.", input));
+            return;
+        }
+
+        //Parse the "TargetOptions" field of the command
+        // targetOptions = getStateValue("adwa");
+
+        // if (Enum.TryParse(colorString, out colorValue))
+        //   return; 
+        //if (Enum.IsDefined(typeof(Colors), colorValue) | colorValue.ToString().Contains(","))
+
+        CultureInfo culture = CultureInfo.InvariantCulture;
+
+        for (int i = 0; i < sArray.Length; i++)
+            sArray[i] = culture.TextInfo.ToTitleCase(sArray[i].ToLower());
+
+        // tag contains a frequency\speed command
+        string[] matchStrings = { "frequency", "speed" };
+        if (matchStrings.Any(sArray[1].ToLowerInvariant().Contains))
+            ChangeAnimationParameters(new Tutor(sArray[0]), sArray[1], float.Parse(sArray[2], culture.NumberFormat));
+
+        //TODO: PROCESS THE REMAINING TAGS
+    }
+
 }

@@ -59,6 +59,13 @@ public partial class AvatarController : MonoBehaviour
 
     public void ExpressEmotion(ExpressionState expression)
     {
+        if ((int)expression == 0)
+            animator.SetFloat("Expression Intensity", 0.0f);
+        if((int)expression % 2 == 0) //low expression
+            animator.SetFloat("Expression Intensity", 1.0f);
+        else //high expression
+            animator.SetFloat("Expression Intensity", 0.5f);
+
         animator.SetInteger("Expression", (int)expression);
         animator.SetTrigger("Express");
     }
