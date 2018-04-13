@@ -170,6 +170,7 @@ public class Effects : MonoBehaviour
     {
         float initialFontSize = m_TextComponent.fontSize;
         m_TextComponent.enableAutoSizing = true;
+        m_TextComponent.fontSizeMin = 12f;
         yield return null;
         float maxFontSize = m_TextComponent.fontSize;
         m_TextComponent.enableAutoSizing = false;

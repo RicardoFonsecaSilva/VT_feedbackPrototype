@@ -129,13 +129,13 @@ public class DefaultData : Singleton<DefaultData>
         rect.localRotation = Quaternion.Euler(0, 0, 180);
         neutralPositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.38f);
-        rect.anchorMax = new Vector2(0.8f, 0.1f);
+        rect.anchorMin = new Vector2(0.6f, -0.36f);
+        rect.anchorMax = new Vector2(0.8f, 0.12f);
         rect.localRotation = Quaternion.Euler(0, 0, 0);
         neutralPositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, -0.38f);
-        rect.anchorMax = new Vector2(0.4f, 0.1f);
+        rect.anchorMin = new Vector2(0.2f, -0.36f);
+        rect.anchorMax = new Vector2(0.4f, 0.12f);
         rect.localRotation = Quaternion.Euler(0, 180, 0);
         neutralPositions.Add("Peak_bot_left", rect);
 
@@ -148,7 +148,7 @@ public class DefaultData : Singleton<DefaultData>
 
         rect.anchorMin = new Vector2(0.6f, 0.81f);
         rect.anchorMax = new Vector2(0.8f, 1.25f);
-        rect.localRotation = Quaternion.Euler(0, 40, 190);
+        rect.localRotation = Quaternion.Euler(0, 0, 190);
         happinessPositions.Add("Peak_top_right", rect);
 
         rect.anchorMin = new Vector2(0.2f, 0.81f);
@@ -156,13 +156,13 @@ public class DefaultData : Singleton<DefaultData>
         rect.localRotation = Quaternion.Euler(0, 180, 190);
         happinessPositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.28f);
-        rect.anchorMax = new Vector2(0.8f, 0.2f);
+        rect.anchorMin = new Vector2(0.6f, -0.26f);
+        rect.anchorMax = new Vector2(0.8f, 0.18f);
         rect.localRotation = Quaternion.Euler(0, 180, 10);
         happinessPositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, -0.28f);
-        rect.anchorMax = new Vector2(0.4f, 0.2f);
+        rect.anchorMin = new Vector2(0.2f, -0.26f);
+        rect.anchorMax = new Vector2(0.4f, 0.18f);
         rect.localRotation = Quaternion.Euler(0, 0, 10);
         happinessPositions.Add("Peak_bot_left", rect);
 
@@ -173,23 +173,23 @@ public class DefaultData : Singleton<DefaultData>
         //SADNESS
         dict = new Dictionary<float, Dictionary<string, PositionData>>();
 
-        rect.anchorMin = new Vector2(0.6f, 0.86f);
-        rect.anchorMax = new Vector2(0.8f, 1.3f);
+        rect.anchorMin = new Vector2(0.6f, 0.83f);
+        rect.anchorMax = new Vector2(0.8f, 1.27f);
         rect.localRotation = Quaternion.Euler(0, 0, 180);
         sadnessPositions.Add("Peak_top_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, 0.86f);
-        rect.anchorMax = new Vector2(0.4f, 1.3f);
+        rect.anchorMin = new Vector2(0.2f, 0.83f);
+        rect.anchorMax = new Vector2(0.4f, 1.27f);
         rect.localRotation = Quaternion.Euler(0, 180, 180);
         sadnessPositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.28f);
-        rect.anchorMax = new Vector2(0.8f, 0.2f);
-        rect.localRotation = Quaternion.Euler(0, 180, 10);
+        rect.anchorMin = new Vector2(0.6f, -0.26f);
+        rect.anchorMax = new Vector2(0.8f, 0.18f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
         sadnessPositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, -0.28f);
-        rect.anchorMax = new Vector2(0.4f, 0.2f);
+        rect.anchorMin = new Vector2(0.2f, -0.26f);
+        rect.anchorMax = new Vector2(0.4f, 0.18f);
         rect.localRotation = Quaternion.Euler(0, 0, 0);
         sadnessPositions.Add("Peak_bot_left", rect);
 
@@ -200,24 +200,24 @@ public class DefaultData : Singleton<DefaultData>
         //ANGER
         dict = new Dictionary<float, Dictionary<string, PositionData>>();
 
-        rect.anchorMin = new Vector2(0.6f, 0.71f);
-        rect.anchorMax = new Vector2(0.8f, 1.15f);
+        rect.anchorMin = new Vector2(0.6f, 0.6f);
+        rect.anchorMax = new Vector2(0.8f, 1.04f);
         rect.localRotation = Quaternion.Euler(0, 180, 170);
         angerPositions.Add("Peak_top_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, 0.61f);
-        rect.anchorMax = new Vector2(0.4f, 1.05f);
-        rect.localRotation = Quaternion.Euler(0, 180, 170);
+        rect.anchorMin = new Vector2(0.2f, 0.57f);
+        rect.anchorMax = new Vector2(0.4f, 1.03f);
+        rect.localRotation = Quaternion.Euler(0, 0, 170);
         angerPositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.08f);
+        rect.anchorMin = new Vector2(0.6f, -0.04f);
         rect.anchorMax = new Vector2(0.8f, 0.4f);
-        rect.localRotation = Quaternion.Euler(0, 0, -5);
+        rect.localRotation = Quaternion.Euler(0, 0, -10);
         angerPositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, -0.08f);
-        rect.anchorMax = new Vector2(0.4f, 0.4f);
-        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        rect.anchorMin = new Vector2(0.2f, -0.09f);
+        rect.anchorMax = new Vector2(0.4f, 0.35f);
+        rect.localRotation = Quaternion.Euler(0, 180, -10);
         angerPositions.Add("Peak_bot_left", rect);
 
         dict.Add(1f, angerPositions);
@@ -227,23 +227,23 @@ public class DefaultData : Singleton<DefaultData>
         //FEAR
         dict = new Dictionary<float, Dictionary<string, PositionData>>();
 
-        rect.anchorMin = new Vector2(0.65f, 0.71f);
-        rect.anchorMax = new Vector2(0.8f, 1.25f);
+        rect.anchorMin = new Vector2(0.65f, 0.73f);
+        rect.anchorMax = new Vector2(0.8f, 1.17f);
         rect.localRotation = Quaternion.Euler(0, 0, 180);
         fearPositions.Add("Peak_top_right", rect);
 
-        rect.anchorMin = new Vector2(0.25f, 0.81f);
-        rect.anchorMax = new Vector2(0.4f, 1.35f);
+        rect.anchorMin = new Vector2(0.25f, 0.78f);
+        rect.anchorMax = new Vector2(0.4f, 1.22f);
         rect.localRotation = Quaternion.Euler(0, 180, 180);
         fearPositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.28f);
+        rect.anchorMin = new Vector2(0.65f, -0.24f);
         rect.anchorMax = new Vector2(0.8f, 0.2f);
         rect.localRotation = Quaternion.Euler(0, 180, 0);
         fearPositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.25f, -0.3f);
-        rect.anchorMax = new Vector2(0.4f, 0.25f);
+        rect.anchorMin = new Vector2(0.25f, -0.2f);
+        rect.anchorMax = new Vector2(0.4f, 0.24f);
         rect.localRotation = Quaternion.Euler(0, 0, 0);
         fearPositions.Add("Peak_bot_left", rect);
 
@@ -254,23 +254,23 @@ public class DefaultData : Singleton<DefaultData>
         //DISGUST
         dict = new Dictionary<float, Dictionary<string, PositionData>>();
 
-        rect.anchorMin = new Vector2(0.65f, 0.71f);
-        rect.anchorMax = new Vector2(0.85f, 1.55f);
+        rect.anchorMin = new Vector2(0.65f, 0.75f);
+        rect.anchorMax = new Vector2(0.85f, 1.19f);
         rect.localRotation = Quaternion.Euler(0, 0, 180);
         disgustPositions.Add("Peak_top_right", rect);
 
-        rect.anchorMin = new Vector2(0.15f, 0.71f);
-        rect.anchorMax = new Vector2(0.35f, 1.55f);
+        rect.anchorMin = new Vector2(0.15f, 0.75f);
+        rect.anchorMax = new Vector2(0.35f, 1.19f);
         rect.localRotation = Quaternion.Euler(0, 180, 180);
         disgustPositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.48f);
-        rect.anchorMax = new Vector2(0.85f, 0.3f);
+        rect.anchorMin = new Vector2(0.65f, -0.24f);
+        rect.anchorMax = new Vector2(0.85f, 0.24f);
         rect.localRotation = Quaternion.Euler(0, 180, 0);
         disgustPositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.15f, -0.48f);
-        rect.anchorMax = new Vector2(0.35f, 0.3f);
+        rect.anchorMin = new Vector2(0.15f, -0.24f);
+        rect.anchorMax = new Vector2(0.35f, 0.24f);
         rect.localRotation = Quaternion.Euler(0, 0, 0);
         disgustPositions.Add("Peak_bot_left", rect);
 
@@ -282,22 +282,22 @@ public class DefaultData : Singleton<DefaultData>
         dict = new Dictionary<float, Dictionary<string, PositionData>>();
 
         rect.anchorMin = new Vector2(0.6f, 0.66f);
-        rect.anchorMax = new Vector2(0.8f, 1.2f);
+        rect.anchorMax = new Vector2(0.8f, 1.1f);
         rect.localRotation = Quaternion.Euler(0, 180, 180);
         surprisePositions.Add("Peak_top_right", rect);
 
         rect.anchorMin = new Vector2(0.2f, 0.66f);
-        rect.anchorMax = new Vector2(0.4f, 1.2f);
+        rect.anchorMax = new Vector2(0.4f, 1.1f);
         rect.localRotation = Quaternion.Euler(0, 0, 180);
         surprisePositions.Add("Peak_top_left", rect);
 
-        rect.anchorMin = new Vector2(0.65f, -0.18f);
-        rect.anchorMax = new Vector2(0.8f, 0.3f);
+        rect.anchorMin = new Vector2(0.65f, -0.11f);
+        rect.anchorMax = new Vector2(0.8f, 0.33f);
         rect.localRotation = Quaternion.Euler(0, 0, 0);
         surprisePositions.Add("Peak_bot_right", rect);
 
-        rect.anchorMin = new Vector2(0.2f, -0.23f);
-        rect.anchorMax = new Vector2(0.4f, 0.35f);
+        rect.anchorMin = new Vector2(0.2f, -0.11f);
+        rect.anchorMax = new Vector2(0.4f, 0.33f);
         rect.localRotation = Quaternion.Euler(0, 180, 0);
         surprisePositions.Add("Peak_bot_left", rect);
 
@@ -403,8 +403,8 @@ public class DefaultData : Singleton<DefaultData>
     {
         Dictionary<float, SpriteData> dict = new Dictionary<float, SpriteData>();
 
-        var tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Neutral/neutral_balloon");
-        var beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Neutral/neutral_beak");
+        var tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Neutral/neutral_balloon");
+        var beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Neutral/neutral_beak");
         SpriteData spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -413,8 +413,8 @@ public class DefaultData : Singleton<DefaultData>
         defaultBalloonData.Add(BubbleSystem.Emotion.Neutral, dict);
 
         dict = new Dictionary<float, SpriteData>();
-        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Happiness/happiness_balloon");
-        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Happiness/happiness_beak");
+        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Happiness/happiness_balloon");
+        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Happiness/happiness_beak");
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -423,8 +423,8 @@ public class DefaultData : Singleton<DefaultData>
         defaultBalloonData.Add(BubbleSystem.Emotion.Happiness, dict);
 
         dict = new Dictionary<float, SpriteData>();
-        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Sadness/sadness_balloon");
-        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Sadness/sadness_beak");
+        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Sadness/sadness_balloon");
+        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Sadness/sadness_beak");
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -433,8 +433,8 @@ public class DefaultData : Singleton<DefaultData>
         defaultBalloonData.Add(BubbleSystem.Emotion.Sadness, dict);
 
         dict = new Dictionary<float, SpriteData>();
-        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Anger/anger_balloon");
-        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Anger/anger_beak");
+        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Anger/anger_balloon");
+        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Anger/anger_beak");
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -443,8 +443,8 @@ public class DefaultData : Singleton<DefaultData>
         defaultBalloonData.Add(BubbleSystem.Emotion.Anger, dict);
 
         dict = new Dictionary<float, SpriteData>();
-        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Fear/fear_balloon");
-        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Fear/fear_beak");
+        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Fear/fear_balloon");
+        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Fear/fear_beak");
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -453,8 +453,8 @@ public class DefaultData : Singleton<DefaultData>
         defaultBalloonData.Add(BubbleSystem.Emotion.Fear, dict);
 
         dict = new Dictionary<float, SpriteData>();
-        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Disgust/disgust_balloon");
-        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Disgust/disgust_beak");
+        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Disgust/disgust_balloon");
+        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Disgust/disgust_beak");
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
@@ -463,8 +463,8 @@ public class DefaultData : Singleton<DefaultData>
         defaultBalloonData.Add(BubbleSystem.Emotion.Disgust, dict);
 
         dict = new Dictionary<float, SpriteData>();
-        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Surprise/surprise_balloon");
-        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Surprise/surprise_beak");
+        tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Surprise/surprise_balloon");
+        beak = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Surprise/surprise_beak");
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
