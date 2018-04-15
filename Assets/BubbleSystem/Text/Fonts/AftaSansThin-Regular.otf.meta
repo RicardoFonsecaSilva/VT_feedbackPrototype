@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8a1a82f55ea774f4ca3a2a97172b68c0
+timeCreated: 1523806009
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Afta sans
+  fontNames:
+  - Afta sans
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -22,6 +22,21 @@ public class DefaultData : Singleton<DefaultData>
     public AnimationCurve lowerBellCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
     public AnimationCurve palpitationCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f), new Keyframe(1f, 0f), new Keyframe(1.5f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f));
 
+    private Color32 defaultColor = Color.white;
+    private Color32 happinessColor = new Color32(0xF0, 0xE6, 0x4D, 0xFF);
+    private Color32 sadnessColor = new Color32(0x1D, 0x33, 0xCE, 0xFF);
+    private Color32 angerColor = new Color32(0xFF, 0x00, 0xFF, 0xFF);
+    private Color32 fearColor = new Color32(0xAE, 0x52, 0xEC, 0xFF);
+    private Color32 disgustColor = new Color32(0xC5, 0xD1, 0x37, 0xFF);
+    private Color32 surpriseColor = new Color32(0xFF, 0xC3, 0x58, 0xFF);
+
+    private float happinessSizeRatio = 1f;
+    private float sadnessSizeRatio = 0.5f;
+    private float angerSizeRatio = 1.5f;
+    private float fearSizeRatio = 0.7f;
+    private float disgustSizeRatio = 0.8f;
+    private float surpriseSizeRatio = 1.2f;
+
     public struct PositionData
     {
         public Vector2 anchorMin;
@@ -307,42 +322,113 @@ public class DefaultData : Singleton<DefaultData>
 
     private void SetTextData()
     {
-        TMPro.TMP_FontAsset font = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/arial");
+        TMPro.TMP_FontAsset neutralFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/arial");
+        TMPro.TMP_FontAsset happinessFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/coiny-regular");       //NO
+        TMPro.TMP_FontAsset sadnessFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/AftaSansThin-Regular");  //NO
+        TMPro.TMP_FontAsset angerFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/AlfaSlabOne-Regular");     //NO
+        TMPro.TMP_FontAsset fearFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Adler");                    //NO
+        TMPro.TMP_FontAsset disgustFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/1942");                  //NO
+        TMPro.TMP_FontAsset surpriseFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Courier-Prime");        //NO
+        float initialSize = 40.0f;
         Color color = Color.black;
-        float size = 40.0f;
-        foreach (BubbleSystem.Emotion emotion in Enum.GetValues(typeof(BubbleSystem.Emotion)))
-        {
-            TextData text = new TextData();
-            Dictionary<float, TextData> dict = new Dictionary<float, TextData>();
-            text.font = font;
-            text.color = color;
-            text.size = size;
-            text.showEffect = new Dictionary<Effect, AnimationCurve>();
-            text.hideEffect = new Dictionary<Effect, AnimationCurve>();
-            dict.Add(1f, text);
-            defaultTextData.Add(emotion, dict);
-        }
+        
+        TextData text = new TextData();
+        Dictionary<float, TextData> dict = new Dictionary<float, TextData>();
+        text.font = neutralFont;
+        text.color = color;
+        text.size = initialSize;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Default, dict);
 
         defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Add(Effect.None, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Add(Effect.None, fadeCurve);
 
+        defaultTextData.Add(BubbleSystem.Emotion.Neutral, dict);
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+
+
+        text = new TextData();
+        dict = new Dictionary<float, TextData>();
+        text.font = happinessFont;
+        text.color = color;
+        text.size = initialSize * happinessSizeRatio;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Happiness, dict);
 
         defaultTextData[BubbleSystem.Emotion.Happiness][1f].showEffect.Add(Effect.Wave, bellCurve);
         defaultTextData[BubbleSystem.Emotion.Happiness][1f].hideEffect.Add(Effect.Wave, bellCurve);
 
+
+        text = new TextData();
+        dict = new Dictionary<float, TextData>();
+        text.font = sadnessFont;
+        text.color = color;
+        text.size = initialSize * sadnessSizeRatio;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Sadness, dict);
+
         defaultTextData[BubbleSystem.Emotion.Sadness][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Sadness][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+
+
+        text = new TextData();
+        dict = new Dictionary<float, TextData>();
+        text.font = angerFont;
+        text.color = color;
+        text.size = initialSize * angerSizeRatio;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Anger, dict);
 
         defaultTextData[BubbleSystem.Emotion.Anger][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Anger][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
+
+        text = new TextData();
+        dict = new Dictionary<float, TextData>();
+        text.font = fearFont;
+        text.color = color;
+        text.size = initialSize * fearSizeRatio;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Fear, dict);
+
         defaultTextData[BubbleSystem.Emotion.Fear][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Fear][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
+
+        text = new TextData();
+        dict = new Dictionary<float, TextData>();
+        text.font = disgustFont;
+        text.color = color;
+        text.size = initialSize * disgustSizeRatio;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Disgust, dict);
+
         defaultTextData[BubbleSystem.Emotion.Disgust][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Disgust][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+
+
+        text = new TextData();
+        dict = new Dictionary<float, TextData>();
+        text.font = surpriseFont;
+        text.color = color;
+        text.size = initialSize * surpriseSizeRatio;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
+        defaultTextData.Add(BubbleSystem.Emotion.Surprise, dict);
 
         defaultTextData[BubbleSystem.Emotion.Surprise][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Surprise][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
@@ -513,35 +599,35 @@ public class DefaultData : Singleton<DefaultData>
 
         
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/joaoBackground");
-        defaultBackgroundData.color = Color.white;
+        defaultBackgroundData.color = defaultColor;
         neutralDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.color = Color.yellow;
+        defaultBackgroundData.color = happinessColor;
         happinessDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.color = Color.blue;
+        defaultBackgroundData.color = sadnessColor;
         sadnessDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.color = Color.red;
+        defaultBackgroundData.color = angerColor;
         angerDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.color = Color.grey;
+        defaultBackgroundData.color = fearColor;
         fearDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.color = Color.green;
+        defaultBackgroundData.color = disgustColor;
         disgustDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.color = Color.cyan;
+        defaultBackgroundData.color = surpriseColor;
         surpriseDict.Add(Reason.None, defaultBackgroundData);
 
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/graph");
-        defaultBackgroundData.color = Color.white;
+        defaultBackgroundData.color = defaultColor;
         neutralDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.color = Color.yellow;
+        defaultBackgroundData.color = happinessColor;
         happinessDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.color = Color.blue;
+        defaultBackgroundData.color = sadnessColor;
         sadnessDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.color = Color.red;
+        defaultBackgroundData.color = angerColor;
         angerDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.color = Color.grey;
+        defaultBackgroundData.color = fearColor;
         fearDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.color = Color.green;
+        defaultBackgroundData.color = disgustColor;
         disgustDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.color = Color.cyan;
+        defaultBackgroundData.color = surpriseColor;
         surpriseDict.Add(Reason.Grades, defaultBackgroundData);
 
         dict.Add(1f, neutralDict);
