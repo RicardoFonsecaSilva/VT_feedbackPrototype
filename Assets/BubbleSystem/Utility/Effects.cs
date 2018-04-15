@@ -51,7 +51,6 @@ public class Effects : MonoBehaviour
 
     private Color32 initialColor;
     private float initialRectX, initialRectY;
-    private float duration, intensity;
 
     void Awake()
     {
@@ -169,13 +168,11 @@ public class Effects : MonoBehaviour
         m_TextComponent.fontSize = initialFontSize > maxFontSize ? maxFontSize : initialFontSize;
     }
 
-    public void SetEffect(Dictionary<Effect, AnimationCurve> effects, float _intensity, float _duration)
+    public void SetEffect(Dictionary<Effect, AnimationCurve> effects, float intensity, float duration)
     {
         if (m_TextComponent.IsActive())
         {
             initialColor = m_TextComponent.color;
-            duration = _duration;
-            intensity = _intensity;
 
             StopAllCoroutines();
 
@@ -195,100 +192,100 @@ public class Effects : MonoBehaviour
                         break;
                     case Effect.Appear:
                         ResetCharacterCount();
-                        AddIenumerator(effect, Appear(effects[effect]));
+                        AddIenumerator(effect, Appear(duration, intensity, effects[effect]));
                         break;
                     case Effect.Blush:
                         ResetColor(false, false);
-                        AddIenumerator(effect, Blush(effects[effect]));
+                        AddIenumerator(effect, Blush(duration, intensity, effects[effect]));
                         break;
                     case Effect.BlushCharacters:
                         ResetColor(false, true);
-                        AddIenumerator(effect, BlushCharacters(effects[effect]));
+                        AddIenumerator(effect, BlushCharacters(duration, intensity, effects[effect]));
                         break;
                     case Effect.DeflectionFont:
-                        AddIenumerator(effect, DeflectionFontSize(effects[effect]));
+                        AddIenumerator(effect, DeflectionFontSize(duration, intensity, effects[effect]));
                         break;
                     case Effect.Erase:
                         ResetColor(true, true);
-                        AddIenumerator(effect, Erase(effects[effect]));
+                        AddIenumerator(effect, Erase(duration, intensity, effects[effect]));
                         break;
                     case Effect.FadeIn:
                         ResetColor(false, false);
-                        AddIenumerator(effect, FadeIn(effects[effect]));
+                        AddIenumerator(effect, FadeIn(duration, intensity, effects[effect]));
                         break;
                     case Effect.FadeInCharacters:
                         ResetColor(false, true);
-                        AddIenumerator(effect, FadeInCharacters(effects[effect]));
+                        AddIenumerator(effect, FadeInCharacters(duration, intensity, effects[effect]));
                         break;
                     case Effect.FadeOut:
                         ResetColor(true, false);
-                        AddIenumerator(effect, FadeOut(effects[effect]));
+                        AddIenumerator(effect, FadeOut(duration, intensity, effects[effect]));
                         break;
                     case Effect.FadeOutCharacters:
                         ResetColor(true, true);
-                        AddIenumerator(effect, FadeOutCharacters(effects[effect]));
+                        AddIenumerator(effect, FadeOutCharacters(duration, intensity, effects[effect]));
                         break;
                     case Effect.Flashing:
                         ResetColor(true, false);
-                        AddIenumerator(effect, Flash(effects[effect]));
+                        AddIenumerator(effect, Flash(duration, intensity, effects[effect]));
                         break;
                     case Effect.Jitter:
-                        AddIenumerator(effect, Jitter(effects[effect]));
+                        AddIenumerator(effect, Jitter(duration, intensity, effects[effect]));
                         break;
                     case Effect.Palpitations:
                         ResetRectTransform(true, false, false);
-                        AddIenumerator(effect, Palpitations(effects[effect]));
+                        AddIenumerator(effect, Palpitations(duration, intensity, effects[effect]));
                         break;
                     case Effect.Shake:
-                        AddIenumerator(effect, Shake(effects[effect], false));
+                        AddIenumerator(effect, Shake(duration, intensity, effects[effect], false));
                         break;
                     case Effect.ShakeCharacters:
-                        AddIenumerator(effect, Shake(effects[effect], true));
+                        AddIenumerator(effect, Shake(duration, intensity, effects[effect], true));
                         break;
                     case Effect.Squash:
                         ResetRectTransform(true, false, false);
-                        AddIenumerator(effect, Squash(effects[effect], true, true));
+                        AddIenumerator(effect, Squash(duration, intensity, effects[effect], true, true));
                         break;
                     case Effect.SquashX:
                         ResetRectTransform(true, false, false);
-                        AddIenumerator(effect, Squash(effects[effect], true, false));
+                        AddIenumerator(effect, Squash(duration, intensity, effects[effect], true, false));
                         break;
                     case Effect.SquashY:
                         ResetRectTransform(true, false, false);
-                        AddIenumerator(effect, Squash(effects[effect], false, true));
+                        AddIenumerator(effect, Squash(duration, intensity, effects[effect], false, true));
                         break;
                     case Effect.Stretch:
                         ResetRectTransform(false, true, true);
-                        AddIenumerator(effect, Stretch(effects[effect], true, true));
+                        AddIenumerator(effect, Stretch(duration, intensity, effects[effect], true, true));
                         break;
                     case Effect.StretchX:
                         ResetRectTransform(false, true, false);
-                        AddIenumerator(effect, Stretch(effects[effect], true, false));
+                        AddIenumerator(effect, Stretch(duration, intensity, effects[effect], true, false));
                         break;
                     case Effect.StretchY:
                         ResetRectTransform(false, false, true);
-                        AddIenumerator(effect, Stretch(effects[effect], false, true));
+                        AddIenumerator(effect, Stretch(duration, intensity, effects[effect], false, true));
                         break;
                     case Effect.SwellingFont:
-                        AddIenumerator(effect, SwellingFontSize(effects[effect]));
+                        AddIenumerator(effect, SwellingFontSize(duration, intensity, effects[effect]));
                         break;
                     case Effect.Swing:
-                        AddIenumerator(effect, Swing());
+                        AddIenumerator(effect, Swing(duration, intensity));
                         break;
                     case Effect.SwingCharacters:
-                        AddIenumerator(effect, SwingCharacters());
+                        AddIenumerator(effect, SwingCharacters(duration, intensity));
                         break;
                     case Effect.Warp:
-                        AddIenumerator(effect, WarpText(effects[effect], false));
+                        AddIenumerator(effect, WarpText(duration, intensity, effects[effect], false));
                         break;
                     case Effect.WarpCharacters:
-                        AddIenumerator(effect, WarpTextCharacters(effects[effect]));
+                        AddIenumerator(effect, WarpTextCharacters(duration, intensity, effects[effect]));
                         break;
                     case Effect.Wave:
-                        AddIenumerator(effect, Wave(effects[effect], false));
+                        AddIenumerator(effect, Wave(duration, intensity, effects[effect], false));
                         break;
                     case Effect.WaveCharacters:
-                        AddIenumerator(effect, Wave(effects[effect], true));
+                        AddIenumerator(effect, Wave(duration, intensity, effects[effect], true));
                         break;
                 }
             }
@@ -335,7 +332,7 @@ public class Effects : MonoBehaviour
         copyOfVertices[vertexIndex + 3] += center;
     }
 
-    IEnumerator Appear(AnimationCurve curve)
+    IEnumerator Appear(float duration, float intensity, AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
         int totalVisibleCharacters = m_TextComponent.textInfo.characterCount; // Get # of Visible Character in text object
@@ -346,7 +343,7 @@ public class Effects : MonoBehaviour
         float lastKeyTime = lastframe.time;
         float yValue;
 
-        while (((Time.time - initialTime) / duration) < 1)
+        while ((Time.time - initialTime) / duration < 1)
         {
             yValue = Mathf.Clamp01(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration));
             visibleCount = (int)(yValue * totalVisibleCharacters);
@@ -358,7 +355,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.maxVisibleCharacters = totalVisibleCharacters;
     }
 
-    IEnumerator Blush(AnimationCurve curve)
+    IEnumerator Blush(float duration, float intensity, AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -391,7 +388,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.color = DefaultData.Instance.blushColor;
     }
 
-    IEnumerator BlushCharacters(AnimationCurve curve)
+    IEnumerator BlushCharacters(float duration, float intensity, AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -454,7 +451,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator DeflectionFontSize(AnimationCurve curve)
+    IEnumerator DeflectionFontSize(float duration, float intensity, AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -480,7 +477,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.fontSize = finalSize;
     }
 
-    IEnumerator Erase(AnimationCurve curve, float wantedAlpha = 0)
+    IEnumerator Erase(float duration, float intensity, AnimationCurve curve, float wantedAlpha = 0)
     {
         // Need to force the text object to be generated so we have valid data to work with right from the start.
         m_TextComponent.ForceMeshUpdate();
@@ -554,7 +551,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator FadeIn(AnimationCurve curve, int wantedAlpha = 255)
+    IEnumerator FadeIn(float duration, float intensity, AnimationCurve curve, int wantedAlpha = 255)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -582,7 +579,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.color = finalColor;
     }
 
-    IEnumerator FadeInCharacters(AnimationCurve curve, int wantedAlpha = 255)
+    IEnumerator FadeInCharacters(float duration, float intensity, AnimationCurve curve, int wantedAlpha = 255)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -641,7 +638,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator FadeOut(AnimationCurve curve, float wantedAlpha = 0)
+    IEnumerator FadeOut(float duration, float intensity, AnimationCurve curve, float wantedAlpha = 0)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -669,7 +666,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.color = finalColor;
     }
 
-    IEnumerator FadeOutCharacters(AnimationCurve curve, float wantedAlpha = 0)
+    IEnumerator FadeOutCharacters(float duration, float intensity, AnimationCurve curve, float wantedAlpha = 0)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -728,7 +725,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Flash(AnimationCurve curve, bool keepAnimating = true)
+    IEnumerator Flash(float duration, float intensity, AnimationCurve curve, bool keepAnimating = true)
     {
         m_TextComponent.ForceMeshUpdate();
         curve.preWrapMode = WrapMode.Loop;
@@ -754,7 +751,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Jitter(AnimationCurve curve, bool keepAnimating = true, bool random = true)
+    IEnumerator Jitter(float duration, float intensity, AnimationCurve curve, bool keepAnimating = true, bool random = true)
     {
         m_TextComponent.ForceMeshUpdate();
         curve.preWrapMode = WrapMode.Loop;
@@ -835,7 +832,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Palpitations(AnimationCurve curve, bool keepAnimating = false)
+    IEnumerator Palpitations(float duration, float intensity, AnimationCurve curve, bool keepAnimating = false)
     {
         m_TextComponent.ForceMeshUpdate();
         curve.preWrapMode = WrapMode.Loop;
@@ -862,7 +859,7 @@ public class Effects : MonoBehaviour
         rectTransform.localScale = localScale;
     }
 
-    IEnumerator Shake(AnimationCurve curve, bool characters, bool keepAnimating = true, bool random = true)
+    IEnumerator Shake(float duration, float intensity, AnimationCurve curve, bool characters, bool keepAnimating = true, bool random = true)
     {
         m_TextComponent.ForceMeshUpdate();
         curve.preWrapMode = WrapMode.Loop;
@@ -962,7 +959,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Squash(AnimationCurve curve, bool x, bool y, float wantedScaleX = 0f, float wantedScaleY = 0f)
+    IEnumerator Squash(float duration, float intensity, AnimationCurve curve, bool x, bool y, float wantedScaleX = 0f, float wantedScaleY = 0f)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -997,7 +994,7 @@ public class Effects : MonoBehaviour
         rectTransform.localScale = finalScale;
     }
 
-    IEnumerator Stretch(AnimationCurve curve, bool x, bool y, float wantedScaleX = 1f, float wantedScaleY = 1f)
+    IEnumerator Stretch(float duration, float intensity, AnimationCurve curve, bool x, bool y, float wantedScaleX = 1f, float wantedScaleY = 1f)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -1035,7 +1032,7 @@ public class Effects : MonoBehaviour
         rectTransform.localScale = finalScale;
     }
 
-    IEnumerator SwellingFontSize(AnimationCurve curve)
+    IEnumerator SwellingFontSize(float duration, float intensity, AnimationCurve curve)
     {
         m_TextComponent.ForceMeshUpdate();
 
@@ -1063,7 +1060,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.fontSize = finalSize;
     }
 
-    IEnumerator Swing(bool keepAnimating = false)
+    IEnumerator Swing(float duration, float intensity, bool keepAnimating = false)
     {
         Matrix4x4 matrix;
         Vector3[] vertices;
@@ -1109,7 +1106,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.ForceMeshUpdate();
     }
 
-    IEnumerator SwingCharacters(bool keepAnimating = false)
+    IEnumerator SwingCharacters(float duration, float intensity, bool keepAnimating = false)
     {
         Matrix4x4 matrix;
         Vector3[] vertices;
@@ -1160,7 +1157,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.ForceMeshUpdate();
     }
 
-    IEnumerator WarpText(AnimationCurve curve, bool keepAnimating = false)
+    IEnumerator WarpText(float duration, float intensity, AnimationCurve curve, bool keepAnimating = false)
     {
         curve.preWrapMode = WrapMode.Clamp;
         curve.postWrapMode = WrapMode.Clamp;
@@ -1232,7 +1229,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator WarpTextCharacters(AnimationCurve curve)
+    IEnumerator WarpTextCharacters(float duration, float intensity, AnimationCurve curve)
     {
         curve.preWrapMode = WrapMode.Clamp;
         curve.postWrapMode = WrapMode.Clamp;
@@ -1304,7 +1301,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Wave(AnimationCurve curve, bool characters, bool keepAnimating = true)
+    IEnumerator Wave(float duration, float intensity, AnimationCurve curve, bool characters, bool keepAnimating = true)
     {
         curve.preWrapMode = WrapMode.Loop;
         curve.postWrapMode = WrapMode.Loop;
