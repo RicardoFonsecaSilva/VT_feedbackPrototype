@@ -143,7 +143,7 @@ public class Effects : MonoBehaviour
 
     private void AddCoroutine(Effect effect, IEnumerator function)
     {
-        if(coroutines.ContainsKey(effect))
+        if (coroutines.ContainsKey(effect))
             coroutines[effect] = StartCoroutine(function);
         else
             coroutines.Add(effect, StartCoroutine(function));
@@ -151,7 +151,7 @@ public class Effects : MonoBehaviour
 
     private void AddIenumerator(Effect effect, IEnumerator function)
     {
-        if(enumerators.ContainsKey(effect))
+        if (enumerators.ContainsKey(effect))
             enumerators[effect] = function;
         else
             enumerators.Add(effect, function);
@@ -171,129 +171,132 @@ public class Effects : MonoBehaviour
 
     public void SetEffect(Dictionary<Effect, AnimationCurve> effects, float _intensity, float _duration)
     {
-        initialColor = m_TextComponent.color;
-        duration = _duration;
-        intensity = _intensity;
-
-        StopAllCoroutines();
-
-        StartCoroutine(ResetFontSize());
-        ResetCharacters(true);
-        ResetColor(true, true);
-        ResetRectTransform(true, true, true);
-        ResetCharacterCount();
-
-        enumerators.Clear();
-
-        foreach (Effect effect in effects.Keys)
+        if (m_TextComponent.IsActive())
         {
-            switch (effect)
+            initialColor = m_TextComponent.color;
+            duration = _duration;
+            intensity = _intensity;
+
+            StopAllCoroutines();
+
+            StartCoroutine(ResetFontSize());
+            ResetCharacters(true);
+            ResetColor(true, true);
+            ResetRectTransform(true, true, true);
+            ResetCharacterCount();
+
+            enumerators.Clear();
+
+            foreach (Effect effect in effects.Keys)
             {
-                case Effect.None:
-                    break;
-                case Effect.Appear:
-                    ResetCharacterCount();
-                    AddIenumerator(effect, Appear(effects[effect]));
-                    break;
-                case Effect.Blush:
-                    ResetColor(false, false);
-                    AddIenumerator(effect, Blush(effects[effect]));
-                    break;
-                case Effect.BlushCharacters:
-                    ResetColor(false, true);
-                    AddIenumerator(effect, BlushCharacters(effects[effect]));
-                    break;
-                case Effect.DeflectionFont:
-                    AddIenumerator(effect, DeflectionFontSize(effects[effect]));
-                    break;
-                case Effect.Erase:
-                    ResetColor(true, true);
-                    AddIenumerator(effect, Erase(effects[effect]));
-                    break;
-                case Effect.FadeIn:
-                    ResetColor(false, false);
-                    AddIenumerator(effect, FadeIn(effects[effect]));
-                    break;
-                case Effect.FadeInCharacters:
-                    ResetColor(false, true);
-                    AddIenumerator(effect, FadeInCharacters(effects[effect]));
-                    break;
-                case Effect.FadeOut:
-                    ResetColor(true, false);
-                    AddIenumerator(effect, FadeOut(effects[effect]));
-                    break;
-                case Effect.FadeOutCharacters:
-                    ResetColor(true, true);
-                    AddIenumerator(effect, FadeOutCharacters(effects[effect]));
-                    break;
-                case Effect.Flashing:
-                    ResetColor(true, false);
-                    AddIenumerator(effect, Flash(effects[effect]));
-                    break;
-                case Effect.Jitter:
-                    AddIenumerator(effect, Jitter(effects[effect]));
-                    break;
-                case Effect.Palpitations:
-                    ResetRectTransform(true, false, false);
-                    AddIenumerator(effect, Palpitations(effects[effect]));
-                    break;
-                case Effect.Shake:
-                    AddIenumerator(effect, Shake(effects[effect], false));
-                    break;
-                case Effect.ShakeCharacters:
-                    AddIenumerator(effect, Shake(effects[effect], true));
-                    break;
-                case Effect.Squash:
-                    ResetRectTransform(true, false, false);
-                    AddIenumerator(effect, Squash(effects[effect], true, true));
-                    break;
-                case Effect.SquashX:
-                    ResetRectTransform(true, false, false);
-                    AddIenumerator(effect, Squash(effects[effect], true, false));
-                    break;
-                case Effect.SquashY:
-                    ResetRectTransform(true, false, false);
-                    AddIenumerator(effect, Squash(effects[effect], false, true));
-                    break;
-                case Effect.Stretch:
-                    ResetRectTransform(false, true, true);
-                    AddIenumerator(effect, Stretch(effects[effect], true, true));
-                    break;
-                case Effect.StretchX:
-                    ResetRectTransform(false, true, false);
-                    AddIenumerator(effect, Stretch(effects[effect], true, false));
-                    break;
-                case Effect.StretchY:
-                    ResetRectTransform(false, false, true);
-                    AddIenumerator(effect, Stretch(effects[effect], false, true));
-                    break;
-                case Effect.SwellingFont:
-                    AddIenumerator(effect, SwellingFontSize(effects[effect]));
-                    break;
-                case Effect.Swing:
-                    AddIenumerator(effect, Swing());
-                    break;
-                case Effect.SwingCharacters:
-                    AddIenumerator(effect, SwingCharacters());
-                    break;
-                case Effect.Warp:
-                    AddIenumerator(effect, WarpText(effects[effect], false));
-                    break;
-                case Effect.WarpCharacters:
-                    AddIenumerator(effect, WarpTextCharacters(effects[effect]));
-                    break;
-                case Effect.Wave:
-                    AddIenumerator(effect, Wave(effects[effect], false));
-                    break;
-                case Effect.WaveCharacters:
-                    AddIenumerator(effect, Wave(effects[effect], true));
-                    break;
+                switch (effect)
+                {
+                    case Effect.None:
+                        break;
+                    case Effect.Appear:
+                        ResetCharacterCount();
+                        AddIenumerator(effect, Appear(effects[effect]));
+                        break;
+                    case Effect.Blush:
+                        ResetColor(false, false);
+                        AddIenumerator(effect, Blush(effects[effect]));
+                        break;
+                    case Effect.BlushCharacters:
+                        ResetColor(false, true);
+                        AddIenumerator(effect, BlushCharacters(effects[effect]));
+                        break;
+                    case Effect.DeflectionFont:
+                        AddIenumerator(effect, DeflectionFontSize(effects[effect]));
+                        break;
+                    case Effect.Erase:
+                        ResetColor(true, true);
+                        AddIenumerator(effect, Erase(effects[effect]));
+                        break;
+                    case Effect.FadeIn:
+                        ResetColor(false, false);
+                        AddIenumerator(effect, FadeIn(effects[effect]));
+                        break;
+                    case Effect.FadeInCharacters:
+                        ResetColor(false, true);
+                        AddIenumerator(effect, FadeInCharacters(effects[effect]));
+                        break;
+                    case Effect.FadeOut:
+                        ResetColor(true, false);
+                        AddIenumerator(effect, FadeOut(effects[effect]));
+                        break;
+                    case Effect.FadeOutCharacters:
+                        ResetColor(true, true);
+                        AddIenumerator(effect, FadeOutCharacters(effects[effect]));
+                        break;
+                    case Effect.Flashing:
+                        ResetColor(true, false);
+                        AddIenumerator(effect, Flash(effects[effect]));
+                        break;
+                    case Effect.Jitter:
+                        AddIenumerator(effect, Jitter(effects[effect]));
+                        break;
+                    case Effect.Palpitations:
+                        ResetRectTransform(true, false, false);
+                        AddIenumerator(effect, Palpitations(effects[effect]));
+                        break;
+                    case Effect.Shake:
+                        AddIenumerator(effect, Shake(effects[effect], false));
+                        break;
+                    case Effect.ShakeCharacters:
+                        AddIenumerator(effect, Shake(effects[effect], true));
+                        break;
+                    case Effect.Squash:
+                        ResetRectTransform(true, false, false);
+                        AddIenumerator(effect, Squash(effects[effect], true, true));
+                        break;
+                    case Effect.SquashX:
+                        ResetRectTransform(true, false, false);
+                        AddIenumerator(effect, Squash(effects[effect], true, false));
+                        break;
+                    case Effect.SquashY:
+                        ResetRectTransform(true, false, false);
+                        AddIenumerator(effect, Squash(effects[effect], false, true));
+                        break;
+                    case Effect.Stretch:
+                        ResetRectTransform(false, true, true);
+                        AddIenumerator(effect, Stretch(effects[effect], true, true));
+                        break;
+                    case Effect.StretchX:
+                        ResetRectTransform(false, true, false);
+                        AddIenumerator(effect, Stretch(effects[effect], true, false));
+                        break;
+                    case Effect.StretchY:
+                        ResetRectTransform(false, false, true);
+                        AddIenumerator(effect, Stretch(effects[effect], false, true));
+                        break;
+                    case Effect.SwellingFont:
+                        AddIenumerator(effect, SwellingFontSize(effects[effect]));
+                        break;
+                    case Effect.Swing:
+                        AddIenumerator(effect, Swing());
+                        break;
+                    case Effect.SwingCharacters:
+                        AddIenumerator(effect, SwingCharacters());
+                        break;
+                    case Effect.Warp:
+                        AddIenumerator(effect, WarpText(effects[effect], false));
+                        break;
+                    case Effect.WarpCharacters:
+                        AddIenumerator(effect, WarpTextCharacters(effects[effect]));
+                        break;
+                    case Effect.Wave:
+                        AddIenumerator(effect, Wave(effects[effect], false));
+                        break;
+                    case Effect.WaveCharacters:
+                        AddIenumerator(effect, Wave(effects[effect], true));
+                        break;
+                }
             }
-        }
 
-        foreach(Effect effect in enumerators.Keys)
-        {
-            AddCoroutine(effect, enumerators[effect]);
+            foreach (Effect effect in enumerators.Keys)
+            {
+                AddCoroutine(effect, enumerators[effect]);
+            }
         }
     }
 

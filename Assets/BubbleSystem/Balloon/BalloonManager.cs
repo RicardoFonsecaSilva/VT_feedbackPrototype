@@ -184,25 +184,28 @@ namespace BubbleSystem
 
             if (hooks)
             {
-                hooks.Hide();
-
-                var animationClips = (data.emotion.Equals(BubbleSystem.Emotion.Neutral) || data.emotion.Equals(BubbleSystem.Emotion.Default)) ? DefaultData.Instance.GetNeutralBalloonAnimationData(data.intensity).animator.animationClips : DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity).animator.animationClips;
-                float length = 1f;
-                foreach (AnimationClip clip in animationClips)
+                if (hooks.Content != null)
                 {
-                    if (clip.name.Contains("hide"))
-                        length = clip.length;
-                }
+                    hooks.Hide();
+
+                    var animationClips = (data.emotion.Equals(BubbleSystem.Emotion.Neutral) || data.emotion.Equals(BubbleSystem.Emotion.Default)) ? DefaultData.Instance.GetNeutralBalloonAnimationData(data.intensity).animator.animationClips : DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity).animator.animationClips;
+                    float length = 1f;
+                    foreach (AnimationClip clip in animationClips)
+                    {
+                        if (clip.name.Contains("hide"))
+                            length = clip.length;
+                    }
 
 
-                if (hideEffects != null)
-                {
-                    SetEffects(hooks, hideEffects, 1f, length);
-                }
-                else
-                {
-                    TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
-                    SetEffects(hooks, textData.hideEffect, 1f, length);
+                    if (hideEffects != null)
+                    {
+                        SetEffects(hooks, hideEffects, 1f, length);
+                    }
+                    else
+                    {
+                        TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
+                        SetEffects(hooks, textData.hideEffect, 1f, length);
+                    }
                 }
             }
         }
