@@ -29,23 +29,21 @@ namespace BubbleSystem
             {
                 throw new MissingFieldException("Emotion enum does not contain " + emotion + ".");
             }
+
+            intensity = Mathf.Clamp01(intensity);
             data.intensity = intensity;
             data.reason = reason;
             data.text = text;
 
-            try
-            {
-                tutorData.Add(tutor, data);
-            }
-            catch
-            {
+
+            if(tutorData.ContainsKey(tutor))
                 tutorData[tutor] = data;
-            }
+            else
+                tutorData.Add(tutor, data);
         }
 
         public void UpdateBackground(string tutor, string emotion, float intensity, float duration, Reason reason)
         {
-            intensity = Mathf.Clamp01(intensity);
             SetData(tutor, emotion, intensity, reason);
             backgroundManager.SetBackground(tutor, tutorData[tutor], duration);
         }
@@ -68,10 +66,7 @@ namespace BubbleSystem
 
         public void Speak(string tutor, string emotion, float intensity, string[] text, float duration = 0.0f, Dictionary<string, string> showEffects = null, Dictionary<string, string> hideEffects = null)
         {
-            intensity = Mathf.Clamp01(intensity);
             SetData(tutor, emotion, intensity, Reason.None, text);
-            
-
             balloonManager.ShowBalloon(tutor, tutorData[tutor], duration, getEffectsDictionary(showEffects), getEffectsDictionary(hideEffects));
         }
 
@@ -89,7 +84,7 @@ namespace BubbleSystem
 
         public void UpdateOptions(string[] text, float duration = 0.0f, Dictionary<string, string> showEffects = null, Dictionary<string, string> hideEffects = null)
         {
-            SetData("Options", "Neutral", 0.0f, Reason.None, text);
+            SetData("Options", "Default", 0.0f, Reason.None, text);
             balloonManager.ShowBalloon("Options", tutorData["Options"], duration, getEffectsDictionary(showEffects), getEffectsDictionary(hideEffects));
         }
 

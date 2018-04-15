@@ -102,13 +102,13 @@ namespace BubbleSystem
                 realDuration = duration;
             }
 
-            if (!renderer.material.color.Equals(textureData.colorData.color))
+            if (!renderer.material.color.Equals(textureData.color))
             {
 
                 foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)
                 {
                     if (fx == BackgroundEffect.FadeColor)
-                        colorCoroutines[bg].Add(fx, LerpColor(renderer, textureData.colorData.color, backgroundAnimationData.colorEffect[fx], realDuration));
+                        colorCoroutines[bg].Add(fx, LerpColor(renderer, textureData.color, backgroundAnimationData.colorEffect[fx], realDuration));
                 }
 
                 foreach (BackgroundEffect fx in backgroundAnimationData.colorEffect.Keys)

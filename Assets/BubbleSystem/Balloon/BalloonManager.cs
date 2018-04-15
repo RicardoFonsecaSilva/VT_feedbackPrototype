@@ -60,79 +60,54 @@ namespace BubbleSystem
             beakObject.GetComponent<RectTransform>().localRotation = positionData.localRotation;
         }
 
-        private void SetSprite(Emotion emotion, NewBalloonsHooks hooks, Sprite sprite, Sprite beak, float intensity)
+        private void SetSprites(Emotion emotion, NewBalloonsHooks hooks, SpriteData spriteData, float intensity)
         {
             if (hooks)
             {
-                hooks.GetComponentInChildren<Image>().sprite = sprite;
-                SetBeaks(emotion, hooks.peakTopLeft, beak, intensity);
-                SetBeaks(emotion, hooks.peakBotLeft, beak, intensity);
-                SetBeaks(emotion, hooks.peakTopRight, beak, intensity);
-                SetBeaks(emotion, hooks.peakBotRight, beak, intensity);
-            }
-        }
-
-        private void SetSprites(Emotion emotion, NewBalloonsHooks hooks, SpriteData spriteData, float intensity)
-        {
-            SetSprite(emotion, hooks, spriteData.sprite, spriteData.beak, intensity);
-        }
-
-        private void SetAnimator(GameObject hooksTopic, AnimatorOverrideController animator, float intensity)
-        {
-            if (hooksTopic)
-            {
-                Animator anim = hooksTopic.GetComponent<Animator>();
-                anim.runtimeAnimatorController = animator;
-                anim.speed = intensity + 1f;
-            }
-        }
-
-        private void SetAnimator(NewBalloonsHooks hooksTopic, RuntimeAnimatorController animator, float intensity)
-        {
-            if (hooksTopic)
-            {
-                Animator anim = hooksTopic.GetComponent<Animator>();
-                anim.runtimeAnimatorController = animator;
-                anim.speed = intensity + 1f;
+                hooks.GetComponentInChildren<Image>().sprite = spriteData.sprite;
+                SetBeaks(emotion, hooks.peakTopLeft, spriteData.beak, intensity);
+                SetBeaks(emotion, hooks.peakBotLeft, spriteData.beak, intensity);
+                SetBeaks(emotion, hooks.peakTopRight, spriteData.beak, intensity);
+                SetBeaks(emotion, hooks.peakBotRight, spriteData.beak, intensity);
             }
         }
 
         private void SetAnimators(NewBalloonsHooks hooks, BalloonAnimationData animatorData, float intensity)
         {
-            SetAnimator(hooks, animatorData.animator, intensity);
+            if (hooks)
+            {
+                Animator anim = hooks.GetComponent<Animator>();
+                anim.runtimeAnimatorController = animatorData.animator;
+                anim.speed = intensity + 1f;
+            }
         }
 
         private void SetAnimators(NewBalloonsHooks hooks, DefaultBalloonAnimationData animatorData, float intensity)
         {
-            SetAnimator(hooks, animatorData.animator, intensity);
-        }
-
-        private void SetEffect(TMP_Text hooksTopicText, Dictionary<Effect, AnimationCurve> effects, float intensity, float duration)
-        {
-            if (hooksTopicText)
+            if (hooks)
             {
-                hooksTopicText.GetComponent<Effects>().SetEffect(effects, intensity, duration);
+                Animator anim = hooks.GetComponent<Animator>();
+                anim.runtimeAnimatorController = animatorData.animator;
+                anim.speed = intensity + 1f;
             }
         }
 
         private void SetEffects(NewBalloonsHooks hooks, Dictionary<Effect, AnimationCurve> effects, float intensity, float duration)
         {
-            SetEffect(hooks.text, effects, intensity, duration);
-        }
-
-        private void SetText(TMP_Text hooksTopicText, TextData textData)
-        {
-            if (hooksTopicText)
+            if (hooks.text)
             {
-                hooksTopicText.font = textData.font;
-                hooksTopicText.fontSize = textData.size;
-                hooksTopicText.color = textData.colorData.color;
+                hooks.text.GetComponent<Effects>().SetEffect(effects, intensity, duration);
             }
         }
 
         private void SetTexts(NewBalloonsHooks hooks, TextData textData)
         {
-            SetText(hooks.text, textData);
+            if (hooks.text)
+            {
+                hooks.text.font = textData.font;
+                hooks.text.fontSize = textData.size;
+                hooks.text.color = textData.color;
+            }
         }
 
         private void SetContent(NewBalloonsHooks hooks, string text)
@@ -161,7 +136,7 @@ namespace BubbleSystem
                         {
                             SpriteData spriteData = DefaultData.Instance.GetDefaultBalloonData(data.emotion, data.intensity);
                             TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
-                            if (data.emotion.Equals(Emotion.Neutral))
+                            if (data.emotion.Equals(Emotion.Neutral) || data.emotion.Equals(Emotion.Default))
                             {
                                 SetAnimators(hooks, defaultBalloonAnimationData, data.intensity);
                             }
@@ -211,9 +186,9 @@ namespace BubbleSystem
             {
                 hooks.Hide();
 
-                var animator = data.emotion.Equals(BubbleSystem.Emotion.Neutral) ? DefaultData.Instance.GetNeutralBalloonAnimationData(data.intensity).animator.animationClips : DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity).animator.animationClips;
+                var animationClips = (data.emotion.Equals(BubbleSystem.Emotion.Neutral) || data.emotion.Equals(BubbleSystem.Emotion.Default)) ? DefaultData.Instance.GetNeutralBalloonAnimationData(data.intensity).animator.animationClips : DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity).animator.animationClips;
                 float length = 1f;
-                foreach (AnimationClip clip in animator)
+                foreach (AnimationClip clip in animationClips)
                 {
                     if (clip.name.Contains("hide"))
                         length = clip.length;

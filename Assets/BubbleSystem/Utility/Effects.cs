@@ -143,26 +143,18 @@ public class Effects : MonoBehaviour
 
     private void AddCoroutine(Effect effect, IEnumerator function)
     {
-        try
-        {
+        if(coroutines.ContainsKey(effect))
             coroutines[effect] = StartCoroutine(function);
-        }
-        catch
-        {
+        else
             coroutines.Add(effect, StartCoroutine(function));
-        }
     }
 
     private void AddIenumerator(Effect effect, IEnumerator function)
     {
-        try
-        {
+        if(enumerators.ContainsKey(effect))
             enumerators[effect] = function;
-        }
-        catch
-        {
+        else
             enumerators.Add(effect, function);
-        }
     }
 
     //HACK TO CALCULATE FONTSIZE (ENABLE AUTO SIZE TAKES TIME TO CALCULATE)

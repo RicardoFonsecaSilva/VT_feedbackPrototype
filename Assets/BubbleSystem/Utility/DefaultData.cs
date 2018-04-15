@@ -315,13 +315,16 @@ public class DefaultData : Singleton<DefaultData>
             TextData text = new TextData();
             Dictionary<float, TextData> dict = new Dictionary<float, TextData>();
             text.font = font;
-            text.colorData.color = color;
+            text.color = color;
             text.size = size;
             text.showEffect = new Dictionary<Effect, AnimationCurve>();
             text.hideEffect = new Dictionary<Effect, AnimationCurve>();
             dict.Add(1f, text);
             defaultTextData.Add(emotion, dict);
         }
+
+        defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Add(Effect.None, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Add(Effect.None, fadeCurve);
 
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Add(Effect.Appear, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
@@ -408,7 +411,7 @@ public class DefaultData : Singleton<DefaultData>
         SpriteData spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Neutral, dict);
 
@@ -418,7 +421,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Happiness, dict);
 
@@ -428,7 +431,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Sadness, dict);
 
@@ -438,7 +441,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Anger, dict);
 
@@ -448,7 +451,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Fear, dict);
 
@@ -458,7 +461,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Disgust, dict);
 
@@ -468,7 +471,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData = new SpriteData();
         spriteData.sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         spriteData.beak = Sprite.Create(beak, new Rect(0.0f, 0.0f, beak.width, beak.height), new Vector2(0.5f, 0.5f), 100.0f);
-        spriteData.colorData.color = Color.white;
+        spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Surprise, dict);
     }
@@ -510,35 +513,35 @@ public class DefaultData : Singleton<DefaultData>
 
         
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/joaoBackground");
-        defaultBackgroundData.colorData.color = Color.white;
+        defaultBackgroundData.color = Color.white;
         neutralDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.yellow;
+        defaultBackgroundData.color = Color.yellow;
         happinessDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.blue;
+        defaultBackgroundData.color = Color.blue;
         sadnessDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.red;
+        defaultBackgroundData.color = Color.red;
         angerDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.grey;
+        defaultBackgroundData.color = Color.grey;
         fearDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.green;
+        defaultBackgroundData.color = Color.green;
         disgustDict.Add(Reason.None, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.cyan;
+        defaultBackgroundData.color = Color.cyan;
         surpriseDict.Add(Reason.None, defaultBackgroundData);
 
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/graph");
-        defaultBackgroundData.colorData.color = Color.white;
+        defaultBackgroundData.color = Color.white;
         neutralDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.yellow;
+        defaultBackgroundData.color = Color.yellow;
         happinessDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.blue;
+        defaultBackgroundData.color = Color.blue;
         sadnessDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.red;
+        defaultBackgroundData.color = Color.red;
         angerDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.grey;
+        defaultBackgroundData.color = Color.grey;
         fearDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.green;
+        defaultBackgroundData.color = Color.green;
         disgustDict.Add(Reason.Grades, defaultBackgroundData);
-        defaultBackgroundData.colorData.color = Color.cyan;
+        defaultBackgroundData.color = Color.cyan;
         surpriseDict.Add(Reason.Grades, defaultBackgroundData);
 
         dict.Add(1f, neutralDict);

@@ -6,6 +6,7 @@ namespace BubbleSystem
 {
     public enum Emotion
     {
+        Default,
         Neutral,
         Happiness,
         Sadness,
@@ -21,24 +22,11 @@ namespace BubbleSystem
         Grades
     }
 
-    public struct ColorData
-    {
-        public Color32 color;
-
-        public void SetColor(List<System.Object> list)
-        {
-            color.r = Convert.ToByte(list[0]);
-            color.g = Convert.ToByte(list[1]);
-            color.b = Convert.ToByte(list[2]);
-            color.a = Convert.ToByte(list[3]);
-        }
-    }
-
     public struct TextData
     {
         public TMPro.TMP_FontAsset font;
         public float size;
-        public ColorData colorData;
+        public Color32 color;
         public Dictionary<Effect, AnimationCurve> showEffect;
         public Dictionary<Effect, AnimationCurve> hideEffect;
     }
@@ -72,13 +60,13 @@ namespace BubbleSystem
     {
         public Sprite sprite;
         public Sprite beak;
-        public ColorData colorData;
+        public Color32 color;
     }
 
     public struct TextureData
     {
         public Texture2D texture;
-        public ColorData colorData;
+        public Color32 color;
     }
 
     public struct Data
