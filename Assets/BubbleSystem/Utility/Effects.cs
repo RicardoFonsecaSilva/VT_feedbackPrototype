@@ -168,7 +168,7 @@ public class Effects : MonoBehaviour
         m_TextComponent.fontSize = initialFontSize > maxFontSize ? maxFontSize : initialFontSize;
     }
 
-    public void SetEffect(Dictionary<Effect, AnimationCurve> effects, float intensity, float duration)
+    public void SetEffect(Dictionary<Effect, AnimationCurve> effects, float intensity, float duration, bool show)
     {
         if (m_TextComponent.IsActive())
         {
@@ -176,11 +176,14 @@ public class Effects : MonoBehaviour
 
             StopAllCoroutines();
 
-            StartCoroutine(ResetFontSize());
-            ResetCharacters(true);
-            ResetColor(true, true);
-            ResetRectTransform(true, true, true);
-            ResetCharacterCount();
+            if (show)
+            {
+                StartCoroutine(ResetFontSize());
+                ResetCharacters(true);
+                ResetColor(true, true);
+                ResetRectTransform(true, true, true);
+                ResetCharacterCount();
+            }
 
             enumerators.Clear();
 
@@ -725,7 +728,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Flash(float duration, float intensity, AnimationCurve curve, bool keepAnimating = true)
+    IEnumerator Flash(float duration, float intensity, AnimationCurve curve, bool keepAnimating = false)
     {
         m_TextComponent.ForceMeshUpdate();
         curve.preWrapMode = WrapMode.Loop;
@@ -751,15 +754,20 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Jitter(float duration, float intensity, AnimationCurve curve, bool keepAnimating = true, bool random = true)
+    IEnumerator Jitter(float duration, float intensity, AnimationCurve curve, bool keepAnimating = false, bool random = true)
     {
         m_TextComponent.ForceMeshUpdate();
-        curve.preWrapMode = WrapMode.Loop;
-        curve.postWrapMode = WrapMode.Loop;
+        Keyframe lastframe;
+        float lastKeyTime = 0f;
+        if (curve != null)
+        {
+            curve.preWrapMode = WrapMode.Loop;
+            curve.postWrapMode = WrapMode.Loop;
+            lastframe = curve[curve.length - 1];
+            lastKeyTime = lastframe.time;
+        }
 
         float initialTime = Time.time;
-        Keyframe lastframe = curve[curve.length - 1];
-        float lastKeyTime = lastframe.time;
         float rangeX, rangeY;
 
         TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -789,12 +797,12 @@ public class Effects : MonoBehaviour
 
             if (random)
             {
-                rangeX = Random.Range(-0.25f, 0.25f) * intensity;
-                rangeY = Random.Range(-0.25f, 0.25f) * intensity;
+                rangeX = Random.Range(-1.25f, 1.25f) * intensity;
+                rangeY = Random.Range(-1.25f, 1.25f) * intensity;
             }
             else
             {
-                rangeX = rangeY = Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -0.25f, 0.25f) * intensity;
+                rangeX = rangeY = Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -1.25f, 1.25f) * intensity;
             }
 
             // Iterate through each line of the text.
@@ -859,15 +867,20 @@ public class Effects : MonoBehaviour
         rectTransform.localScale = localScale;
     }
 
-    IEnumerator Shake(float duration, float intensity, AnimationCurve curve, bool characters, bool keepAnimating = true, bool random = true)
+    IEnumerator Shake(float duration, float intensity, AnimationCurve curve, bool characters, bool keepAnimating = false, bool random = true)
     {
         m_TextComponent.ForceMeshUpdate();
-        curve.preWrapMode = WrapMode.Loop;
-        curve.postWrapMode = WrapMode.Loop;
+        Keyframe lastframe;
+        float lastKeyTime = 0f;
+        if (curve != null)
+        {
+            curve.preWrapMode = WrapMode.Loop;
+            curve.postWrapMode = WrapMode.Loop;
+            lastframe = curve[curve.length - 1];
+            lastKeyTime = lastframe.time;
+        }
 
         float initialTime = Time.time;
-        Keyframe lastframe = curve[curve.length - 1];
-        float lastKeyTime = lastframe.time;
         float range;
 
         TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -1301,7 +1314,7 @@ public class Effects : MonoBehaviour
         }
     }
 
-    IEnumerator Wave(float duration, float intensity, AnimationCurve curve, bool characters, bool keepAnimating = true)
+    IEnumerator Wave(float duration, float intensity, AnimationCurve curve, bool characters, bool keepAnimating = false)
     {
         curve.preWrapMode = WrapMode.Loop;
         curve.postWrapMode = WrapMode.Loop;

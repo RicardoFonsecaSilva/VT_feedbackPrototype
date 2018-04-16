@@ -27,7 +27,7 @@ namespace BubbleSystem
         private Dictionary<string, Dictionary<BackgroundEffect, IEnumerator>> textureCoroutines = new Dictionary<string, Dictionary<BackgroundEffect, IEnumerator>>();
         private Dictionary<string, Dictionary<BackgroundEffect, IEnumerator>> colorCoroutines = new Dictionary<string, Dictionary<BackgroundEffect, IEnumerator>>();
 
-        public void SetBackground(string bg, Data data, float duration)
+        public void SetBackground(string bg, BackgroundData data, float duration)
         {
             if (!textureCoroutines.ContainsKey(bg))
                 textureCoroutines.Add(bg, new Dictionary<BackgroundEffect, IEnumerator>());

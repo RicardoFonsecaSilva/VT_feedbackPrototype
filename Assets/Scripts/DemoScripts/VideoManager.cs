@@ -57,6 +57,7 @@ public class VideoManager : MonoBehaviour {
 
     IEnumerator Script1()
     {
+        bubbleSystemManager.SetNextDialogueData(new string[] { m, "Sadness", "1.0", "1.5", "hideEffects", "Jitter" });
         t = 1.5f;
         {
             gazeFor(m, t + 1f, 2);
@@ -65,6 +66,11 @@ public class VideoManager : MonoBehaviour {
             talkFor(m, t - HALFSEC);
             yield return new WaitForSeconds(t);
         }
+
+
+        // << SETNEXTDIALOGUEDATA MARIA HAPPINESS 0.5 5[showEffects effect1[curve]...][hideEffects effect1[curve]...] >>
+        // << UPDATEBACKGROUND MARIA HAPPINESS 0.5 5 GRADES >>
+        bubbleSystemManager.UpdateBackground(m, EmotionEnum.Happiness.ToString(), 0.2f, 5f, Reason.Grades);
 
         t = 2.5f; t2 = 5f; t3 = 5.5f;
         {

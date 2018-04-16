@@ -50,12 +50,6 @@ namespace BubbleSystem
         public float duration;
     }
 
-    public struct ColorTransitionData
-    {
-        public float duration;
-        public float smoothness;
-    }
-
     public struct SpriteData
     {
         public Sprite sprite;
@@ -69,12 +63,22 @@ namespace BubbleSystem
         public Color32 color;
     }
 
-    public struct Data
+    public struct SpeakData
+    {
+        public Emotion emotion;
+        public float intensity;
+        //Top, Left, Right, Extra
+        public string[] text;
+
+        public Dictionary<Effect, AnimationCurve> showEffects;
+        public Dictionary<Effect, AnimationCurve> hideEffects;
+    }
+
+    public struct BackgroundData
     {
         public Emotion emotion;
         public float intensity;
         public Reason reason;
-        //Top, Left, Right, Extra
-        public string[] text;
+        public BackgroundAnimationData animationData;
     }
 }

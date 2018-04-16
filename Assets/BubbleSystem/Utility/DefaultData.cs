@@ -21,6 +21,7 @@ public class DefaultData : Singleton<DefaultData>
     public AnimationCurve flashCurve = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f), new Keyframe(4f, 1f), new Keyframe(5f, 1f), new Keyframe(6f, 0f));
     public AnimationCurve lowerBellCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
     public AnimationCurve palpitationCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f), new Keyframe(1f, 0f), new Keyframe(1.5f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f));
+    //public AnimationCurve noneCurve = new AnimationCurve();
 
     private Color32 defaultColor = Color.white;
     private Color32 happinessColor = new Color32(0xF0, 0xE6, 0x4D, 0xFF);
@@ -31,9 +32,9 @@ public class DefaultData : Singleton<DefaultData>
     private Color32 surpriseColor = new Color32(0xFF, 0xC3, 0x58, 0xFF);
 
     private float happinessSizeRatio = 1f;
-    private float sadnessSizeRatio = 0.5f;
+    private float sadnessSizeRatio = 0.7f;
     private float angerSizeRatio = 1.5f;
-    private float fearSizeRatio = 0.7f;
+    private float fearSizeRatio = 0.8f;
     private float disgustSizeRatio = 0.8f;
     private float surpriseSizeRatio = 1.2f;
 
@@ -323,12 +324,12 @@ public class DefaultData : Singleton<DefaultData>
     private void SetTextData()
     {
         TMPro.TMP_FontAsset neutralFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/arial");
-        TMPro.TMP_FontAsset happinessFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/coiny-regular");       //NO
-        TMPro.TMP_FontAsset sadnessFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/AftaSansThin-Regular");  //NO
-        TMPro.TMP_FontAsset angerFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/AlfaSlabOne-Regular");     //NO
-        TMPro.TMP_FontAsset fearFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Adler");                    //NO
-        TMPro.TMP_FontAsset disgustFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/1942");                  //NO
-        TMPro.TMP_FontAsset surpriseFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Courier-Prime");        //NO
+        //TMPro.TMP_FontAsset happinessFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/coiny-regular");       //NO
+        //TMPro.TMP_FontAsset sadnessFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/AftaSansThin-Regular");  //NO
+        //TMPro.TMP_FontAsset angerFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/AlfaSlabOne-Regular");     //NO
+        //TMPro.TMP_FontAsset fearFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Adler");                    //NO
+        //TMPro.TMP_FontAsset disgustFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/1942");                  //NO
+        //TMPro.TMP_FontAsset surpriseFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Courier-Prime");        //NO
         float initialSize = 40.0f;
         Color color = Color.black;
         
@@ -352,7 +353,7 @@ public class DefaultData : Singleton<DefaultData>
 
         text = new TextData();
         dict = new Dictionary<float, TextData>();
-        text.font = happinessFont;
+        text.font = neutralFont;
         text.color = color;
         text.size = initialSize * happinessSizeRatio;
         text.showEffect = new Dictionary<Effect, AnimationCurve>();
@@ -366,7 +367,7 @@ public class DefaultData : Singleton<DefaultData>
 
         text = new TextData();
         dict = new Dictionary<float, TextData>();
-        text.font = sadnessFont;
+        text.font = neutralFont;
         text.color = color;
         text.size = initialSize * sadnessSizeRatio;
         text.showEffect = new Dictionary<Effect, AnimationCurve>();
@@ -380,7 +381,7 @@ public class DefaultData : Singleton<DefaultData>
 
         text = new TextData();
         dict = new Dictionary<float, TextData>();
-        text.font = angerFont;
+        text.font = neutralFont;
         text.color = color;
         text.size = initialSize * angerSizeRatio;
         text.showEffect = new Dictionary<Effect, AnimationCurve>();
@@ -394,7 +395,7 @@ public class DefaultData : Singleton<DefaultData>
 
         text = new TextData();
         dict = new Dictionary<float, TextData>();
-        text.font = fearFont;
+        text.font = neutralFont;
         text.color = color;
         text.size = initialSize * fearSizeRatio;
         text.showEffect = new Dictionary<Effect, AnimationCurve>();
@@ -408,7 +409,7 @@ public class DefaultData : Singleton<DefaultData>
 
         text = new TextData();
         dict = new Dictionary<float, TextData>();
-        text.font = disgustFont;
+        text.font = neutralFont;
         text.color = color;
         text.size = initialSize * disgustSizeRatio;
         text.showEffect = new Dictionary<Effect, AnimationCurve>();
@@ -422,7 +423,7 @@ public class DefaultData : Singleton<DefaultData>
 
         text = new TextData();
         dict = new Dictionary<float, TextData>();
-        text.font = surpriseFont;
+        text.font = neutralFont;
         text.color = color;
         text.size = initialSize * surpriseSizeRatio;
         text.showEffect = new Dictionary<Effect, AnimationCurve>();
