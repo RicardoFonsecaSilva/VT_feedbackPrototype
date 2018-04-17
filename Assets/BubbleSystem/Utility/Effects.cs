@@ -56,6 +56,7 @@ public class Effects : MonoBehaviour
     {
         m_TextComponent = GetComponent<TMP_Text>();
         rectTransform = GetComponent<RectTransform>();
+        m_TextComponent.ForceMeshUpdate();
         initialColor = m_TextComponent.color;
         initialRectX = rectTransform.localScale.x;
         initialRectY = rectTransform.localScale.y;
@@ -173,7 +174,7 @@ public class Effects : MonoBehaviour
         if (m_TextComponent.IsActive())
         {
             initialColor = m_TextComponent.color;
-
+        
             StopAllCoroutines();
 
             if (show)
@@ -797,12 +798,12 @@ public class Effects : MonoBehaviour
 
             if (random)
             {
-                rangeX = Random.Range(-1.25f, 1.25f) * intensity;
-                rangeY = Random.Range(-1.25f, 1.25f) * intensity;
+                rangeX = Random.Range(-0.25f, 0.25f) + Random.Range(-1.25f, 1.25f) * intensity;
+                rangeY = Random.Range(-0.25f, 0.25f) + Random.Range(-1.25f, 1.25f) * intensity;
             }
             else
             {
-                rangeX = rangeY = Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -1.25f, 1.25f) * intensity;
+                rangeX = rangeY = Random.Range(-0.25f, 0.25f) + Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -1.25f, 1.25f) * intensity;
             }
 
             // Iterate through each line of the text.
@@ -910,11 +911,11 @@ public class Effects : MonoBehaviour
 
             if (random)
             {
-                range = Random.Range(-1.25f, 1.25f) * intensity;
+                range = Random.Range(-0.25f, 0.25f) + Random.Range(-1.25f, 1.25f) * intensity;
             }
             else
             {
-                range = Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -1.25f, 1.25f) * intensity;
+                range = Random.Range(-0.25f, 0.25f) + Mathf.Clamp(curve.Evaluate((Time.time - initialTime) * lastKeyTime / duration), -1.25f, 1.25f) * intensity;
             }
 
             // Iterate through each line of the text.
@@ -1081,8 +1082,8 @@ public class Effects : MonoBehaviour
 
         float initialTime = Time.time;
 
-        float vertexAnimAngleRanges = Random.Range(2f, 5f) * intensity;
-        float vertexAnimSpeeds = Random.Range(0.2f, 0.5f) * intensity;
+        float vertexAnimAngleRanges = Random.Range(1f, 3f) + Random.Range(3f, 8f) * intensity;
+        float vertexAnimSpeeds = Random.Range(0.2f, 0.5f) + Random.Range(0.5f, 3.0f) * intensity;
 
         int characterCount = m_TextComponent.textInfo.characterCount;
 
@@ -1131,8 +1132,8 @@ public class Effects : MonoBehaviour
         float[] vertexAnimSpeeds = new float[1024];
         for (int i = 0; i < 1024; i++)
         {
-            vertexAnimAngleRanges[i] = Random.Range(2f, 5f) * intensity;
-            vertexAnimSpeeds[i] = Random.Range(0.2f, 0.5f) * intensity;
+            vertexAnimAngleRanges[i] = Random.Range(1f, 3f) + Random.Range(3f, 8f) * intensity;
+            vertexAnimSpeeds[i] = Random.Range(0.2f, 0.5f) + Random.Range(0.5f, 3.0f) * intensity;
         }
 
         int characterCount = m_TextComponent.textInfo.characterCount;

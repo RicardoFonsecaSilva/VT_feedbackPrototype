@@ -57,7 +57,7 @@ public class VideoManager : MonoBehaviour {
 
     IEnumerator Script1()
     {
-        bubbleSystemManager.SetNextDialogueData(new string[] { m, "Sadness", "1.0", "1.5", "hideEffects", "Jitter" });
+        //bubbleSystemManager.SetNextDialogueData(new string[] { m, "Sadness", "1.0", "1.5", "hideEffects", "Jitter" });
         t = 1.5f;
         {
             gazeFor(m, t + 1f, 2);

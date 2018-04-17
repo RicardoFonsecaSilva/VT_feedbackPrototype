@@ -21,7 +21,6 @@ public class DefaultData : Singleton<DefaultData>
     public AnimationCurve flashCurve = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f), new Keyframe(4f, 1f), new Keyframe(5f, 1f), new Keyframe(6f, 0f));
     public AnimationCurve lowerBellCurve = new AnimationCurve(new Keyframe(0f, -0.25f), new Keyframe(1f, 0.25f), new Keyframe(2f, -0.25f));
     public AnimationCurve palpitationCurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f), new Keyframe(1f, 0f), new Keyframe(1.5f, 1f), new Keyframe(2f, 0f), new Keyframe(3f, 0f));
-    //public AnimationCurve noneCurve = new AnimationCurve();
 
     private Color32 defaultColor = Color.white;
     private Color32 happinessColor = new Color32(0xF0, 0xE6, 0x4D, 0xFF);
@@ -343,12 +342,16 @@ public class DefaultData : Singleton<DefaultData>
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Default, dict);
 
-        defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Add(Effect.None, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Add(Effect.None, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Clear();
+        defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Add(Effect.None, null);
+        defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Clear();
+        defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Add(Effect.None, null);
 
         defaultTextData.Add(BubbleSystem.Emotion.Neutral, dict);
+        defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Clear();
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Add(Effect.Appear, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Clear();
+        defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Add(Effect.None, null);
 
 
         text = new TextData();
@@ -375,7 +378,7 @@ public class DefaultData : Singleton<DefaultData>
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Sadness, dict);
 
-        defaultTextData[BubbleSystem.Emotion.Sadness][1f].showEffect.Add(Effect.Appear, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Sadness][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
         defaultTextData[BubbleSystem.Emotion.Sadness][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
 
 
@@ -389,8 +392,8 @@ public class DefaultData : Singleton<DefaultData>
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Anger, dict);
 
-        defaultTextData[BubbleSystem.Emotion.Anger][1f].showEffect.Add(Effect.FadeIn, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Anger][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Anger][1f].showEffect.Add(Effect.Shake, null);
+        defaultTextData[BubbleSystem.Emotion.Anger][1f].hideEffect.Add(Effect.Shake, null);
 
 
         text = new TextData();
@@ -402,9 +405,9 @@ public class DefaultData : Singleton<DefaultData>
         text.hideEffect = new Dictionary<Effect, AnimationCurve>();
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Fear, dict);
-
-        defaultTextData[BubbleSystem.Emotion.Fear][1f].showEffect.Add(Effect.Appear, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Fear][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+        
+        defaultTextData[BubbleSystem.Emotion.Fear][1f].showEffect.Add(Effect.Jitter, null);
+        defaultTextData[BubbleSystem.Emotion.Fear][1f].hideEffect.Add(Effect.Jitter, null);
 
 
         text = new TextData();
@@ -417,8 +420,8 @@ public class DefaultData : Singleton<DefaultData>
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Disgust, dict);
 
-        defaultTextData[BubbleSystem.Emotion.Disgust][1f].showEffect.Add(Effect.Appear, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Disgust][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Disgust][1f].showEffect.Add(Effect.Warp, bellCurve);
+        defaultTextData[BubbleSystem.Emotion.Disgust][1f].hideEffect.Add(Effect.Warp, bellCurve);
 
 
         text = new TextData();
@@ -431,8 +434,8 @@ public class DefaultData : Singleton<DefaultData>
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Surprise, dict);
 
-        defaultTextData[BubbleSystem.Emotion.Surprise][1f].showEffect.Add(Effect.Appear, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Surprise][1f].hideEffect.Add(Effect.FadeOut, fadeCurve);
+        defaultTextData[BubbleSystem.Emotion.Surprise][1f].showEffect.Add(Effect.SwingCharacters, null);
+        defaultTextData[BubbleSystem.Emotion.Surprise][1f].hideEffect.Add(Effect.SwingCharacters, null);
     }
 
     private void SetBalloonAnimation()
