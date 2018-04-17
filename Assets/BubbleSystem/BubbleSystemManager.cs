@@ -239,10 +239,10 @@ namespace BubbleSystem
             HideBalloon(tutor.Name, duration);
         }
 
-        public void UpdateOptions(string[] text, float intensity = 0.0f, float duration = 0.0f, Dictionary<string, string> showEffects = null, Dictionary<string, string> hideEffects = null)
+        public void UpdateOptions(string[] text, float intensity = 0.0f, float duration = 0.0f, HookControl.IntFunc[] callbacks = null, Dictionary<string, string> showEffects = null, Dictionary<string, string> hideEffects = null)
         {
             SetSpeakData("Options", "Default", intensity, text, showEffects, hideEffects);
-            balloonManager.ShowBalloon("Options", tutorSpeakData["Options"], duration);
+            balloonManager.ShowBalloon("Options", tutorSpeakData["Options"], duration, callbacks);
         }
 
     }

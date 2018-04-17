@@ -115,7 +115,24 @@ namespace BubbleSystem
             hooks.Content = text;
         }
 
-        public void ShowBalloon(string balloon, SpeakData data, float duration)
+        private void SetCallbacks(NewBalloonsHooks hooks, IntFunc[] callbacks)
+        {
+            List<VoidFunc> funcs = new List<VoidFunc>();
+            for (int i = 0; i<callbacks.Length; i++)
+            {
+                int index = i;
+                funcs.Add(() => {
+                    callbacks[index](index);
+                });
+            }
+            int size = callbacks.Length, f = 0;
+            hooks.onTop = size > f? funcs[f++] : (VoidFunc) null;
+            hooks.onLeft = size > f? funcs[f++] : (VoidFunc)null;
+            hooks.onRight = size > f? funcs[f++] : (VoidFunc)null;
+            hooks.onExtra = size > f? funcs[f++] : (VoidFunc)null;
+        }
+
+        public void ShowBalloon(string balloon, SpeakData data, float duration, IntFunc[] callbacks = null)
         {
             var controller = controllers[balloon];
 
@@ -148,6 +165,7 @@ namespace BubbleSystem
                             }
                             SetSprites(data.emotion, hooks, spriteData, data.intensity);
                             SetTexts(hooks, textData);
+                            SetCallbacks(hooks, callbacks);
 
                             realDuration = duration > 0 ? duration : realDuration;
 
