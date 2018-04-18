@@ -12,10 +12,7 @@ public class NewBalloonsHooks : Hook
     public GameObject peakBotLeft = null;
     public GameObject peakBotRight = null;
 
-    public VoidFunc onLeft;
-    public VoidFunc onTop;
-    public VoidFunc onRight;
-    public VoidFunc onExtra;
+    public VoidFunc onClick;
 
     public void SetPeak(bool top, bool left)
     {
@@ -29,27 +26,10 @@ public class NewBalloonsHooks : Hook
             peakBotRight.SetActive(!top && !left);
     }
 
-    public void UIExtra()
+    public void UIClick()
     {
-        if (onExtra != null)
-            onExtra();
-    }
-    public void UILeft()
-    {
-        if (onLeft != null)
-            onLeft();
-    }
-
-    public void UITop()
-    {
-        if (onTop != null)
-            onTop();
-    }
-
-    public void UIRight()
-    {
-        if (onRight != null)
-            onRight();
+        if (onClick != null)
+            onClick();
     }
 
     public string Content

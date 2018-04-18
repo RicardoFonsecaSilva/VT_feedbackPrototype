@@ -1,5 +1,6 @@
 ﻿using BubbleSystem;
 using DeadMosquito.AndroidGoodies;
+using HookControl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -119,7 +120,8 @@ public class VideoManager : MonoBehaviour {
             yield return new WaitForSeconds(t);
         }
 
-        bubbleSystemManager.UpdateOptions(new string[] { "Mark checkpoint.", "Don't mark checkpoint." });
+        IntFunc[] callbacks = { (i) => Debug.Log("hello " + i), (i) => Debug.Log("hello " + i) };
+        bubbleSystemManager.UpdateOptions(new string[] { "Mark checkpoint.", "Don't mark checkpoint." }, 0.0f, 0.0f, callbacks);
 
         yield return new WaitForSeconds(5);
         bubbleSystemManager.HideBalloon(o);

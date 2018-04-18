@@ -115,21 +115,11 @@ namespace BubbleSystem
             hooks.Content = text;
         }
 
-        private void SetCallbacks(NewBalloonsHooks hooks, IntFunc[] callbacks)
+        private void SetCallback(NewBalloonsHooks hooks, IntFunc callback, int index)
         {
-            List<VoidFunc> funcs = new List<VoidFunc>();
-            for (int i = 0; i<callbacks.Length; i++)
-            {
-                int index = i;
-                funcs.Add(() => {
-                    callbacks[index](index);
-                });
-            }
-            int size = callbacks.Length, f = 0;
-            hooks.onTop = size > f? funcs[f++] : (VoidFunc) null;
-            hooks.onLeft = size > f? funcs[f++] : (VoidFunc)null;
-            hooks.onRight = size > f? funcs[f++] : (VoidFunc)null;
-            hooks.onExtra = size > f? funcs[f++] : (VoidFunc)null;
+            hooks.onClick = () => {
+                callback(index);
+            };
         }
 
         public void ShowBalloon(string balloon, SpeakData data, float duration, IntFunc[] callbacks = null)
@@ -149,34 +139,31 @@ namespace BubbleSystem
                         float realDuration = defaultBalloonAnimationData.duration;
                         SetContent(hooks, data.text.Length > i ? data.text[i] : null);
 
-                        try
+                        SpriteData spriteData = DefaultData.Instance.GetDefaultBalloonData(data.emotion, data.intensity);
+                        TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
+                        if (data.emotion.Equals(Emotion.Neutral) || data.emotion.Equals(Emotion.Default))
                         {
-                            SpriteData spriteData = DefaultData.Instance.GetDefaultBalloonData(data.emotion, data.intensity);
-                            TextData textData = DefaultData.Instance.GetDefaultTextData(data.emotion, data.intensity);
-                            if (data.emotion.Equals(Emotion.Neutral) || data.emotion.Equals(Emotion.Default))
-                            {
-                                SetAnimators(hooks, defaultBalloonAnimationData, data.intensity);
-                            }
-                            else
-                            {
-                                BalloonAnimationData balloonAnimationData = DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity);
-                                realDuration = balloonAnimationData.duration;
-                                SetAnimators(hooks, balloonAnimationData, data.intensity);
-                            }
-                            SetSprites(data.emotion, hooks, spriteData, data.intensity);
-                            SetTexts(hooks, textData);
-                            //SetCallbacks(hooks, callbacks);
-
-                            realDuration = duration > 0 ? duration : realDuration;
-
-                            if (data.showEffects != null)
-                                SetEffects(hooks, data.showEffects, data.intensity, realDuration);
-                            else
-                            {
-                                SetEffects(hooks, textData.showEffect, data.intensity, realDuration);
-                            }
+                            SetAnimators(hooks, defaultBalloonAnimationData, data.intensity);
                         }
-                        catch { }
+                        else
+                        {
+                            BalloonAnimationData balloonAnimationData = DefaultData.Instance.GetBalloonAnimationData(data.emotion, data.intensity);
+                            realDuration = balloonAnimationData.duration;
+                            SetAnimators(hooks, balloonAnimationData, data.intensity);
+                        }
+                        SetSprites(data.emotion, hooks, spriteData, data.intensity);
+                        SetTexts(hooks, textData);
+                        if(callbacks != null && i < callbacks.Length)
+                            SetCallback(hooks, callbacks[i], i);
+
+                        realDuration = duration > 0 ? duration : realDuration;
+
+                        if (data.showEffects != null)
+                            SetEffects(hooks, data.showEffects, data.intensity, realDuration);
+                        else
+                        {
+                            SetEffects(hooks, textData.showEffect, data.intensity, realDuration);
+                        }
 
                         hooks.Show();
                         AddCoroutine(balloon, hooks, realDuration, data);

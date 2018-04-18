@@ -156,6 +156,7 @@ public class DefaultData : Singleton<DefaultData>
 
         dict.Add(1f, neutralPositions);
         defaultPositions.Add(BubbleSystem.Emotion.Neutral, dict);
+        defaultPositions.Add(BubbleSystem.Emotion.Default, dict);
 
 
         //HAPPINESS
@@ -341,16 +342,21 @@ public class DefaultData : Singleton<DefaultData>
         text.hideEffect = new Dictionary<Effect, AnimationCurve>();
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Default, dict);
-
-        defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Clear();
+        
         defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Add(Effect.None, null);
-        defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Clear();
         defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Add(Effect.None, null);
 
+
+        dict = new Dictionary<float, TextData>();
+        text.font = neutralFont;
+        text.color = color;
+        text.size = initialSize;
+        text.showEffect = new Dictionary<Effect, AnimationCurve>();
+        text.hideEffect = new Dictionary<Effect, AnimationCurve>();
+        dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Neutral, dict);
-        defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Clear();
+
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].showEffect.Add(Effect.Appear, fadeCurve);
-        defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Clear();
         defaultTextData[BubbleSystem.Emotion.Neutral][1f].hideEffect.Add(Effect.None, null);
 
 
@@ -504,6 +510,7 @@ public class DefaultData : Singleton<DefaultData>
         spriteData.color = Color.white;
         dict.Add(1f, spriteData);
         defaultBalloonData.Add(BubbleSystem.Emotion.Neutral, dict);
+        defaultBalloonData.Add(BubbleSystem.Emotion.Default, dict);
 
         dict = new Dictionary<float, SpriteData>();
         tex = (Texture2D)Resources.Load("Balloons/Images/SpeechBubbles/Scaled/Happiness/happiness_balloon");
