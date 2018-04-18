@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NewBalloonsHooks : Hook
 {
     public TMP_Text text = null;
+    public GameObject balloon = null;
     public GameObject peakTopLeft = null;
     public GameObject peakTopRight = null;
     public GameObject peakBotLeft = null;

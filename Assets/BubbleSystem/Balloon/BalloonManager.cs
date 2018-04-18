@@ -64,7 +64,7 @@ namespace BubbleSystem
         {
             if (hooks)
             {
-                hooks.GetComponentInChildren<Image>().sprite = spriteData.sprite;
+                hooks.balloon.GetComponent<Image>().sprite = spriteData.sprite;
                 SetBeaks(emotion, hooks.peakTopLeft, spriteData.beak, intensity);
                 SetBeaks(emotion, hooks.peakBotLeft, spriteData.beak, intensity);
                 SetBeaks(emotion, hooks.peakTopRight, spriteData.beak, intensity);
@@ -165,7 +165,7 @@ namespace BubbleSystem
                             }
                             SetSprites(data.emotion, hooks, spriteData, data.intensity);
                             SetTexts(hooks, textData);
-                            SetCallbacks(hooks, callbacks);
+                            //SetCallbacks(hooks, callbacks);
 
                             realDuration = duration > 0 ? duration : realDuration;
 
