@@ -124,7 +124,6 @@ public class VideoManager : MonoBehaviour {
         bubbleSystemManager.UpdateOptions(new string[] { "Mark checkpoint.", "Don't mark checkpoint." }, 0.0f, 0.0f, callbacks);
 
         yield return new WaitForSeconds(5);
-        bubbleSystemManager.HideBalloon(o);
 
         yield return new WaitForSeconds(3);
     }
