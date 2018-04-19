@@ -87,9 +87,12 @@ namespace BubbleSystem
             {
                 hooks.balloon.GetComponent<Image>().sprite = spriteData.sprite;
 
-                DefaultData.PositionData positionData = DefaultData.Instance.GetDefaultPositions(emotion, intensity, "balloon");
-                hooks.balloon.GetComponent<RectTransform>().anchorMin = positionData.anchorMin;
-                hooks.balloon.GetComponent<RectTransform>().anchorMax = positionData.anchorMax;
+                if (!emotion.Equals(BubbleSystem.Emotion.Default))
+                {
+                    DefaultData.PositionData positionData = DefaultData.Instance.GetDefaultPositions(emotion, intensity, "balloon");
+                    hooks.balloon.GetComponent<RectTransform>().anchorMin = positionData.anchorMin;
+                    hooks.balloon.GetComponent<RectTransform>().anchorMax = positionData.anchorMax;
+                }
 
                 SetBeaks(emotion, hooks.peakTopLeft, spriteData.beak, intensity);
                 SetBeaks(emotion, hooks.peakBotLeft, spriteData.beak, intensity);

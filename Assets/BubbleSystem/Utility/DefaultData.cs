@@ -105,7 +105,8 @@ public class DefaultData : Singleton<DefaultData>
 
     public AnimationCurve GetCurve(string name)
     {
-        switch (name){
+        switch (name)
+        {
             case "bellCurve":
                 return bellCurve;
             case "fadeCurve":
@@ -124,6 +125,7 @@ public class DefaultData : Singleton<DefaultData>
 
     private void SetBalloonPositions()
     {
+        Dictionary<string, List<PositionData>> defPositions = new Dictionary<string, List<PositionData>>();
         Dictionary<string, List<PositionData>> neutralPositions = new Dictionary<string, List<PositionData>>();
         Dictionary<string, List<PositionData>> happinessPositions = new Dictionary<string, List<PositionData>>();
         Dictionary<string, List<PositionData>> sadnessPositions = new Dictionary<string, List<PositionData>>();
@@ -137,7 +139,40 @@ public class DefaultData : Singleton<DefaultData>
         List<PositionData> rectList = new List<PositionData>();
         PositionData rect = new PositionData();
 
+        //DEFAULT
+
+        rect.anchorMin = new Vector2(0.6f, 0.91f);
+        rect.anchorMax = new Vector2(0.8f, 1.35f);
+        rect.localRotation = Quaternion.Euler(0, 180, 180);
+        defPositions.Add("Peak_top_right", rectList);
+        rectList.Add(rect);
+
+        rect.anchorMin = new Vector2(0.2f, 0.91f);
+        rect.anchorMax = new Vector2(0.4f, 1.35f);
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
+        defPositions.Add("Peak_top_left", rectList);
+        rectList.Add(rect);
+
+        rect.anchorMin = new Vector2(0.6f, -0.36f);
+        rect.anchorMax = new Vector2(0.8f, 0.12f);
+        rect.localRotation = Quaternion.Euler(0, 0, 0);
+        defPositions.Add("Peak_bot_right", rectList);
+        rectList.Add(rect);
+
+        rect.anchorMin = new Vector2(0.2f, -0.36f);
+        rect.anchorMax = new Vector2(0.4f, 0.12f);
+        rect.localRotation = Quaternion.Euler(0, 180, 0);
+        defPositions.Add("Peak_bot_left", rectList);
+        rectList.Add(rect);
+
+        dict.Add(1f, defPositions);
+        defaultPositions.Add(BubbleSystem.Emotion.Default, dict);
+
+
         //NEUTRAL
+
+        dict = new Dictionary<float, Dictionary<string, List<PositionData>>>();
+        rectList = new List<PositionData>();
 
         rect.anchorMin = new Vector2(-0.5f, -0.2f);
         rect.anchorMax = new Vector2(1.5f, 0.5f);
@@ -233,7 +268,6 @@ public class DefaultData : Singleton<DefaultData>
 
         dict.Add(1f, neutralPositions);
         defaultPositions.Add(BubbleSystem.Emotion.Neutral, dict);
-        defaultPositions.Add(BubbleSystem.Emotion.Default, dict);
 
 
         //HAPPINESS
@@ -787,7 +821,7 @@ public class DefaultData : Singleton<DefaultData>
         //TMPro.TMP_FontAsset surpriseFont = (TMPro.TMP_FontAsset)Resources.Load("Text/TextMesh_Fonts/Courier-Prime");        //NO
         float initialSize = 40.0f;
         Color color = Color.black;
-        
+
         TextData text = new TextData();
         Dictionary<float, TextData> dict = new Dictionary<float, TextData>();
         text.font = neutralFont;
@@ -797,7 +831,7 @@ public class DefaultData : Singleton<DefaultData>
         text.hideEffect = new Dictionary<Effect, AnimationCurve>();
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Default, dict);
-        
+
         defaultTextData[BubbleSystem.Emotion.Default][1f].showEffect.Add(Effect.None, null);
         defaultTextData[BubbleSystem.Emotion.Default][1f].hideEffect.Add(Effect.None, null);
 
@@ -866,7 +900,7 @@ public class DefaultData : Singleton<DefaultData>
         text.hideEffect = new Dictionary<Effect, AnimationCurve>();
         dict.Add(1f, text);
         defaultTextData.Add(BubbleSystem.Emotion.Fear, dict);
-        
+
         defaultTextData[BubbleSystem.Emotion.Fear][1f].showEffect.Add(Effect.Jitter, null);
         defaultTextData[BubbleSystem.Emotion.Fear][1f].hideEffect.Add(Effect.Jitter, null);
 
@@ -1063,7 +1097,7 @@ public class DefaultData : Singleton<DefaultData>
         Dictionary<Reason, TextureData> disgustDict = new Dictionary<Reason, TextureData>();
         Dictionary<Reason, TextureData> surpriseDict = new Dictionary<Reason, TextureData>();
 
-        
+
         defaultBackgroundData.texture = (Texture2D)Resources.Load("Backgrounds/Images/joaoBackground");
         defaultBackgroundData.color = defaultColor;
         neutralDict.Add(Reason.None, defaultBackgroundData);
