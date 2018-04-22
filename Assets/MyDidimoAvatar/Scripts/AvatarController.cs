@@ -20,34 +20,37 @@ public partial class AvatarController : MonoBehaviour
         //StartCoroutine("DEBUGRoutine");
     }
 
-    void FixedUpdate()
-    {
-        // Updates the parameters of the animator
-        //if (animator.gameObject.activeSelf) 
-        //    foreach (var entry in parameters.animParams)
-        //        animator.SetFloat(entry.Value.ID, entry.Value.VALUE);
+    void FixedUpdate(){
     }
 
-    public void SetMood(MoodState moodState, float intensity)
+    public void SetMood(EmotionalState mood, float intensity)
     {
         float[][] preset;
-        switch (moodState)
+        switch (mood)
         {
-            case MoodState.NEUTRAL:
+            case EmotionalState.NEUTRAL:
                 preset = AvatarParameters.Presets.Neutral();
                 break;
-            case MoodState.HAPPINESS:
+            case EmotionalState.HAPPINESS:
                 if(intensity < 0.5)
                     preset = AvatarParameters.Presets.Happiness();
                 else
                     preset = AvatarParameters.Presets.HappinessHigh();
                 break;
-            case MoodState.SADNESS:
+            case EmotionalState.SADNESS:
                 if (intensity < 0.5)
                     preset = AvatarParameters.Presets.Sadness();
                 else
                     preset = AvatarParameters.Presets.SadnessHigh();
                 break;
+            case EmotionalState.FEAR:
+                preset = AvatarParameters.Presets.Fear();
+                break;
+            case EmotionalState.SURPRISE:
+                preset = AvatarParameters.Presets.Surprise();
+                break;
+            case EmotionalState.ANGER:
+            case EmotionalState.DISGUST:
             default:
                 preset = AvatarParameters.Presets.Neutral();
                 break;
@@ -57,19 +60,12 @@ public partial class AvatarController : MonoBehaviour
         parameters.setAllParameters<ControllerParams>(preset[1]);
         parameters.setParameter(AnimatorParams.MOOD_INTENSITY, intensity);
 
-        animator.SetInteger("Mood", (int)moodState);
+        animator.SetInteger("Mood", (int)mood);
     }
 
-    //TODO : NEXT METHOD TO FIX
-    public void ExpressEmotion(ExpressionState expression)
+    public void ExpressEmotion(EmotionalState expression, float intensity)
     {
-        if ((int)expression == 0)
-            animator.SetFloat("Expression Intensity", 0.0f);
-        if((int)expression % 2 == 0) //low expression
-            animator.SetFloat("Expression Intensity", 1.0f);
-        else //high expression
-            animator.SetFloat("Expression Intensity", 0.5f);
-
+        parameters.setParameter(AnimatorParams.EXPRESSION_INTENSITY, intensity);
         animator.SetInteger("Expression", (int)expression);
         animator.SetTrigger("Express");
     }

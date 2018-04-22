@@ -32,20 +32,3 @@ public enum ActionGroup
     GAZEBACK = 6,
     MOVEEYES = 7
 }
-
-public enum ActionType3
-{
-    START = 1,
-    STOP = 2,
-    SPEED = 3,
-    FREQUENCY = 4
-}
-
-public enum ActionType4
-{
-    MARIA = 1,
-    JOAO = 2,
-    USER = 3,
-    SPEED = 4,
-    FREQUENCY = 5
-}

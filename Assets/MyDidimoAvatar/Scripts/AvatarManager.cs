@@ -16,12 +16,12 @@ public class AvatarManager : MonoBehaviour
     public void Feel(Tutor tutor)
     {
         string moodString = getStateString(tutor.Emotion);
-        MoodState moodState = getStateType<MoodState>(moodString);
+        EmotionalState emotionalState = getStateType<EmotionalState>(moodString);
         AvatarController controller = getController(tutor);
         if (controller == null)
             return;
 
-        controller.SetMood(moodState, tutor.Emotion.Intensity);
+        controller.SetMood(emotionalState, tutor.Emotion.Intensity);
     }
 
     private void Feel(string[] parameters)
@@ -49,16 +49,17 @@ public class AvatarManager : MonoBehaviour
             Debug.Log(String.Format("{0} is not a reconizable emotion.", parameters[1]));
     }
 
-    public void Express(Tutor tutor, Emotion emotion)
+    public void Express(Tutor tutor)
     {
-        string expressionString = getStateString(emotion);
-        ExpressionState expressionState = getStateType<ExpressionState>(expressionString);
+        string expressionString = getStateString(tutor.Emotion);
+        EmotionalState expressionState = getStateType<EmotionalState>(expressionString);
         AvatarController controller = getController(tutor);
         if (controller == null)
             return;
 
-        controller.ExpressEmotion(expressionState);
+        controller.ExpressEmotion(expressionState, tutor.Emotion.Intensity);
     }
+
     private void Express(string[] parameters)
     {
         Tutor tutor = new Tutor();
@@ -78,13 +79,13 @@ public class AvatarManager : MonoBehaviour
                 Debug.Log(String.Format("{0} could not be parsed as a float.", parameters[2]));
                 return;
             }
-            Feel(tutor);
+            Express(tutor);
         }
         else
             Debug.Log(String.Format("{0} is not a reconizable emotion.", parameters[1]));
     }
 
-    public void Act(Tutor tutor, HeadAction action)
+    public void Act(Tutor tutor, Movement action)
     {
         AvatarController controller = getController(tutor);
         if (controller == null)
@@ -119,6 +120,19 @@ public class AvatarManager : MonoBehaviour
             }
         }  
     }
+
+    //TODO
+    public void Act(Tutor tutor1, Movement movement, Tutor tutor2)
+    {
+        throw new NotImplementedException();
+    }
+
+    //TODO
+    public void Act(Tutor tutor1, Movement movement, User user)
+    {
+        throw new NotImplementedException();
+    }
+
     IEnumerator React(Tutor tutor, TalkState actionState)
     {
         float delay = 0.5f;
@@ -137,6 +151,13 @@ public class AvatarManager : MonoBehaviour
         }
     }
 
+    //TODO
+    public void setParameter(Tutor tutor, Movement movement)
+    {
+        throw new NotImplementedException();
+    }
+
+    // OUTDATED
     // public method for receiving tags from other classes
     // Accepts tags in the form of "TutorName_Command_Argument" 
     public void sendRequest(string input)
@@ -200,21 +221,14 @@ public class AvatarManager : MonoBehaviour
         return null;
     }
 
-    private string getStateString(IState state) {
-        string stateString;
-
-        if (String.IsNullOrEmpty(state.Param1))
-            stateString = state.Name.ToUpperInvariant();
-        else
-            stateString = string.Concat(state.Name.ToUpperInvariant(), "_", state.Param1.Replace(" ", "").ToUpperInvariant());
-
-        return stateString;
+    private string getStateString(Movement movement)
+    {
+        return movement.Name.ToString().ToUpperInvariant();
     }
     private string getStateString(Emotion emotion)
     {
-        return string.Concat(emotion.Name.ToString().ToUpperInvariant());
+        return emotion.Name.ToString().ToUpperInvariant();
     }
-
     private static T getStateType<T>(string stateString)
     {
         try
@@ -238,6 +252,7 @@ public class AvatarManager : MonoBehaviour
         }  
     }
 
+    // TODO
     // Method to receive the commands from the VT's dialog Module. 
     public void sendCommand(string[] input)
     {

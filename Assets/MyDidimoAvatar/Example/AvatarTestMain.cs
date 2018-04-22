@@ -94,93 +94,93 @@ public class AvatarTestMain : MonoBehaviour
         if (Input.GetKey("a"))
         {
             if (testCommands)
-                manager.sendCommand(new string[] { "Express", tutorName, "Neutral", "-1.0" });
+                manager.sendCommand(new string[] { "Express", tutorName, "Neutral", "0.0" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Neutral, -1.0f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Neutral, 1.0f)));
         }
         if (Input.GetKey("s"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Happiness", "0.2" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Happiness, 0.2f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Happiness, 0.2f)));
         }
         if (Input.GetKey("d"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Happiness", "0.8f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Happiness, 0.8f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Happiness, 0.8f)));
         }
         if (Input.GetKey("f"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Sadness", "0.2f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Sadness, 0.2f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Sadness, 0.2f)));
         }
         if (Input.GetKey("g"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Sadness", "0.8f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Sadness, 0.8f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Sadness, 0.8f)));
         }
         if (Input.GetKey("h"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Anger", "0.2f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Anger, 0.2f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Anger, 0.2f)));
         }
         if (Input.GetKey("j"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Anger", "0.8f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Anger, 0.8f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Anger, 0.8f)));
         }
         if (Input.GetKey("k"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Fear", "0.2f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Fear, 0.2f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Fear, 0.2f)));
         }
         if (Input.GetKey("l"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Fear", "0.8f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Fear, 0.8f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Fear, 0.8f)));
         }
         if (Input.GetKey("z"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Disgust", "0.2f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Disgust, 0.2f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Disgust, 0.2f)));
         }
         if (Input.GetKey("x"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Disgust", "0.8f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Disgust, 0.8f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Disgust, 0.8f)));
         }
         if (Input.GetKey("c"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Surprise", "0.2f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Surprise, 0.2f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Surprise, 0.2f)));
         }
         if (Input.GetKey("v"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Express", tutorName, "Surprise", "0.8f" });
             else
-                manager.Express(new Tutor(tutorName), new Emotion(EmotionEnum.Surprise, 0.8f));
+                manager.Express(new Tutor(tutorName, new Emotion(EmotionEnum.Surprise, 0.8f)));
         }
 
         // Actions
@@ -189,56 +189,56 @@ public class AvatarTestMain : MonoBehaviour
             if (testCommands)
                 manager.sendCommand(new string[] { "Nod", tutorName, "Start" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Nod", ""));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Nod, new State(StateEnum.Start)));
         }
         if (Input.GetKey("p"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Nod", tutorName, "End" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Nod", "End"));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Nod, new State(StateEnum.End)));
         }
         if (Input.GetKey("n"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Talk", tutorName, "Start" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Talk", ""));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Talk, new State(StateEnum.Start)));
         }
         if (Input.GetKey("m"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Talk", tutorName, "End" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Talk", "End"));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Talk, new State(StateEnum.End)));
         }
         if (Input.GetKey("y"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Gazeat", tutorName, tutorName=="Maria" ? "Joao" : "Maria" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "At Partner"));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Gazeat), new Tutor(tutorName == "Maria" ? "Joao" : "Maria"));
         }
         if (Input.GetKey("u"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Gazeback", tutorName, tutorName == "Maria" ? "Joao" : "Maria" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Back From Partner"));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Gazeback), new Tutor(tutorName == "Maria" ? "Joao" : "Maria"));
         }
         if (Input.GetKey("i"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Gazeat", tutorName, "User" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "At User"));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Gazeat), new User());
         }
         if (Input.GetKey("o"))
         {
             if (testCommands)
                 manager.sendCommand(new string[] { "Gazeback", tutorName, "User" });
             else
-                manager.Act(new Tutor(tutorName), new HeadAction("Gaze", "Back From User"));
+                manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Gazeback), new User());
         }
 
         // Action Speed\Frequency
@@ -246,21 +246,21 @@ public class AvatarTestMain : MonoBehaviour
         {
             if (testCommands)
                 //manager.sendCommand(new string[] { "Nod", tutorName, "Frequency", "0.5" });
-                manager.sendRequest("maria_nodfrequency_0.5");
+                manager.setParameter(new Tutor(tutorName), new Movement(MovementEnum.Nod, new Property(PropertyEnum.Frequency, 0.5f)));
         }
         if (Input.GetKey("]"))
         {
             if (testCommands)
                 //manager.sendCommand(new string[] { "Nod", tutorName, "Speed", "2.0" });
-                manager.sendRequest("maria_nodspeed_2.0");
+                manager.setParameter(new Tutor(tutorName), new Movement(MovementEnum.Nod, new Property(PropertyEnum.Speed, 2.0f)));
         }
         if (Input.GetKey(","))
         {
             if (testCommands)
             {
-                manager.sendRequest("maria_gazeatspeed_1.5");
+                manager.setParameter(new Tutor(tutorName), new Movement(MovementEnum.Gazeat, new Property(PropertyEnum.Speed, 1.5f)));
                 //manager.sendCommand(new string[] { "Gazeat", tutorName, "Speed", "1.5" });
-                manager.sendRequest("maria_gazebackspeed_2");
+                manager.setParameter(new Tutor(tutorName), new Movement(MovementEnum.Gazeback, new Property(PropertyEnum.Speed, 2.0f)));
                 //manager.sendCommand(new string[] { "Gazeback", tutorName, "Speed", "2.0" });
             }
         }
@@ -268,17 +268,17 @@ public class AvatarTestMain : MonoBehaviour
         {
             if (testCommands)
                 //manager.sendCommand(new string[] { "Gazeat", tutorName, "Frequency", "0.5" });
-                manager.sendRequest("maria_gazefrequency_0.5");
+                manager.setParameter(new Tutor(tutorName), new Movement(MovementEnum.Gazeat, new Property(PropertyEnum.Frequency, 0.5f)));
         }
     }
 
     // UI driven commands
     public void talk(string who)
     {
-        manager.Act(new Tutor(who), new HeadAction("Talk", ""));
+        manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Talk, new State(StateEnum.Start)));
     }
     public void stopTalking(string who)
     {
-        manager.Act(new Tutor(who), new HeadAction("Talk", "End"));
+        manager.Act(new Tutor(tutorName), new Movement(MovementEnum.Talk, new State(StateEnum.End)));
     }
 }
