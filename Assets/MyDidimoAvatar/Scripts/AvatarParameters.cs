@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum AnimatorParams
+public enum AnimatorParams
 {
     MOOD_INTENSITY = 1,
     EXPRESSION_INTENSITY,
@@ -12,9 +12,10 @@ enum AnimatorParams
     GAZEBACK_SPEED
 }
 
-enum ControllerParams
+public enum ControllerParams
 {
-    GAZE_FREQUENCY = 1,
+    GAZEAT_FREQUENCY = 1,
+    GAZEBACK_FREQUENCY,
     NOD_FREQUENCY,
 }
 struct Parameter
@@ -32,7 +33,6 @@ struct Parameter
 [RequireComponent(typeof(Animator))]
 public class AvatarParameters : MonoBehaviour
 {
-    // TODO: DECIDE ON THE BEST WAY TO DEFINE THE MAXIMUM INTERVAL BETWEEN NODS
     [Header("Constants")]
     public float nodInterval = 20.0f;
     public float nodDuration = 3.0f;
@@ -42,23 +42,29 @@ public class AvatarParameters : MonoBehaviour
 
     private Animator animator;
 
-    void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
-
         animParams = new Dictionary<AnimatorParams, Parameter>();
         contParams = new Dictionary<ControllerParams, Parameter>();
 
         //Animator Parameters
-        animParams.Add(AnimatorParams.TALK_SPEED, new Parameter("Talk Speed", 1.0f));
-        animParams.Add(AnimatorParams.NOD_SPEED, new Parameter("Nod Speed", 1.0f));
-        animParams.Add(AnimatorParams.GAZEAT_SPEED, new Parameter("Gaze At Speed", 1.0f));
-        animParams.Add(AnimatorParams.GAZEBACK_SPEED, new Parameter("Gaze Back Speed", 1.0f));
+        animParams.Add(AnimatorParams.TALK_SPEED, new Parameter("Talk Speed", 0.0f));
+        animParams.Add(AnimatorParams.NOD_SPEED, new Parameter("Nod Speed", 0.0f));
+        animParams.Add(AnimatorParams.GAZEAT_SPEED, new Parameter("Gaze At Speed", 0.0f));
+        animParams.Add(AnimatorParams.GAZEBACK_SPEED, new Parameter("Gaze Back Speed", 0.0f));
         animParams.Add(AnimatorParams.MOOD_INTENSITY, new Parameter("Mood Intensity", 0.0f));
-        
-        //Controller Parameters
-        contParams.Add(ControllerParams.GAZE_FREQUENCY, new Parameter("Gaze Frequency", 1.0f));
-        contParams.Add(ControllerParams.NOD_FREQUENCY, new Parameter("Nod Frequency", 1.0f));  
+        animParams.Add(AnimatorParams.EXPRESSION_INTENSITY, new Parameter("Expression Intensity", 0.0f));
+
+        //Controller Parameters 
+        //NOTE: currently GAZEAT_FREQUENCY shares the same parameter as GAZEBACK_FREQUENCY
+        contParams.Add(ControllerParams.GAZEAT_FREQUENCY, new Parameter("Gaze At Frequency", 0.0f));
+        contParams.Add(ControllerParams.GAZEBACK_FREQUENCY, new Parameter("Gaze Back Frequency", 0.0f));
+        contParams.Add(ControllerParams.NOD_FREQUENCY, new Parameter("Nod Frequency", 0.0f));
+    }
+
+    void Start()
+    {
     }
 
     public void setParameter<TEnum>(TEnum paramaterKey, float value)
@@ -121,37 +127,31 @@ public class AvatarParameters : MonoBehaviour
     }
 
     public static class Presets
-    {    
-        // element order:
+    {
+        //  element order:
         // 
-        //  animator parameters
-        //  {
-        //      mood_intensity
-        //      expression_intensity
-        //      talk_speed
+        //  animator parameters:            controller parameters:
+        //      (x) mood_intensity              gazeat_frequency
+        //      (x) expression_intensity        gazeback_frequency
+        //      talk_speed                      nod_frequency
         //      nod_speed
         //      gazeat_speed
         //      gazeback_speed
-        //  }
-        //  controller parameters
-        //  {
-        //      gaze_frequency
-        //      nod_frequency
-        //  }
+
         public static float[][] Neutral()
         {
             return new float[][]
             {
                 new float[] {-1.00f, -1.00f,  1.00f,  1.00f,  1.00f,  1.00f},
-                new float[] { 0.75f,  1.00f}
+                new float[] { 0.75f, 0.75f, 0.55f }
             };
         }
         public static float[][] Happiness()
         {
             return new float[][]
             {
-                new float[] { 0.50f,  1.00f,  1.50f,  1.50f,  1.20f,  1.50f},
-                new float[] { 0.75f,  1.00f}
+                new float[] {-1.00f, -1.00f,  1.50f,  1.50f,  1.20f,  1.50f},
+                new float[] { 0.75f, 0.75f, 0.75f }
             };
         }
         public static float[][] HappinessHigh()
@@ -159,7 +159,7 @@ public class AvatarParameters : MonoBehaviour
             return new float[][]
             {
                 new float[] {-1.00f, -1.00f,  2.00f,  2.00f,  1.50f,  1.20f},
-                new float[] { 0.9f,  1.00f}
+                new float[] { 0.9f, 0.9f, 1.00f }
             };
         }
         public static float[][] Sadness()
@@ -167,7 +167,7 @@ public class AvatarParameters : MonoBehaviour
             return new float[][]
             {
                 new float[] {-1.00f, -1.00f,  1.00f,  1.00f,  0.75f,  0.75f},
-                new float[] { 0.50f,  0.50f}
+                new float[] { 0.50f, 0.50f, 0.50f }
             };
         }
         public static float[][] SadnessHigh()
@@ -175,16 +175,15 @@ public class AvatarParameters : MonoBehaviour
             return new float[][]
             {
                 new float[] {-1.00f, -1.00f,  1.00f,  1.00f,  1.00f,  1.00f},
-                new float[] { 0.75f,  1.00f}
+                new float[] { 0.85f, 0.85f, 0.65f }
             };
         }
-        //TODO: ADD DEFAULT VALUES
         public static float[][] Fear()
         {
             return new float[][]
             {
-                new float[] {-1.00f, -1.00f,  1.50f,  0.75f,  1.00f,  1.00f},
-                new float[] { 0.75f,  1.00f}
+                new float[] {-1.00f, -1.00f,  1.50f,  1.35f,  1.35f,  1.35f},
+                new float[] { 0.65f,  0.65f,  1.00f }
             };
         }
         //TODO: ADD DEFAULT VALUES
@@ -192,8 +191,8 @@ public class AvatarParameters : MonoBehaviour
         {
             return new float[][]
             {
-                new float[] {-1.00f, -1.00f,  1.00f,  1.00f,  1.00f,  1.00f},
-                new float[] { 0.75f,  1.00f}
+                new float[] {-1.00f, -1.00f,  1.25f,  1.25f,  1.00f,  1.00f},
+                new float[] { 0.75f,  0.75f,  0.82f }
             };
         }
     }

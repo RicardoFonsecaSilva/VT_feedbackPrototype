@@ -21,14 +21,30 @@
 // MoveEyes Maria Left
 // MoveEyes Maria Speed 0.2
 // MoveEyes Maria Frequency 0.5
-    
+
 public enum ActionGroup
 {
     FEEL = 1,
-    EXPRESS = 2,
-    TALK = 3,
-    NOD = 4,
-    GAZEAT = 5,
-    GAZEBACK = 6,
-    MOVEEYES = 7
+    EXPRESS,
+    TALK,
+    NOD,
+    GAZEAT,
+    GAZEBACK,
+    MOVEEYES
+}
+public enum ArgumentType1
+{
+    MARIA = 1,
+    JOAO,
+    USER
+}
+public enum ArgumentType2
+{
+    START = 1,
+    STOP
+}
+public enum ArgumentType3
+{
+    SPEED = 1,
+    FREQUENCY
 }

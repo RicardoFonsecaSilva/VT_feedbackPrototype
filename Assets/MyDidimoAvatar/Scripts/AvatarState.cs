@@ -13,7 +13,7 @@ public enum EmotionalState
 public enum NodState
 {
     NOD_END,
-    NOD
+    NOD_START
 }
 
 public enum GazeState
@@ -28,7 +28,7 @@ public enum GazeState
 public enum TalkState
 {
     TALK_END,
-    TALK
+    TALK_START
 }
 
 public enum EyesState
